@@ -9,11 +9,11 @@ function Basket() {
     return (
         <div className="basket">
             <div className="row">
-                <div className="col-7">
+                <div className="col-9">
 
                 </div>
 
-                <div className="col-3 border">
+                <div className="col-3 basket-bg">
                     test
                 </div>
             </div>

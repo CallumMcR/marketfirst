@@ -1,0 +1,9 @@
+.basket-bg{
+    background-color: whitesmoke;
+    border: 1px black;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    height: 100%;
+}
