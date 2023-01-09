@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/navigation.css';
-
+import searchBar from "./searchBar";
 
 
 function NavigationBar() {
@@ -33,7 +33,7 @@ function NavigationBar() {
 
                             </div>
                             <div className="col-5 border">
-                                Search bar
+                                <searchBar></searchBar>
                             </div>
                             <div className="col-3 border">
                                 Icons
