@@ -1,20 +1,23 @@
 import React from "react";
 import '../css/navigation.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Form from 'react-bootstrap/Form';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
-function searchBar() {
+function searchbar() {
     return (
-        <div className="searchBar">
+        <div className="searchBar m-3 p-2">
 
-            <InputGroup className="mb-3">
-                <InputGroup.Text id="Search icon">@</InputGroup.Text>
+
+            <InputGroup className="mb-3 rounded-pill bg-white">
+                <InputGroup.Text id="inputGroup-sizing-default">
+                    <div className="bi bi-search">
+                    </div>
+                </InputGroup.Text>
                 <Form.Control
-                    placeholder="Username"
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
                 />
             </InputGroup>
 
@@ -23,4 +26,4 @@ function searchBar() {
     )
 }
 
-export default searchBar;
+export default searchbar;

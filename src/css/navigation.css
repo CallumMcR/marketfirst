@@ -11,6 +11,12 @@
     font-weight: bolder;
   }
 
+  .font-os-100 {
+    font-family: "Open Sans";
+    font-weight: 100;
+    font-size: 15px;
+  }
+
   .font-os-lighter{
     font-family: "Open Sans";
     font-weight: lighter;
@@ -23,10 +29,13 @@
   .navButton{
     border: rgb(0, 0, 0,0) 1px;
     border-style: solid;
+    max-width: 100px;
   }
 
   .navButton:hover{
     border: white 1px;
     border-style: solid;
     border-radius: 5px;
+    max-width: 100px;
   }
+
