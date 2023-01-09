@@ -7,7 +7,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function searchbar() {
     return (
-        <div className="searchBar m-3 p-2">
+        <div className="searchBar m-auto p-2 ">
 
 
             <InputGroup className="mb-3 rounded-pill bg-white">
