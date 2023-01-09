@@ -2,6 +2,7 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Index";
 import './index.css';
+import "@fontsource/open-sans"; // Defaults to weight 400.
 
 
 const rootElement = document.getElementById("root");

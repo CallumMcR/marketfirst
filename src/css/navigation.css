@@ -1,0 +1,12 @@
+.navBar{
+    background-color: #960018;
+    font-family: "Open Sans";
+}
+.font-os-400 {
+    font-family: "Open Sans";
+    font-weight: 400;
+  }
+  .font-os-semiBold{
+    font-family: "Open Sans";
+    font-weight: bolder;
+  }
