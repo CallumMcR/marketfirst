@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/navigation.css';
 import Search from "./SearchBar";
 import { NavLink } from 'react-router-dom';
-import { Button } from 'bootstrap';
+import Button from 'react-bootstrap/Button';
 
 function NavigationBar() {
     return (
@@ -31,7 +31,7 @@ function NavigationBar() {
                                                 verticalAlign: 'middle'
                                             }} to="Index">
 
-                                            <div className="text-center">
+                                            <div className="text-center font-white">
                                                 Home
                                             </div>
                                         </NavLink>
@@ -46,7 +46,7 @@ function NavigationBar() {
                                                 verticalAlign: 'middle'
                                             }} to="Products">
 
-                                            <div className="text-center">
+                                            <div className="text-center font-white">
                                                 Browse
                                             </div>
                                         </NavLink>
@@ -72,15 +72,15 @@ function NavigationBar() {
                                                 textDecoration: "none",
                                                 verticalAlign: 'middle'
                                             }} to="login">
-                                            <div className="text-center bi bi-person-circle font-icons">
+                                            <div className="text-center bi bi-person-circle font-icons font-white">
                                             </div>
-                                            <div className="text-center">
+                                            <div className="text-center font-white">
                                                 Sign in
                                             </div>
                                         </NavLink>
                                     </div>
 
-                                    <div className="navButton m-3 p-2 font-os-lighter font-white">
+                                    <div className="navButton m-3 p-2 font-os-lighter font-white nav-Button">
 
                                         <div className=' fs-5 font-white text-center'
                                             style={{
@@ -93,7 +93,7 @@ function NavigationBar() {
                                                     0
                                                 </div>
                                             </div>
-                                            <div className="text-center">
+                                            <div className="text-center font-white">
                                                 Basket
                                             </div>
                                         </div>
@@ -107,9 +107,9 @@ function NavigationBar() {
                                                 textDecoration: "none",
                                                 verticalAlign: 'middle'
                                             }} to="account">
-                                            <div className="text-center bi bi-truck font-icons">
+                                            <div className="text-center bi bi-truck font-icons font-white">
                                             </div>
-                                            <div className="text-center font-os-100">
+                                            <div className="text-center font-os-100 font-white">
                                                 Orders and Returns
                                             </div>
                                         </NavLink>
