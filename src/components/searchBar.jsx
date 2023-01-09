@@ -11,13 +11,13 @@ function searchbar() {
 
 
             <InputGroup className="mb-3 rounded-pill bg-white">
-                <InputGroup.Text id="inputGroup-sizing-default">
+                <InputGroup.Text id="search-icon">
                     <div className="bi bi-search">
                     </div>
                 </InputGroup.Text>
                 <Form.Control
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
+                    aria-label="searchInput"
+                    aria-describedby="searchInput"
                 />
             </InputGroup>
 
