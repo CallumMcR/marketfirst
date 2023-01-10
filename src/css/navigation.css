@@ -12,6 +12,7 @@ body {
     background-color: #960018;
     font-family: "Open Sans";
     height: 70px;
+    position: relative;
 }
 .font-os-400 {
     font-family: "Open Sans";
@@ -82,4 +83,8 @@ body {
 
 .basket-hidden{
   visibility: hidden;
+}
+
+.pos-sticky{
+  position: sticky !important;
 }

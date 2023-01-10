@@ -33,9 +33,9 @@ function NavigationBar(props) {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
     return (
-        <div>
-            <div className="navBar">
-                <Container fluid className='h-100'>
+        <div style={{position:"sticky", top:"0px",left:"0px",zIndex:"1000"}}>
+            <div className="navBar" >
+                <Container fluid className='h-100' >
 
                     <div className="row h-100">
                         <div className="col-1">
@@ -153,8 +153,9 @@ function NavigationBar(props) {
                 </Container>
 
             </div >
-            <div name="basketCart" id="basketCart" style={{position:"absolute",zIndex:"10000",width:"100%"}}>
+            <div name="basketCart" id="basketCart" style={{ position: "absolute", zIndex: "10000", width: "100%" }}>
                 <Basket></Basket>
+
             </div>
 
         </div>
