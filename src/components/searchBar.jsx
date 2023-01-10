@@ -7,10 +7,10 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 function searchbar() {
     return (
-        <div className="searchBar m-auto p-2 ">
+        <div className="searchBar m-auto">
 
 
-            <InputGroup className="mb-3 rounded-pill bg-white">
+            <InputGroup className="rounded-pill bg-white">
                 <InputGroup.Text id="search-icon">
                     <div className="bi bi-search">
                     </div>

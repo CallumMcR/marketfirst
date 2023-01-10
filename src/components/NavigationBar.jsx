@@ -3,19 +3,23 @@ import '../css/navigation.css';
 import Search from "./SearchBar";
 import { NavLink } from 'react-router-dom';
 import Basket from "./Basket";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function NavigationBar() {
     return (
         <div>
             <div className="navBar">
-                <div className="container-fluid">
-                    <div className="row">
+                <Container fluid className='h-100'>
+
+                    <div className="row h-100">
                         <div className="col-1">
 
                         </div>
                         <div className="col-10">
 
-                            <div className="row">
+                            <div className="row h-100">
 
                                 <div className="col-2 font-os m-auto text-center font-white">
                                     Brand logo
@@ -23,7 +27,7 @@ function NavigationBar() {
                                 <div className="col-2 m-auto">
 
                                     <div className="d-flex justify-content-evenly align-items-center">
-                                        <div className="navButton m-3 p-2 font-os-lighter font-white">
+                                        <div className="navButton font-os-lighter font-white">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -32,13 +36,13 @@ function NavigationBar() {
                                                     verticalAlign: 'middle'
                                                 }} to="Index">
 
-                                                <div className="text-center font-white">
+                                                <div className="text-center font-white p-2">
                                                     Home
                                                 </div>
                                             </NavLink>
                                         </div>
 
-                                        <div className="navButton m-3 p-2 font-os-lighter font-white">
+                                        <div className="navButton font-os-lighter font-white">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -47,7 +51,7 @@ function NavigationBar() {
                                                     verticalAlign: 'middle'
                                                 }} to="Products">
 
-                                                <div className="text-center font-white">
+                                                <div className="text-center font-white p-2">
                                                     Browse
                                                 </div>
                                             </NavLink>
@@ -64,8 +68,8 @@ function NavigationBar() {
 
 
                                 <div className="col-3 m-auto">
-                                    <div className="d-flex justify-content-evenly align-items-center">
-                                        <div className="navButton m-3 p-2 font-os-lighter font-white">
+                                    <div className="d-flex justify-content-around align-items-center">
+                                        <div className="navButton font-os-lighter font-white">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -73,34 +77,30 @@ function NavigationBar() {
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
                                                 }} to="login">
-                                                <div className="text-center bi bi-person-circle font-icons font-white">
+                                                <div className="text-center bi bi-person-circle font-icons font-white p-2">
                                                 </div>
-                                                <div className="text-center font-white">
-                                                    Sign in
-                                                </div>
+
                                             </NavLink>
                                         </div>
 
-                                        <div className="navButton m-3 p-2 font-os-lighter font-white nav-Button">
+                                        <div className="navButton font-os-lighter font-white nav-Button">
 
-                                            <div className=' fs-5 font-white text-center'
+                                            <div className='fs-5 font-white text-center'
                                                 style={{
                                                     fontSize: '25px',
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
                                                 }} >
-                                                <div className="text-center bi bi-basket font-icons position-relative">
+                                                <div className="text-center bi bi-basket font-icons position-relative p-2">
                                                     <div className="basket-notification rounded-circle">
                                                         0
                                                     </div>
                                                 </div>
-                                                <div className="text-center font-white">
-                                                    Basket
-                                                </div>
+
                                             </div>
                                         </div>
 
-                                        <div className="navButton m-3 p-2 font-os-lighter font-white">
+                                        <div className="navButton font-os-lighter font-white">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -108,11 +108,9 @@ function NavigationBar() {
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
                                                 }} to="account">
-                                                <div className="text-center bi bi-truck font-icons font-white">
+                                                <div className="text-center bi bi-truck font-icons font-white p-2">
                                                 </div>
-                                                <div className="text-center font-os-100 font-white">
-                                                    Orders and Returns
-                                                </div>
+
                                             </NavLink>
                                         </div>
 
@@ -127,7 +125,8 @@ function NavigationBar() {
 
                         </div>
                     </div>
-                </div>
+
+                </Container>
 
             </div >
             <Basket></Basket>
