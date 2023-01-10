@@ -33,7 +33,7 @@ function NavigationBar(props) {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
     return (
-        <div style={{maxWidth:'100vw'}}>
+        <div>
             <div className="navBar">
                 <Container fluid className='h-100'>
 
@@ -153,7 +153,7 @@ function NavigationBar(props) {
                 </Container>
 
             </div >
-            <div name="basketCart" id="basketCart">
+            <div name="basketCart" id="basketCart" style={{position:"absolute",zIndex:"10000",width:"100%"}}>
                 <Basket></Basket>
             </div>
 

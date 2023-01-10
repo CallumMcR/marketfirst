@@ -43,7 +43,7 @@ function Basket() {
         : { marginRight: '-1000px', opacity: 0 };
 
     return (
-        <div className="basket" style={transitionProperties}>
+        <div className="basket" style={transitionProperties} >
             <Container fluid>
                 <div className="row">
                     <div className="col-9">
