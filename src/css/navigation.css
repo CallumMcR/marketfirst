@@ -69,3 +69,7 @@
 .nav-Button:hover{
   cursor: pointer;
 }
+
+.basket-hidden{
+  visibility: hidden;
+}

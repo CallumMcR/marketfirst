@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import '../css/basket.css';
 import Container from 'react-bootstrap/Container';
@@ -8,6 +8,11 @@ import { Button } from "react-bootstrap";
 
 
 function Basket() {
+
+      const toggleClass = () => {
+        localStorage.setItem("isActive", JSON.stringify(false));
+        window.dispatchEvent(new Event("isActive"));
+      };
     return (
         <div className="basket">
             <Container fluid>
@@ -19,8 +24,8 @@ function Basket() {
                     <div className="col-3 basket-bg">
                         <Row>
                             <div className="col-lg-2">
-                                <Button variant="secondary" size="lg" className="m-3 d-lg-none w-100 m-0">X</Button>
-                                <Button variant="secondary" size="lg" className="m-3 d-none d-lg-block ">X</Button>
+                                <Button variant="secondary" size="lg" className="m-3 d-lg-none w-100 m-0" onClick={toggleClass}>X</Button>
+                                <Button variant="secondary" size="lg" className="m-3 d-none d-lg-block " onClick={toggleClass}>X</Button>
 
                             </div>
                             <div className="col-lg-8 m-auto">

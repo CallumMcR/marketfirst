@@ -4,10 +4,34 @@ import Search from "./SearchBar";
 import { NavLink } from 'react-router-dom';
 import Basket from "./Basket";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-function NavigationBar() {
+import React, { useState } from 'react';
+
+
+
+
+
+
+function NavigationBar(props) {
+    const [isActive, setActive] = useState(() => {
+        // getting stored value
+        const saved = localStorage.getItem("isActive");
+        const initialValue = JSON.parse(saved);
+        return initialValue || true;
+    });
+    localStorage.setItem("isActive", JSON.stringify(isActive));
+
+
+    const toggleClass = () => {
+        setActive(!isActive);
+        localStorage.setItem("isActive", JSON.stringify(isActive));
+    };
+
+
+    window.addEventListener('isActive', () => {
+        setActive(JSON.parse(localStorage.getItem('isActive')));
+        console.log("test");
+    })
     return (
         <div>
             <div className="navBar">
@@ -83,7 +107,7 @@ function NavigationBar() {
                                             </NavLink>
                                         </div>
 
-                                        <div className="navButton font-os-lighter font-white nav-Button">
+                                        <div className="navButton font-os-lighter font-white nav-Button" onClick={toggleClass}>
 
                                             <div className='fs-5 font-white text-center'
                                                 style={{
@@ -129,7 +153,10 @@ function NavigationBar() {
                 </Container>
 
             </div >
-            <Basket></Basket>
+            <div name="basketCart" id="basketCart" className={!isActive ? 'basket-hidden' : null}>
+                <Basket></Basket>
+            </div>
+
         </div>
 
 
