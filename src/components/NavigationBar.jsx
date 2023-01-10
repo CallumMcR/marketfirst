@@ -15,22 +15,22 @@ import React, { useState } from 'react';
 function NavigationBar(props) {
     const [isActive, setActive] = useState(() => {
         // getting stored value
-        const saved = localStorage.getItem("isActive");
+        const saved = sessionStorage.getItem("isActive");
         const initialValue = JSON.parse(saved);
         return initialValue || true;
     });
-    localStorage.setItem("isActive", JSON.stringify(isActive));
+    sessionStorage.setItem("isActive", JSON.stringify(isActive));
 
 
     const toggleClass = () => {
         setActive(!isActive);
-        localStorage.setItem("isActive", JSON.stringify(isActive));
+        sessionStorage.setItem("isActive", JSON.stringify(isActive));
         window.dispatchEvent(new Event("isActive2"));
     };
 
 
     window.addEventListener('isActive', () => {
-        setActive(JSON.parse(localStorage.getItem('isActive')));
+        setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
     return (
         <div style={{maxWidth:'100vw'}}>

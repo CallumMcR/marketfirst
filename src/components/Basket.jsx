@@ -3,27 +3,38 @@ import { Link } from "react-router-dom";
 import '../css/basket.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { Button } from "react-bootstrap";
 
 
 function Basket() {
 
+    sessionStorage.setItem("basketTotalPrice", JSON.stringify(0));
+
+    const [basketTotal,setBasketTotal] = useState(() =>{
+        const saved = sessionStorage.getItem("basketTotalPrice");
+        const initialValue = JSON.parse(saved);
+        return initialValue || 0.00;
+    })
+
+
+
+
+
     const [isActive, setActive] = useState(() => {
         // getting stored value
-        const saved = localStorage.getItem("isActive");
+        const saved = sessionStorage.getItem("isActive");
         const initialValue = JSON.parse(saved);
         return initialValue || true;
     });
 
     const toggleClass = () => {
         setActive(!isActive);
-        localStorage.setItem("isActive", JSON.stringify(false));
+        sessionStorage.setItem("isActive", JSON.stringify(false));
         window.dispatchEvent(new Event("isActive"));
     };
 
     window.addEventListener('isActive2', () => {
-        setActive(JSON.parse(localStorage.getItem('isActive')));
+        setActive(JSON.parse(sessionStorage.getItem('isActive')));
 
     })
 
@@ -60,11 +71,11 @@ function Basket() {
 
                         <Container fluid className="basketMain">
                             <div className="p-5">
-                                <div class="card">
-                                    <img src="" class="card-img-top" />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card Title</h5>
-                                        <p class="card-text">
+                                <div className="card">
+                                    <img src="" className="card-img-top" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">Card Title</h5>
+                                        <p className="card-text">
                                             Some quick example text to build on the card title and make up the
                                             bulk of the card's content.
                                         </p>
@@ -87,7 +98,7 @@ function Basket() {
                         <Container fluid>
                             <hr></hr>
                             <div className="basketTotal">
-                                Total: £
+                                Total: £ {basketTotal}
                             </div>
                             <hr></hr>
                             <div className="d-flex justify-content-center">
