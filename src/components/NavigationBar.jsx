@@ -25,15 +25,15 @@ function NavigationBar(props) {
     const toggleClass = () => {
         setActive(!isActive);
         localStorage.setItem("isActive", JSON.stringify(isActive));
+        window.dispatchEvent(new Event("isActive2"));
     };
 
 
     window.addEventListener('isActive', () => {
         setActive(JSON.parse(localStorage.getItem('isActive')));
-        console.log("test");
     })
     return (
-        <div>
+        <div style={{maxWidth:'100vw'}}>
             <div className="navBar">
                 <Container fluid className='h-100'>
 

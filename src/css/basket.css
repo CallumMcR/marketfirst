@@ -91,3 +91,12 @@
       width: 40%;
     }
   }
+
+
+.basket{
+    opacity: 0;
+  transition-property: margin-right, opacity;
+  transition-duration: 1s;
+  margin-right: -1000px;
+  overflow-x: hidden;
+}

@@ -9,12 +9,29 @@ import { Button } from "react-bootstrap";
 
 function Basket() {
 
-      const toggleClass = () => {
+    const [isActive, setActive] = useState(() => {
+        // getting stored value
+        const saved = localStorage.getItem("isActive");
+        const initialValue = JSON.parse(saved);
+        return initialValue || true;
+    });
+
+    const toggleClass = () => {
         localStorage.setItem("isActive", JSON.stringify(false));
         window.dispatchEvent(new Event("isActive"));
-      };
+    };
+
+    window.addEventListener('isActive2', () => {
+        setActive(JSON.parse(localStorage.getItem('isActive')));
+
+    })
+
+    const transitionProperties = !isActive
+        ? { marginRight: '0px', opacity: 1 }
+        : {};
+
     return (
-        <div className="basket">
+        <div className="basket" style={transitionProperties}>
             <Container fluid>
                 <div className="row">
                     <div className="col-9">
