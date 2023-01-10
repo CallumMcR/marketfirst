@@ -88,3 +88,7 @@ body {
 .pos-sticky{
   position: sticky !important;
 }
+
+.avoid-clicks {
+  pointer-events: none !important;
+}

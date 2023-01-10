@@ -45,8 +45,8 @@ function Basket() {
     return (
         <div className="basket" style={transitionProperties} >
             <Container fluid>
-                <div className="row">
-                    <div className="col-9">
+                <div className="row" style={{zIndex:"-1000 !important"}}>
+                    <div className="col-9 " style={{zIndex:-1000}}>
 
                     </div>
 

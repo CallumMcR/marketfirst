@@ -13,11 +13,12 @@ function Index() {
             <NavigationBar></NavigationBar>
 
             <Container fluid>
-                <Carousel>
+                <Carousel >
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
                             src={image1}
+                            style={{maxHeight:"600px"}}
                             alt="First slide"
                         />
                         <Carousel.Caption>
@@ -28,8 +29,9 @@ function Index() {
                     <Carousel.Item >
                         <img
                             className="d-block w-100"
-                            src="holder.js/800x400?text=Second slide&bg=282c34"
+                            src={image1}
                             alt="Second slide"
+                            style={{maxHeight:"600px"}}
                         />
                         <Carousel.Caption>
                             <h3>Second slide label</h3>
@@ -39,8 +41,9 @@ function Index() {
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src="holder.js/800x400?text=Third slide&bg=20232a"
+                            src={image1}
                             alt="Third slide"
+                            style={{maxHeight:"600px"}}
                         />
                         <Carousel.Caption>
                             <h3>Third slide label</h3>
