@@ -153,7 +153,7 @@ function NavigationBar(props) {
                 </Container>
 
             </div >
-            <div name="basketCart" id="basketCart" className={!isActive ? 'basket-hidden' : null}>
+            <div name="basketCart" id="basketCart">
                 <Basket></Basket>
             </div>
 

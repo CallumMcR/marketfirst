@@ -17,6 +17,7 @@ function Basket() {
     });
 
     const toggleClass = () => {
+        setActive(!isActive);
         localStorage.setItem("isActive", JSON.stringify(false));
         window.dispatchEvent(new Event("isActive"));
     };
@@ -28,7 +29,7 @@ function Basket() {
 
     const transitionProperties = !isActive
         ? { marginRight: '0px', opacity: 1 }
-        : {};
+        : { marginRight: '-1000px', opacity: 0 };
 
     return (
         <div className="basket" style={transitionProperties}>
