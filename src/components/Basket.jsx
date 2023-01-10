@@ -21,7 +21,7 @@ function Basket() {
                             <div className="col-lg-2">
                                 <Button variant="secondary" size="lg" className="m-3 d-lg-none w-100 m-0">X</Button>
                                 <Button variant="secondary" size="lg" className="m-3 d-none d-lg-block ">X</Button>
-                                
+
                             </div>
                             <div className="col-lg-8 m-auto">
                                 <div className="text-center align-middle m-3 mybasketText">
@@ -33,6 +33,51 @@ function Basket() {
                             </div>
                         </Row>
                         <hr className="m-0"></hr>
+
+
+                        <Container fluid className="basketMain">
+                            <div className="p-5">
+                                <div class="card">
+                                    <img src="" class="card-img-top" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card Title</h5>
+                                        <p class="card-text">
+                                            Some quick example text to build on the card title and make up the
+                                            bulk of the card's content.
+                                        </p>
+                                        <div>
+                                            Quantity: 1
+                                        </div>
+                                        <div>
+                                            £20.00
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </Container>
+
+
+                        <Container fluid>
+                            <hr></hr>
+                            <div className="basketTotal">
+                                Total: £
+                            </div>
+                            <hr></hr>
+                            <div className="d-flex justify-content-center">
+                                <div className="text-center">
+                                    <div className="BasketCheckoutButton">
+                                        Checkout
+                                    </div>
+                                </div>
+                            </div>
+
+                        </Container>
+
+
                     </div>
                 </div>
             </Container>
