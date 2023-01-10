@@ -7,6 +7,9 @@
     border-bottom: none;
     height: calc(100vh - 70px);
     overflow: hidden;
+    left:80%;
+    position: absolute;
+    width: 20%;
 }
 
 
@@ -20,6 +23,7 @@
 .basketMain{
     height: calc(100vh - 350px);
     overflow-y: scroll;
+
 }
 
 .basketTotal{

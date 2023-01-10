@@ -13,6 +13,8 @@ import React, { useState } from 'react';
 
 
 function NavigationBar(props) {
+
+
     const [isActive, setActive] = useState(() => {
         // getting stored value
         const saved = sessionStorage.getItem("isActive");
@@ -20,6 +22,7 @@ function NavigationBar(props) {
         return initialValue || true;
     });
     sessionStorage.setItem("isActive", JSON.stringify(isActive));
+
 
 
     const toggleClass = () => {
@@ -33,7 +36,7 @@ function NavigationBar(props) {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
     return (
-        <div style={{position:"sticky", top:"0px",left:"0px",zIndex:"1000"}}>
+        <div style={{ position: "sticky", top: "0px", left: "0px", zIndex: "1000" }}>
             <div className="navBar" >
                 <Container fluid className='h-100' >
 
