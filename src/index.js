@@ -1,6 +1,7 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Index";
+import Products from "./components/Products";
 import './index.css';
 import "@fontsource/open-sans"; // Defaults to weight 400.
 
@@ -10,6 +11,7 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/products" element={<Products />} />
     </Routes>
   </BrowserRouter>,
   rootElement

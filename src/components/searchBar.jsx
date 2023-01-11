@@ -18,6 +18,7 @@ function searchbar() {
                 <Form.Control
                     aria-label="searchInput"
                     aria-describedby="searchInput"
+                    placeholder="Search for products..."
                 />
             </InputGroup>
 
