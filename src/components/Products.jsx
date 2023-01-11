@@ -88,6 +88,29 @@ function Products() {
                 </div>
             </Container>
 
+            <Container fluid>
+                <div className="productCard-master">
+                    <div className="productCard">
+                        <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
+                        <div className="price-bg">
+                            £20.00
+                        </div>
+                    </div>
+                    <div className="productCard-productName">
+                        Product Name
+                    </div>
+                    <div className="d-flex productCard-Reviews">
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        <i class="bi bi-star"></i>
+                        (3,000)
+                    </div>
+
+                </div>
+            </Container>
+
 
         </div>
     )
