@@ -1,0 +1,78 @@
+.productCard-master{
+    cursor: pointer;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.productCard {
+   max-width: 300px;
+   max-height: 250px;
+   min-width: 250px;
+   min-height: 200px;
+   border: 2px solid;
+   border-radius: 15px;
+   border-color: lightgray;
+   position: relative;
+   display: flex;
+    justify-content: center;
+align-items: center;
+overflow: hidden;
+  }
+
+  .productCard:hover{
+    border-color: red;
+ cursor: pointer;
+ 
+   }
+
+.price-bg{
+background-color: red;
+color: white;
+font-family: 'Open Sans';
+font-weight: lighter;
+font-size: 1.4rem;
+position: absolute;
+top: 0px;
+left: 0px;
+padding: 0.2em 1.15em;
+border-radius: 0px 0.2em 0.2em 0px;
+}
+
+  .productCard img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .productCard-productName{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+  .productCard-Reviews{
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 1.2rem;
+  }
+
+
+.productCard-container{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: scroll;
+    justify-content: start !important;
+    overflow-wrap: break-word;
+    padding-bottom: 1.5em;
+}
+
+
+.productCard-container::-webkit-scrollbar {
+    width: 16px;
+    height: 1em;
+}
+
+.productCard-container::-webkit-scrollbar-thumb {
+    background-color: rgba(89, 89, 89, 0.3);
+    border-radius: 10px;
+}
