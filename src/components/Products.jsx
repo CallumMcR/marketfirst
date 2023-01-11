@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import Container from 'react-bootstrap/Container';
@@ -8,12 +8,15 @@ import '../css/productsPage.css';
 function Products() {
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
 
-    const [open, setOpen] = useState(false);
+
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
+    const [toggle, setToggled] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Relevancy");
+    const timeoutRef = useRef(null);
 
     const toggleDropdown = () => {
-        setOpen(!open);
+        clearTimeout(timeoutRef.current);
+        setToggled(!toggle);
         if (DropDownBoxStyle === "dropdown-container") {
             SetDropDownBoxStyle("dropdown-container-toggled");
         }
@@ -27,6 +30,15 @@ function Products() {
         toggleDropdown();
     };
 
+    useEffect(() => {
+        if (toggle) {
+            timeoutRef.current = setTimeout(() => {
+                setToggled(false);
+                SetDropDownBoxStyle("dropdown-container");
+            }, 5000);
+        }
+    }, [toggle, 5000]);
+
 
     return (
         <div className="div">
@@ -35,10 +47,8 @@ function Products() {
             <Container fluid>
                 <div className="row">
                     <div className="col-2">
-
                     </div>
                     <div className="col-8">
-
                         <div className="row pt-4">
                             <div className="col-8">
                                 <div class="productHeader">
@@ -51,7 +61,7 @@ function Products() {
                                         <div className="dropdown-selected-option" onClick={toggleDropdown}>
                                             Sort by: {selectedOption} <i class="bi bi-caret-down-fill"></i>
                                         </div>
-                                        {open && (
+                                        {toggle && (
                                             <ul className="dropdown-options-list">
                                                 {options.map(option => (
                                                     <li className="dropdown-option" key={option} value={option}
@@ -71,14 +81,9 @@ function Products() {
                                 </div>
                             </div>
                         </div>
-             
                         <hr></hr>
-
-
-
                     </div>
                     <div className="col-2">
-
                     </div>
                 </div>
             </Container>
