@@ -41,10 +41,10 @@ function NavigationBar(props) {
                 <Container fluid className='h-100' >
 
                     <div className="row h-100">
-                        <div className="col-1">
+                        <div className="col-lg-1">
 
                         </div>
-                        <div className="col-10">
+                        <div className="col-lg-10">
 
                             <div className="row h-100">
 
@@ -53,7 +53,7 @@ function NavigationBar(props) {
                                 </div>
                                 <div className="col-2 m-auto">
 
-                                    <div className="d-flex justify-content-evenly align-items-center">
+                                    <div className="d-flex justify-content-end align-items-center">
                                         <div className="navButton font-os-lighter font-white">
 
                                             <NavLink className=' fs-5 font-white text-center'
@@ -89,14 +89,14 @@ function NavigationBar(props) {
 
                                 </div>
 
-                                <div className="col-5 m-auto">
+                                <div className="col-lg-5 m-auto">
                                     <Search></Search>
                                 </div>
 
 
-                                <div className="col-3 m-auto">
-                                    <div className="d-flex justify-content-around align-items-center">
-                                        <div className="navButton font-os-lighter font-white">
+                                <div className="col-lg-3 m-auto">
+                                    <div className="d-flex justify-content-lg-start justify-content-center align-items-center">
+                                        <div className="navButton font-os-lighter font-white nav-Button">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -127,7 +127,7 @@ function NavigationBar(props) {
                                             </div>
                                         </div>
 
-                                        <div className="navButton font-os-lighter font-white">
+                                        <div className="navButton font-os-lighter font-white nav-Button">
 
                                             <NavLink className=' fs-5 font-white text-center'
                                                 style={{
@@ -148,7 +148,7 @@ function NavigationBar(props) {
 
                             </div>
                         </div>
-                        <div className="col-1">
+                        <div className="col-lg-1">
 
                         </div>
                     </div>
