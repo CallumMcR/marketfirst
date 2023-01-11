@@ -81,8 +81,6 @@ function Index() {
 
                         <div className="productCard-container d-flex justify-content-evenly">
 
-
-
                             <div className="productCard-master">
                                 <div className="productCard">
                                     <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
@@ -103,138 +101,6 @@ function Index() {
                                 </div>
 
                             </div>
-
-
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-
-
-
 
                         </div>
 
@@ -248,6 +114,118 @@ function Index() {
 
 
 
+
+                    </div>
+                    <div className="col-2">
+
+                    </div>
+                </div>
+
+            </Container>
+
+            <Container fluid className="pt-5">
+
+<div className="row">
+    <div className="col-2">
+
+    </div>
+    <div className="col-8">
+        <div className="fs-2">
+            Best Sellers Of All time
+        </div>
+    </div>
+    <div className="col-2">
+
+    </div>
+</div>
+<hr></hr>
+
+<div className="row">
+    <div className="col-2">
+
+    </div>
+    <div className="col-8">
+
+        <div className="productCard-container d-flex justify-content-evenly">
+
+            <div className="productCard-master">
+                <div className="productCard">
+                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
+                    <div className="price-bg">
+                        £20.00
+                    </div>
+                </div>
+                <div className="productCard-productName">
+                    Product Name
+                </div>
+                <div className="d-flex productCard-Reviews">
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    <i class="bi bi-star"></i>
+                    (3,000)
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div className="col-2">
+
+    </div>
+</div>
+
+</Container>
+
+            <Container fluid className="pt-5">
+
+                <div className="row">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8">
+                        <div className="fs-2">
+                            Seasonal gifts
+                        </div>
+                    </div>
+                    <div className="col-2">
+
+                    </div>
+                </div>
+                <hr></hr>
+
+                <div className="row">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8">
+
+                        <div className="productCard-container d-flex justify-content-evenly">
+
+                            <div className="productCard-master">
+                                <div className="productCard">
+                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
+                                    <div className="price-bg">
+                                        £20.00
+                                    </div>
+                                </div>
+                                <div className="productCard-productName">
+                                    Product Name
+                                </div>
+                                <div className="d-flex productCard-Reviews">
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    (3,000)
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
                     <div className="col-2">
