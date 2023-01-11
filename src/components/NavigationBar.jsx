@@ -61,7 +61,7 @@ function NavigationBar(props) {
                                                     fontSize: '25px',
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
-                                                }} to="Index">
+                                                }} to="/">
 
                                                 <div className="text-center font-white p-2">
                                                     Home

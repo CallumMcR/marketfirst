@@ -1,0 +1,103 @@
+.productHeader{
+    font-family: 'Open Sans';
+    font-size: 2em;
+    font-weight: 100;
+}
+
+.productsPageFilterButton{
+    border: 2px;
+    border-color: red;
+    color: black;
+    border-style: solid;
+    border-radius: 75px;
+    background-color: none;
+    padding: 10px 25px;
+    font-size: 1.3rem;
+    font-family: 'Open Sans';
+    font-weight: 500;
+  
+}
+
+.productsPageFilterButton:hover{
+    border: 2px;
+    border-color: red;
+    color: white;
+    border-style: solid;
+    border-radius: 75px;
+    background-color: red;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-family: 'Open Sans';
+    font-weight: 500;
+   
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 75px;
+    border-color: red;
+    background-color: red;
+    font-size: 1.1rem;
+    font-family: 'Open Sans';
+    font-weight: 500;
+    color: white;
+}
+
+.dropdown-container:hover {
+    position: relative;
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 75px;
+    color: black;
+    border-color: red;
+    background-color: white;
+    font-size: 1.1rem;
+    font-family: 'Open Sans';
+    font-weight: 500;
+}
+
+.dropdown-container-toggled {
+    position: relative;
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: red;
+    font-size: 1.1rem;
+    font-family: 'Open Sans';
+    font-weight: 500;
+    border-bottom: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dropdown-selected-option {
+    padding: 12px 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.dropdown-options-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-option {
+    padding: 0.6rem 0.5rem;
+    cursor: pointer;
+    color: black ;
+    border: 1px solid red;
+    border-bottom: 0px;
+    user-select: none;
+}
