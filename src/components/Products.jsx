@@ -8,8 +8,6 @@ import '../css/productsPage.css';
 
 function Products() {
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
-    const placeHolder = ['Test', 'Nike trainers', 'Nike Sneakers', 'Nike Shirt', 'Nike Joggers']
-
 
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggle, setToggled] = useState(false);
@@ -42,14 +40,38 @@ function Products() {
     }, [toggle, 5000]);
 
 
-    const [currentProducts, setCurrentProducts] = useState(placeHolder);
-    const [previousPage, setPreviousPage] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [numberProductsPerPage, setNumberProductsPerPage] = useState(25);
 
+
+
+
+
+    const [listOfProducts, setListOfProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberProductsPerPage, setNumberProductsPerPage] = useState(2);
+
+    useEffect(() => {
+        setLoading(true);
+        setListOfProducts([
+            { name: "Nike trainers", price: "£2.00", image: "image1.webp" },
+            { name: "Nike shirt", price: "£2.00", image: "image1.webp" },
+            { name: "Nike joggers", price: "£2.00", image: "image1.webp" },
+            { name: "Nike shirt", price: "£2.00", image: "image1.webp" },
+            { name: "Nike coat", price: "£2.00", image: "image1.webp" },
+            { name: "Nike hoodie", price: "£2.00", image: "image1.webp" },
+            { name: "Nike jacket", price: "£2.00", image: "image1.webp" },
+            { name: "Nike trainers", price: "£2.00", image: "image1.webp" },
+        ])
+        setLoading(false);
+    }, [currentPage]);
+
+
+
+    const indexOfLastItem = currentPage * numberProductsPerPage;
+    const indexOfFirstItem = indexOfLastItem - numberProductsPerPage;
+    const currentItems = listOfProducts.slice(indexOfFirstItem, indexOfLastItem);
 
     const paginate = (pageNumber) => {
-        setPreviousPage(currentPage);
         setCurrentPage(pageNumber);
     }
 
@@ -74,14 +96,14 @@ function Products() {
                                 <div class="d-flex justify-content-end">
                                     <div className={DropDownBoxStyle}>
                                         <div className="dropdown-selected-option" onClick={toggleDropdown}>
-                                            Sort by: {selectedOption} <i class="bi bi-caret-down-fill"></i>
+                                            Sort by: {selectedOption} <i className="bi bi-caret-down-fill"></i>
                                         </div>
                                         {toggle && (
                                             <ul className="dropdown-options-list">
                                                 {options.map(option => (
                                                     <li className="dropdown-option" key={option} value={option}
                                                         style={
-                                                            option == "Most popular"
+                                                            option === "Most popular"
                                                                 ? { borderBottom: "1px solid red" }
                                                                 : {}
                                                         }
@@ -114,10 +136,10 @@ function Products() {
 
                         <div className="row">
 
-                            {placeHolder.map((test) => {
+                            {currentItems.map((test, index) => {
                                 return (
 
-                                    <div className="col-xxl-3 d-flex justify-content-center p-5">
+                                    <div className="col-xxl-3 d-flex justify-content-center p-5" key={index}>
                                         <Link style={{ textDecoration: 'none', color: 'black' }}
                                             to={{
                                                 pathname: `product/${test}`
@@ -131,14 +153,14 @@ function Products() {
                                                     </div>
                                                 </div>
                                                 <div className="productCard-productName">
-                                                    {test}
+                                                    {test.name}
                                                 </div>
                                                 <div className="d-flex productCard-Reviews">
-                                                    <i class="bi bi-star"></i>
-                                                    <i class="bi bi-star"></i>
-                                                    <i class="bi bi-star"></i>
-                                                    <i class="bi bi-star"></i>
-                                                    <i class="bi bi-star"></i>
+                                                    <i className="bi bi-star"></i>
+                                                    <i className="bi bi-star"></i>
+                                                    <i className="bi bi-star"></i>
+                                                    <i className="bi bi-star"></i>
+                                                    <i className="bi bi-star"></i>
                                                     (3,000)
                                                 </div>
 
@@ -171,11 +193,14 @@ function Products() {
 
                     </div>
                     <div className="col-6">
-                        <Pagination
+                        {!loading ? <Pagination
                             productsPerPage={numberProductsPerPage}
-                            totalProducts={placeHolder.length}
+                            totalProducts={listOfProducts.length}
                             paginate={paginate}
                         />
+                            :
+                            <div>Loading...</div>
+                        }
                     </div>
                     <div className="col-3">
 
