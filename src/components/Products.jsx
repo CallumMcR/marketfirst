@@ -63,7 +63,7 @@ function Products() {
     const [listOfProducts, setListOfProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberProductsPerPage, setNumberProductsPerPage] = useState(2);
+    const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
 
     useEffect(() => {
         setLoading(true);
@@ -89,6 +89,7 @@ function Products() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
+
 
 
 
