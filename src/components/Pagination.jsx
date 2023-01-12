@@ -9,7 +9,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
         pageNumbers.push(i);
     }
-    const maxPagesVisible = 5;
+    const maxPagesVisible = 10;
     const pagesToShow = pageNumbers.slice(currentPage - 1, currentPage + maxPagesVisible - 1);
     console.log(currentPage);
 
@@ -50,7 +50,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
 
 
                 {pagesToShow.map(number => (
-                    <div className="paginationNumber-container" onClick={() => handlePageChange(number)} key={number}>
+                    <div className={`paginationNumber-container ${currentPage === number ? 'active-page' : ''}`} onClick={() => handlePageChange(number)} key={number}>
                         <div className="pagination-number">
                             {number}
                         </div>

@@ -24,8 +24,6 @@
     margin-top: auto;
     margin-bottom: auto;
     position: relative;
-    
-
 }
 
 .paginationNumber-container:hover{
@@ -37,6 +35,6 @@
     background-color: whitesmoke; 
     cursor: not-allowed;   
 }
-.paginationNumber-container:active{
-    background-color: lightgray;  
+.active-page{
+    background-color: lightgray !important;  
 }
