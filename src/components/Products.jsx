@@ -125,6 +125,8 @@ function Products() {
                 </div>
             </Container>
 
+
+
             <Container fluid>
 
                 <div className="row">
@@ -135,6 +137,23 @@ function Products() {
                     <div className="col-6">
 
                         <div className="row">
+
+                            <Container fluid>
+                                <div className="row">
+                                    <div className="col-9">
+
+                                    </div>
+                                    <div className="col-3">
+                                        <div className="div">
+                                            Adjust the number of search results shown:
+                                        </div>
+                                        <div className="">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </Container>
 
                             {currentItems.map((test, index) => {
                                 return (
