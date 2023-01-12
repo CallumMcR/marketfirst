@@ -147,9 +147,8 @@ function Products() {
                                         <div className="div">
                                             Adjust the number of search results shown:
                                         </div>
-                                        <div className="">
-
-                                        </div>
+                                        <input type="number" max={50} min={1} value={numberProductsPerPage} onChange={(e)=>setNumberProductsPerPage(e.target.value)}>
+                                        </input>
 
                                     </div>
                                 </div>
