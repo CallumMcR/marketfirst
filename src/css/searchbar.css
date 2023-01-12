@@ -1,0 +1,36 @@
+form{
+    width: 90%;
+    position: relative;
+    padding: 2em;
+    margin: auto;
+    text-align: center;
+}
+
+form .bi-search {
+    background-color: white;
+    padding: 0.3em;
+    margin: 8px 0;
+  }
+
+
+input[type=text]:focus {
+    border: 2px solid red;
+    border-bottom: 4px solid lightblue;
+    border-radius: 0px;
+    border-radius:  0px 15px 15px 0px;
+  }
+
+input[type=text] {
+    border: 2px solid red;
+    border-bottom: 4px solid red;
+    border-radius: 0px;
+    width: 100%;
+    padding: 0.3em;
+    margin: 8px 0;
+    box-sizing: border-box;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    border-radius:  0px 15px 15px 0px;
+  }
+
