@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import Pagination from "./Pagination";
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
 import '../css/productsPage.css';
 
 function Products() {
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
+    const placeHolder = ['Test', 'Nike trainers', 'Nike Sneakers', 'Nike Shirt', 'Nike Joggers']
 
 
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
@@ -40,22 +42,35 @@ function Products() {
     }, [toggle, 5000]);
 
 
+    const [currentProducts, setCurrentProducts] = useState(placeHolder);
+    const [previousPage, setPreviousPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numberProductsPerPage, setNumberProductsPerPage] = useState(25);
+
+
+    const paginate = (pageNumber) => {
+        setPreviousPage(currentPage);
+        setCurrentPage(pageNumber);
+    }
+
+
+
     return (
         <div className="div">
 
             <NavigationBar></NavigationBar>
             <Container fluid>
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-3">
                     </div>
-                    <div className="col-8">
+                    <div className="col-6">
                         <div className="row pt-4">
-                            <div className="col-8">
+                            <div className="col-lg-8">
                                 <div class="productHeader">
                                     You searched for: { }
                                 </div>
                             </div>
-                            <div className="col-4">
+                            <div className="col-lg-4">
                                 <div class="d-flex justify-content-end">
                                     <div className={DropDownBoxStyle}>
                                         <div className="dropdown-selected-option" onClick={toggleDropdown}>
@@ -83,32 +98,90 @@ function Products() {
                         </div>
                         <hr></hr>
                     </div>
-                    <div className="col-2">
+                    <div className="col-3">
                     </div>
                 </div>
             </Container>
 
             <Container fluid>
-                <div className="productCard-master">
-                    <div className="productCard">
-                        <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                        <div className="price-bg">
-                            £20.00
+
+                <div className="row">
+                    <div className="col-3">
+
+                    </div>
+
+                    <div className="col-6">
+
+                        <div className="row">
+
+                            {placeHolder.map((test) => {
+                                return (
+
+                                    <div className="col-xxl-3 d-flex justify-content-center p-5">
+                                        <Link style={{ textDecoration: 'none', color: 'black' }}
+                                            to={{
+                                                pathname: `product/${test}`
+                                            }}>
+
+                                            <div className="productCard-master">
+                                                <div className="productCard">
+                                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                    <div className="price-bg">
+                                                        £20.00
+                                                    </div>
+                                                </div>
+                                                <div className="productCard-productName">
+                                                    {test}
+                                                </div>
+                                                <div className="d-flex productCard-Reviews">
+                                                    <i class="bi bi-star"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    <i class="bi bi-star"></i>
+                                                    (3,000)
+                                                </div>
+
+                                            </div>
+                                        </Link>
+                                    </div>
+
+
+                                )
+
+
+
+                            })}
+
+
                         </div>
+
                     </div>
-                    <div className="productCard-productName">
-                        Product Name
-                    </div>
-                    <div className="d-flex productCard-Reviews">
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        <i class="bi bi-star"></i>
-                        (3,000)
+                    <div className="col-3">
+
                     </div>
 
                 </div>
+
+            </Container>
+
+            <Container fluid>
+                <div className="row">
+                    <div className="col-3">
+
+                    </div>
+                    <div className="col-6">
+                        <Pagination
+                            productsPerPage={numberProductsPerPage}
+                            totalProducts={placeHolder.length}
+                            paginate={paginate}
+                        />
+                    </div>
+                    <div className="col-3">
+
+                    </div>
+                </div>
+
             </Container>
 
 
