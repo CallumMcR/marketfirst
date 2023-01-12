@@ -41,6 +41,21 @@ function Products() {
 
 
 
+    const handleItemPerPageChange = (value) => {
+        if (!isNaN(value)) {
+            if(value>4 && value<50){
+                setNumberProductsPerPage(value);
+            }
+            else if(value<5){
+                setNumberProductsPerPage(5);
+            }
+            else if(value>50){
+                setNumberProductsPerPage(50);
+            }
+            
+        }
+        
+    }
 
 
 
@@ -147,8 +162,11 @@ function Products() {
                                         <div className="div">
                                             Adjust the number of search results shown:
                                         </div>
-                                        <input type="number" max={50} min={1} value={numberProductsPerPage} onChange={(e)=>setNumberProductsPerPage(e.target.value)}>
-                                        </input>
+                                        <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage} 
+                                        onChange={(e) => handleItemPerPageChange(e.target.value)}></input>
+
+
+                        
 
                                     </div>
                                 </div>

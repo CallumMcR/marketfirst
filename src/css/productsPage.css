@@ -101,3 +101,14 @@
     border-bottom: 0px;
     user-select: none;
 }
+
+datalist {
+    display: flex;
+    justify-content: space-between;
+    color: red;
+    width: 50%;
+  }
+
+  input {
+    width: 50%;
+  }
