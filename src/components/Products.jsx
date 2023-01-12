@@ -142,7 +142,7 @@ function Products() {
                                     <div className="col-xxl-3 d-flex justify-content-center p-5" key={index}>
                                         <Link style={{ textDecoration: 'none', color: 'black' }}
                                             to={{
-                                                pathname: `product/${test}`
+                                                pathname: `2`
                                             }}>
 
                                             <div className="productCard-master">
