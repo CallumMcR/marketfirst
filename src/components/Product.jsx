@@ -21,7 +21,7 @@ function Product() {
 
     const [quantity, setQuantity] = useState(1);
 
-    const[activeImage,setActiveImage] = useState(require('../images/test/image1.webp'));
+    const [activeImage, setActiveImage] = useState(require('../images/test/image1.webp'));
 
 
 
@@ -119,8 +119,7 @@ function Product() {
                             <DropdownButton
                                 title={`Quantity: ${quantity}`}
                                 variant="dark"
-                                className="py-2"
-                            >
+                                className="py-2">
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((quantity) => (
                                     <Dropdown.Item
                                         key={quantity}
@@ -139,6 +138,46 @@ function Product() {
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div className="product-description-header pt-5">
+                        { }
+                    </div>
+
+                    <div className="pt-3 product-reviews-header">
+                        Reviews: { }
+                    </div>
+                    <hr></hr>
+
+                    <div className="p-3">
+                        <div className="row border">
+                            <div className="col-2">
+                                <div className="review-image-container">
+                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                </div>
+                            </div>
+                            <div className="col-4">
+                                <div className="ratings">
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                                <div className="fs-5 fw-bold">
+                                    Username
+                                </div>
+                                <div className="fs-5 fw-normal">
+                                    Date
+                                </div>
+                            </div>
+                            <div className="col-6">
+                                Description { }
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
                 <div className="col-2">

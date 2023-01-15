@@ -120,3 +120,39 @@ border-radius: 5px;
     position: relative;
     vertical-align:middle;
 }
+
+.product-description-header{
+    font-size: 2em;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}
+
+.product-reviews-header{
+    font-size: 2em;
+    font-weight: 800;
+    font-family: 'Open Sans';
+}
+
+
+.review-image-container{
+    max-width: 75px;
+    max-height: 75px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 150px;
+}
+
+.review-image-container img{
+    max-width: 75px;
+    max-height: 75px;
+    position: relative;
+    vertical-align:middle;
+    border-radius: 150px;
+}
