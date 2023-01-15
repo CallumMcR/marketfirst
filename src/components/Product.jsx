@@ -21,8 +21,16 @@ function Product() {
 
     const [quantity, setQuantity] = useState(1);
 
+    const[activeImage,setActiveImage] = useState(require('../images/test/image1.webp'));
+
+
+
     const handleQuantityChange = (e) => {
         setQuantity(e);
+    }
+
+    const handleImageChange = (e) => {
+        setActiveImage(e);
     }
 
     return (
@@ -45,10 +53,52 @@ function Product() {
                         <div className="col-5">
                             <div className="text-center">
                                 <div className="product-image-container text-center border rounded">
-                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                    <img src={activeImage} className="" alt="..."></img>
                                 </div>
 
                             </div>
+                            <div className="pt-4">
+                                <div className="product-images-container text-center border rounded">
+                                    <div className="row h-100">
+                                        <div className="col-2 center-vertically-arrows">
+                                            <i class="bi bi-arrow-left-circle-fill product-images-arrows-size"></i>
+                                        </div>
+                                        <div className="col-8">
+                                            <div className="row h-100">
+
+                                                <div className="col-3">
+                                                    <div className="small-image-thumbnail">
+                                                        <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
+                                                    </div>
+
+
+                                                </div>
+                                                <div className="col-3">
+                                                    <div className="small-image-thumbnail">
+                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                    </div>
+                                                </div>
+                                                <div className="col-3">
+                                                    <div className="small-image-thumbnail">
+                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                    </div>
+                                                </div>
+                                                <div className="col-3">
+                                                    <div className="small-image-thumbnail">
+                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-2 center-vertically-arrows">
+                                            <i class="bi bi-arrow-right-circle-fill product-images-arrows-size"></i>
+                                        </div>
+                                    </div>
+
+                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                </div>
+                            </div>
+
 
                         </div>
                         <div className="col-7">
