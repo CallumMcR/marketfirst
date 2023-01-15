@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
 import '../css/navigation.css';
@@ -33,6 +34,12 @@ function Product() {
         setActiveImage(e);
     }
 
+    const navigate = useNavigate();
+    const returnPrevPage = () => {
+        navigate(-1);
+    };
+
+
     return (
         <div>
             <NavigationBar>
@@ -44,8 +51,8 @@ function Product() {
                 </div>
                 <div className="col-8">
 
-                    <div className="py-2 fs-1">
-                        Back to search results
+                    <div onClick={returnPrevPage} className="py-2 fs-1 btn-return">
+                        <i class="bi bi-arrow-left"></i> Back to search results
                     </div>
                     <hr></hr>
 

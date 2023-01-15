@@ -156,3 +156,7 @@ border-radius: 5px;
     vertical-align:middle;
     border-radius: 150px;
 }
+
+.btn-return:hover{
+    cursor: pointer;
+}
