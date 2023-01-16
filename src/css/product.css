@@ -73,14 +73,14 @@
 }
 
 .product-images-container{
-    margin-left: 10%;
-    margin-right: 10%;
     height: 150px;
+    max-height: 150px;
     overflow: hidden;
+    position: relative;
 }
 
 .product-images-arrows-size{
-    font-size: 3em;
+    font-size: 2em;
     color: grey;
 }
 .product-images-arrows-size:hover{
@@ -89,6 +89,12 @@
 }
 
 .center-vertically-arrows{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-vertically-product-thumbnail{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,3 +166,10 @@ border-radius: 5px;
 .btn-return:hover{
     cursor: pointer;
 }
+
+
+.thumbnails-container
+{
+    overflow-x: scroll;
+}
+

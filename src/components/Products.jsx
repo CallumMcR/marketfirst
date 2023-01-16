@@ -68,14 +68,14 @@ function Products() {
     useEffect(() => {
         setLoading(true);
         setListOfProducts([
-            { name: "Nike trainers", price: "£2.00", image: "image1.webp" },
-            { name: "Nike shirt", price: "£2.00", image: "image1.webp" },
-            { name: "Nike joggers", price: "£2.00", image: "image1.webp" },
-            { name: "Nike shirt", price: "£2.00", image: "image1.webp" },
-            { name: "Nike coat", price: "£2.00", image: "image1.webp" },
-            { name: "Nike hoodie", price: "£2.00", image: "image1.webp" },
-            { name: "Nike jacket", price: "£2.00", image: "image1.webp" },
-            { name: "Nike trainers", price: "£2.00", image: "image1.webp" },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp" },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp" },
+            { name: "Nike joggers", price: "2.00", image: "image1.webp" },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp" },
+            { name: "Nike coat", price: "2.00", image: "image1.webp" },
+            { name: "Nike hoodie", price: "2.00", image: "image1.webp" },
+            { name: "Nike jacket", price: "2.00", image: "image1.webp" },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp" },
         ])
         setLoading(false);
     }, [currentPage]);
@@ -187,7 +187,7 @@ function Products() {
                                                 <div className="productCard">
                                                     <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
                                                     <div className="price-bg">
-                                                        £20.00
+                                                        £{test.price}
                                                     </div>
                                                 </div>
                                                 <div className="productCard-productName">

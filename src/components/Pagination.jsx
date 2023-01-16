@@ -11,7 +11,6 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     }
     const maxPagesVisible = 10;
     const pagesToShow = pageNumbers.slice(currentPage - 1, currentPage + maxPagesVisible - 1);
-    console.log(currentPage);
 
 
     const handlePreviousPage = (newPage) => {

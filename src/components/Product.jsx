@@ -40,6 +40,9 @@ function Product() {
     };
 
 
+
+
+
     return (
         <div>
             <NavigationBar>
@@ -66,35 +69,26 @@ function Product() {
                             </div>
                             <div className="pt-4">
                                 <div className="product-images-container text-center border rounded">
-                                    <div className="row h-100">
-                                        <div className="col-2 center-vertically-arrows">
+                                    <div className="row h-100 m-0">
+                                        <div className="col-2 h-100 center-vertically-arrows">
                                             <i class="bi bi-arrow-left-circle-fill product-images-arrows-size"></i>
                                         </div>
-                                        <div className="col-8">
+                                        <div className="col-8 h-100">
                                             <div className="row h-100">
 
-                                                <div className="col-3">
-                                                    <div className="small-image-thumbnail">
+                                                {/* Horizontal Scroll */}
+
+
+
+                                                <div className="col-4 h-100 center-vertically-product-thumbnail">
+                                                    <div className="small-image-thumbnail center-vertically-product-thumbnail">
                                                         <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
                                                     </div>
 
 
                                                 </div>
-                                                <div className="col-3">
-                                                    <div className="small-image-thumbnail">
-                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                                    </div>
-                                                </div>
-                                                <div className="col-3">
-                                                    <div className="small-image-thumbnail">
-                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                                    </div>
-                                                </div>
-                                                <div className="col-3">
-                                                    <div className="small-image-thumbnail">
-                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                                    </div>
-                                                </div>
+                                         
+
                                             </div>
                                         </div>
                                         <div className="col-2 center-vertically-arrows">
