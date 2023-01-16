@@ -112,3 +112,58 @@ datalist {
   input {
     width: 50%;
   }
+
+
+.product-margin{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.number-results-text{
+    word-wrap: break-word;
+}
+
+
+.grid-products {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 50px;
+    
+}
+
+.grid-products .grid-item {
+    padding: 2.5rem;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid-container-parent{
+    width: 100%;
+    position: relative;
+}
+
+
+@media only screen and (max-width:1500px) {
+    .grid-products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 0px;
+    }
+}
+
+@media only screen and (max-width:900px) {
+    .grid-products {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .grid-products {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 0px;
+    }
+}

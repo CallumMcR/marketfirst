@@ -37,24 +37,24 @@ function Products() {
                 SetDropDownBoxStyle("dropdown-container");
             }, 5000);
         }
-    }, [toggle, 5000]);
+    }, [toggle]);
 
 
 
     const handleItemPerPageChange = (value) => {
         if (!isNaN(value)) {
-            if(value>4 && value<50){
+            if (value > 4 && value < 50) {
                 setNumberProductsPerPage(value);
             }
-            else if(value<5){
+            else if (value < 5) {
                 setNumberProductsPerPage(5);
             }
-            else if(value>50){
+            else if (value > 50) {
                 setNumberProductsPerPage(50);
             }
-            
+
         }
-        
+
     }
 
 
@@ -146,37 +146,38 @@ function Products() {
             <Container fluid>
 
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-2">
 
                     </div>
 
-                    <div className="col-6">
+                    <div className="col-8">
+                        <Container fluid>
+                            <div className="row">
+                                <div className="col-9">
 
-                        <div className="row">
-
-                            <Container fluid>
-                                <div className="row">
-                                    <div className="col-9">
-
+                                </div>
+                                <div className="col-3">
+                                    <div className="number-results-text">
+                                        Number of search results:
                                     </div>
-                                    <div className="col-3">
-                                        <div className="div">
-                                            Adjust the number of search results shown:
-                                        </div>
-                                        <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage} 
+                                    <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
                                         onChange={(e) => handleItemPerPageChange(e.target.value)}></input>
 
 
-                        
 
-                                    </div>
+
                                 </div>
-                            </Container>
+                            </div>
+                        </Container>
+
+
+                        <div className="row">
+
 
                             {currentItems.map((test, index) => {
                                 return (
 
-                                    <div className="col-xxl-3 d-flex justify-content-center p-5" key={index}>
+                                    <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
                                         <Link style={{ textDecoration: 'none', color: 'black' }}
                                             to={{
                                                 pathname: `2`
@@ -216,7 +217,7 @@ function Products() {
                         </div>
 
                     </div>
-                    <div className="col-3">
+                    <div className="col-2">
 
                     </div>
 
