@@ -14,6 +14,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function Product() {
     const productID = useParams();
     const [product, setProduct] = useState([]);
+
+
     useEffect(() => {
         axios.get(`products.php?productID=${productID}`)
             .then(res => setProduct(res.data))
@@ -24,14 +26,13 @@ function Product() {
 
     const [activeImage, setActiveImage] = useState(require('../images/test/image1.webp'));
 
-
-
     const handleQuantityChange = (e) => {
         setQuantity(e);
     }
 
     const handleImageChange = (e) => {
         setActiveImage(e);
+        console.log(activeImage);
     }
 
     const navigate = useNavigate();
@@ -40,6 +41,24 @@ function Product() {
     };
 
 
+
+    const [tempThumbnails, setTempThumbnails] = useState([
+        { image: "../images/test/image1.webp" },
+        { image: "../images/test/image1.webp" },
+        { image: "../images/test/image1.webp" },
+        { image: "../images/test/image1.webp" },
+        { image: "../images/test/image1.webp" },
+        { image: "../images/test/image1.webp" },
+    ]);
+
+
+    const handleAddToBasket = (e) => {
+        sessionStorage.getItem('basketData',e);
+
+
+        
+        sessionStorage.setItem('basketData', e);
+    }
 
 
 
@@ -55,12 +74,12 @@ function Product() {
                 <div className="col-8">
 
                     <div onClick={returnPrevPage} className="py-2 fs-1 btn-return">
-                        <i class="bi bi-arrow-left"></i> Back to search results
+                        <i className="bi bi-arrow-left"></i> Back to search results
                     </div>
                     <hr></hr>
 
                     <div className="row">
-                        <div className="col-5  border rounded mx-3" style={{maxWidth:"500px",maxHeight:"600px",overflow:"hidden"}}>
+                        <div className="col-5  border rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
                             <div className="text-center">
                                 <div className="product-image-container text-center">
                                     <img src={activeImage} className="" alt="..."></img>
@@ -71,29 +90,25 @@ function Product() {
                         </div>
 
 
-                        <div className="col-2 border rounded container-overflow-control" style={{maxWidth:"500px",maxHeight:"600px"}}>
-                     
+                        <div className="col-2 border rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
 
 
-                                <div className="small-image-thumbnail center-vertically-product-thumbnail">
-                                    <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
-                                </div>
 
-                                <div className="small-image-thumbnail center-vertically-product-thumbnail">
-                                    <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
-                                </div>
-                                <div className="small-image-thumbnail center-vertically-product-thumbnail">
-                                    <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
-                                </div>
-                                <div className="small-image-thumbnail center-vertically-product-thumbnail">
-                                    <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
-                                </div>
-                                <div className="small-image-thumbnail center-vertically-product-thumbnail">
-                                    <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange()} className="" alt="..."></img>
-                                </div>
+                            {tempThumbnails.map((pic, index) => {
+                                return (
 
-                   
-                        
+                                    <div className="small-image-thumbnail center-vertically-product-thumbnail" key={index}>
+                                        <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange('../images/test/image1.webp')} className="" alt="..."></img>
+                                    </div>
+                                )
+
+
+
+                            })}
+
+
+
+
                         </div>
                         <div className="col-5">
                             <div className="font-product-header">
