@@ -106,7 +106,7 @@ function NavigationBar(props) {
                                                     fontSize: '25px',
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
-                                                }} to="login">
+                                                }} to="/login">
                                                 <div className="text-center bi bi-person-circle font-icons font-white p-2">
                                                 </div>
 
