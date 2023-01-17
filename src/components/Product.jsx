@@ -16,12 +16,13 @@ function Product() {
     const [product, setProduct] = useState([{ productID: 2, name: "Product 1" }]);
 
 
+    /*
     useEffect(() => {
         axios.get(`products.php?productID=${productID}`)
             .then(res => setProduct(res.data))
     }, [productID]);
 
-
+*/
     const [quantity, setQuantity] = useState(1);
 
     const [activeImage, setActiveImage] = useState(require('../images/test/image1.webp'));
@@ -59,27 +60,31 @@ function Product() {
         setBasketItems(basketItemsFromStorage);
     }, []);
 
-    useEffect(() => {
-        sessionStorage.setItem("basketData", JSON.stringify(basketItems));
-    }, [basketItems]);
 
     const handleAddToBasket = () => {
-        if (basketItems !== []) {
-            const productsExists = basketItems.find((item) => item.productID == product.productID);
-            if (productsExists) {
-                productsExists.quantity = productsExists.quantity + quantity;
-                setBasketItems([...basketItems]);
-                console.log("Setting items 1");
-                window.dispatchEvent(new Event("basketUpdated"));
-            }
-            else {
-                setBasketItems([...basketItems, { ...product, quantity: quantity }])
-                console.log("Setting items 2");
-                window.dispatchEvent(new Event("basketUpdated"));
-            }
+        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        if (productsExists) {
+            const updatedBasketItems = basketItems.map((item) => {
+                if (item.productID === product.productID) {
+                    return { ...item, quantity: item.quantity + quantity }
+                }
+                return item;
+            });
+            setBasketItems(updatedBasketItems);
+            console.log("Setting items 1");
+        }
+        else {
+            setBasketItems([...basketItems, { ...product, quantity: quantity }])
+            console.log("Setting items 2", basketItems);
+
         }
     }
 
+
+    useEffect(() => {
+        sessionStorage.setItem("basketData", JSON.stringify(basketItems));
+        window.dispatchEvent(new Event("basketUpdated"));
+    }, [basketItems]);
 
 
     return (

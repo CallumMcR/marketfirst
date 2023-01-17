@@ -53,23 +53,26 @@ function Basket() {
 
     useEffect(() => {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
+        console.log("Updated",basketItems);
     }, [basketItems]);
 
     //Needed for updates
     window.addEventListener('basketUpdated', () => {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || []
-        console.log(basketItemsFromStorage);
         setBasketItems(basketItemsFromStorage);
-        console.log("received");
     })
 
     const handleAddToBasket = (product) => {
         const productsExists = basketItems.find((item) => item.productID == product.productID);
         if (productsExists) {
-            productsExists.quantity++;
-            setBasketItems([...basketItems]);
-        }
-        else {
+            const updatedBasketItems = basketItems.map((item) => {
+                if (item.productID === product.productID) {
+                    return { ...item, quantity: item.quantity + 1 }
+                }
+                return item;
+            });
+            setBasketItems(updatedBasketItems);
+        } else {
             setBasketItems([...basketItems, { ...product, quantity: 1 }])
         }
     };
