@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import '../css/basket.css';
 import Container from 'react-bootstrap/Container';
@@ -9,7 +9,7 @@ import { Button } from "react-bootstrap";
 function Basket() {
 
 
-   
+
 
     sessionStorage.setItem("basketTotalPrice", JSON.stringify(0));
 
@@ -18,9 +18,6 @@ function Basket() {
         const initialValue = JSON.parse(saved);
         return initialValue || 0.00;
     })
-
-
-
 
 
     const [isActive, setActive] = useState(() => {
@@ -42,8 +39,70 @@ function Basket() {
     })
 
     const transitionProperties = !isActive
-        ? { marginRight: '0px', opacity: 1,visibility:"visible" }
-        : { marginRight: '-1000px', opacity: 0,visibility:"hidden" };
+        ? { marginRight: '0px', opacity: 1, visibility: "visible" }
+        : { marginRight: '-1000px', opacity: 0, visibility: "hidden" };
+
+    // Basket Storage Section
+
+    //Needed for initalisation
+    const [basketItems, setBasketItems] = useState([]);
+    useEffect(() => {
+        const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
+        setBasketItems(basketItemsFromStorage);
+    }, []);
+
+    useEffect(() => {
+        sessionStorage.setItem("basketData", JSON.stringify(basketItems));
+    }, [basketItems]);
+
+    //Needed for updates
+    window.addEventListener('basketUpdated', () => {
+        const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || []
+        console.log(basketItemsFromStorage);
+        setBasketItems(basketItemsFromStorage);
+        console.log("received");
+    })
+
+    const handleAddToBasket = (product) => {
+        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        if (productsExists) {
+            productsExists.quantity++;
+            setBasketItems([...basketItems]);
+        }
+        else {
+            setBasketItems([...basketItems, { ...product, quantity: 1 }])
+        }
+    };
+
+    const handleMinusQuantityToBasket = (product) => {
+        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        if (productsExists) {
+            if (productsExists.quantity == 1) {
+                setBasketItems(basketItems.filter((item) => item !== product));
+            }
+            else {
+                productsExists.quantity--;
+                setBasketItems([...basketItems]);
+            }
+
+        }
+    };
+
+
+
+    const handleRemoveFromBasket = (product) => {
+        setBasketItems(basketItems.filter((item) => item !== product));
+    };
+
+    const handleQuantityChange = (product, newQuantity) => {
+        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        if (productsExists) {
+            productsExists.quantity = newQuantity;
+            setBasketItems([...basketItems]);
+        }
+    };
+
+
 
     return (
         <div className="basket" style={transitionProperties} >
@@ -70,27 +129,34 @@ function Basket() {
 
 
                     <Container fluid className="basketMain">
-                        <div className="p-5">
-                            <div className="card">
-                                <img src="" className="card-img-top" />
-                                <div className="card-body">
-                                    <h5 className="card-title">Card Title</h5>
-                                    <p className="card-text">
-                                        Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.
-                                    </p>
-                                    <div>
-                                        Quantity: 1
-                                    </div>
-                                    <div>
-                                        £20.00
-                                    </div>
 
+                        {/* Product - one card */}
+                        {basketItems.map((product) => (
+                            <div className="p-5" key={product.productID}>
+                                <div className="card">
+                                    <img src="" className="card-img-top" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{ }</h5>
+                                        <div className="d-flex">
+                                            <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
+                                            </div>
+                                            <div className="quantity-text px-4">
+                                                {product.quantity}
+                                            </div>
+                                            <div className="bi bi-plus-circle-fill button-add" onClick={handleAddToBasket}>
+
+                                            </div>
+                                        </div>
+
+                                        <div className='price-text'>
+                                            £{ }
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-
+                        ))}
+                        {/* End of singular basket */}
 
                     </Container>
 

@@ -4,6 +4,7 @@ import Search from "./SearchBar";
 import { NavLink } from 'react-router-dom';
 import Basket from "./Basket";
 import Container from 'react-bootstrap/Container';
+import { useEffect } from 'react';
 
 import React, { useState } from 'react';
 
@@ -35,6 +36,8 @@ function NavigationBar(props) {
     window.addEventListener('isActive', () => {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
+
+
     return (
         <div style={{ position: "sticky", top: "0px", left: "0px", zIndex: "1000" }}>
             <div className="navBar" >

@@ -12,8 +12,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 function Product() {
-    const productID = useParams();
-    const [product, setProduct] = useState([]);
+    const productID = useParams(); // Make sure to switch back after testing to productID
+    const [product, setProduct] = useState([{ productID: 2, name: "Product 1" }]);
 
 
     useEffect(() => {
@@ -32,7 +32,6 @@ function Product() {
 
     const handleImageChange = (e) => {
         setActiveImage(e);
-        console.log(activeImage);
     }
 
     const navigate = useNavigate();
@@ -51,13 +50,34 @@ function Product() {
         { image: "../images/test/image1.webp" },
     ]);
 
+    // Add to Basket
 
-    const handleAddToBasket = (e) => {
-        sessionStorage.getItem('basketData',e);
+    const [basketItems, setBasketItems] = useState([]);
 
+    useEffect(() => {
+        const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
+        setBasketItems(basketItemsFromStorage);
+    }, []);
 
-        
-        sessionStorage.setItem('basketData', e);
+    useEffect(() => {
+        sessionStorage.setItem("basketData", JSON.stringify(basketItems));
+    }, [basketItems]);
+
+    const handleAddToBasket = () => {
+        if (basketItems !== []) {
+            const productsExists = basketItems.find((item) => item.productID == product.productID);
+            if (productsExists) {
+                productsExists.quantity = productsExists.quantity + quantity;
+                setBasketItems([...basketItems]);
+                console.log("Setting items 1");
+                window.dispatchEvent(new Event("basketUpdated"));
+            }
+            else {
+                setBasketItems([...basketItems, { ...product, quantity: quantity }])
+                console.log("Setting items 2");
+                window.dispatchEvent(new Event("basketUpdated"));
+            }
+        }
     }
 
 
@@ -142,7 +162,7 @@ function Product() {
                                 Buy Now
                             </div>
                             <div className="py-3"></div>
-                            <div className="addbasket-button">
+                            <div className="addbasket-button" onClick={handleAddToBasket}>
                                 Add to basket
                             </div>
                         </div>

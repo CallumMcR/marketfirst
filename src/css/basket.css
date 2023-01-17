@@ -108,3 +108,37 @@
 .avoid-clicks {
     pointer-events: none;
   }
+
+.button-minus{
+  color: red;
+  opacity: 0.75;
+  font-size: 2em;
+}
+
+.button-minus:hover{
+  color: red;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.button-add{
+  color: green;
+  opacity: 0.75;
+  font-size: 2em;
+}
+
+.button-add:hover{
+  color: green;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.quantity-text{
+  font-family: 'Open Sans';
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.price-text{
+  font-size: 2em;
+}
