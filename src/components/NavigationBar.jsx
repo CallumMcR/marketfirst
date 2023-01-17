@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 
 function NavigationBar(props) {
 
+    const [basketNotification,setBasketNotification] = useState(0);
 
     const [isActive, setActive] = useState(() => {
         // getting stored value
@@ -123,7 +124,7 @@ function NavigationBar(props) {
                                                 }} >
                                                 <div className="text-center bi bi-basket font-icons position-relative p-2">
                                                     <div className="basket-notification rounded-circle">
-                                                        0
+                                                        {basketNotification}
                                                     </div>
                                                 </div>
 
