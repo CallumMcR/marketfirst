@@ -43,26 +43,28 @@ function Login() {
 
                     </div>
                     <div className="col-xxl-4 col-xl">
+                        <div className="my-5">
 
-                        <div className="row">
-                            <div className="col-2">
-                            </div>
-                            <div className="col-4">
-                                <div className={styleActiveSignin} onClick={() => handleToggle("signin")}>
-                                    Sign in
+
+                            <div className="row">
+                                <div className="col-2">
+                                </div>
+                                <div className="col-4">
+                                    <div className={styleActiveSignin} onClick={() => handleToggle("signin")}>
+                                        Sign in
+                                    </div>
+                                </div>
+                                <div className="col-4">
+                                    <div className={styleActiveSignup} onClick={() => handleToggle("register")}>
+                                        Register
+                                    </div>
+                                </div>
+                                <div className="col-2">
                                 </div>
                             </div>
-                            <div className="col-4">
-                                <div className={styleActiveSignup} onClick={() => handleToggle("register")}>
-                                    Register
-                                </div>
-                            </div>
-                            <div className="col-2">
-                            </div>
+                            {loginActive ? <LoginComp></LoginComp> : <RegisterComp></RegisterComp>}
+
                         </div>
-                        {loginActive ? <LoginComp></LoginComp> : <RegisterComp></RegisterComp>}
-
-
                     </div>
                     <div className="col-xxl-4 col-xl-3">
 
