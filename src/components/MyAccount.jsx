@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import MyOrders from './accountComponents/MyOrders';
 import ChangeDelivery from './accountComponents/ChangeDelivery';
 import { useParams } from "react-router";
+import Admin from "./AdminComp";
 
 
 
@@ -25,9 +26,10 @@ function MyAccount() {
 
                 </div>
                 <div className="col-1 border">
-                    <div className="hyperlink-container text-center">
+                    <div className="hyperlink-container text-center my-5">
                         <button onClick={(e) => setPageState(<MyOrders></MyOrders>)}>My Orders</button>
                         <button onClick={(e) => setPageState(<ChangeDelivery></ChangeDelivery>)}>Change Delivery Details</button>
+                        <button onClick={(e) => setPageState(<Admin></Admin>)}>Admin</button>
                     </div>
                 </div>
                 <div className="col-5 border">
