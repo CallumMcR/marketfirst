@@ -13,24 +13,48 @@ function RegisterComp() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [firstName,setFirstName]=useState("");
+    const [surname,setSurname]=useState("");
+
     return (
         <div>
 
             <div className="text-center">
                 <Container id="container-signin">
+
                     <input
                         placeholder='Email address' type="email"
-                        onChange={e => setEmail(e.target.value)}>
+                        onChange={(e) => setEmail(e.target.value)}>
                     </input>
-                    <br></br>
-                 
+                    <input
+                        placeholder='Password' type="password"
+                        onChange={(e) => setPassword(e.target.value)}>
+                    </input>
+
+                    <input
+                        placeholder='Repeat Password' type="password"
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}>
+                    </input>
+                    <div className="d-flex justify-content-center">
+                        <input
+                            placeholder='First Name' type="text"
+                            onChange={(e) => setFirstName(e.target.value)}>
+                        </input>
+                        <input
+                            placeholder='Surname' type="text"
+                            onChange={(e) => setSurname(e.target.value)}>
+                        </input>
+                    </div>
+
+
+
                 </Container>
 
             </div>
             <div className="text-center">
                 <div className="signin-button mx-auto">
-                    Sign in
+                    Register
                 </div>
 
             </div>

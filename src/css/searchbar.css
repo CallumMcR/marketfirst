@@ -13,14 +13,14 @@ form .bi-search {
   }
 
 
-input[type=text]:focus {
+.searchBar input[type=text]:focus {
     border: 2px solid red;
     border-bottom: 4px solid lightblue;
     border-radius: 0px;
     border-radius:  0px 15px 15px 0px;
   }
 
-input[type=text] {
+.searchBar input[type=text] {
     border: 2px solid red;
     border-bottom: 4px solid red;
     border-radius: 0px;

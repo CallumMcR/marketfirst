@@ -1,4 +1,5 @@
 #container-signin input{
+    display: block;
     padding: 5px;
     width: 50%;
     border-top:none ;
@@ -15,6 +16,31 @@
 #container-signin input:focus{
     padding: 5px;
     width: 50%;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    border: 0px;
+    border-bottom: 3px black solid;
+    outline: none;
+}
+#container-signin .d-flex input{
+    display: block;
+    padding: 5px;
+    width: 25%!important;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    font: 'Open Sans';
+    font-size: 1em;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#container-signin .d-flex input:focus{
+    padding: 5px;
     border-top:none ;
     border-right: none;
     border-left: none;
