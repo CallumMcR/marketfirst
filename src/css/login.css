@@ -49,6 +49,35 @@
     outline: none;
 }
 
+
+.container-custom-input input{
+    display: block;
+    padding: 5px;
+    width: 50%;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    font: 'Open Sans';
+    font-size: 1em;
+    margin: auto;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container-custom-input input:focus{
+    padding: 5px;
+    width: 50%;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    border: 0px;
+    border-bottom: 3px black solid;
+    outline: none;
+}
+
+
+
 .signin-button{
     border: 2px solid red;
     padding: 10px;
