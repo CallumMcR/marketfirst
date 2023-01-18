@@ -20,12 +20,19 @@ function Login() {
 
     const [loginActive, setLoginActive] = useState(true);
 
+    const [styleActiveSignin, setStyleActiveSignin] = useState("text-center active");
+    const [styleActiveSignup, setStyleActiveSignup] = useState("text-center");
+
     const handleToggle = (type) => {
         if (type === "signin") {
             setLoginActive(true);
+            setStyleActiveSignin("text-center active");
+            setStyleActiveSignup("text-center");
         }
         else {
             setLoginActive(false);
+            setStyleActiveSignin("text-center");
+            setStyleActiveSignup("text-center active");
         }
 
     }
@@ -44,12 +51,12 @@ function Login() {
                             <div className="col-2">
                             </div>
                             <div className="col-4">
-                                <div className="text-center" onClick={() => handleToggle("signin")}>
+                                <div className={styleActiveSignin} onClick={() => handleToggle("signin")}>
                                     Sign in
                                 </div>
                             </div>
                             <div className="col-4">
-                                <div className="text-center" onClick={() => handleToggle("register")}>
+                                <div className={styleActiveSignup} onClick={() => handleToggle("register")}>
                                     Register
                                 </div>
                             </div>
