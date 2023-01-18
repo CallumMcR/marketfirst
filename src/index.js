@@ -4,6 +4,7 @@ import Home from "./components/Index";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import Login from "./components/Login";
+import MyAccount from "./components/MyAccount";
 import './index.css';
 import "@fontsource/open-sans"; // Defaults to weight 400.
 
@@ -16,6 +17,7 @@ render(
       <Route path="/products/" element={<Products />} />
       <Route exact path="/products/:id" element={<Product />} />
       <Route exact path="/login" element={<Login />} />
+      <Route exact path="/account" element={<MyAccount />} />
     </Routes>
   </BrowserRouter>,
   rootElement
