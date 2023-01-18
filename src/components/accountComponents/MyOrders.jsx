@@ -12,6 +12,7 @@ function CustomToggle({ children, eventKey }) {
         console.log('totally custom!'),
     );
 
+
     return (
         <button
             type="button"
@@ -34,6 +35,7 @@ function MyOrders() {
             <div className="text-center">
                 My Orders
             </div>
+            <hr></hr>
             <div className="row">
                 <div className="col-2">
 
@@ -48,7 +50,7 @@ function MyOrders() {
                                         <CustomToggle eventKey="0" >
                                             <div className="d-flex position-relative" style={{ flexGrow: 1 }}>
 
-                                                <img style={{ maxHeight: "100px" }} className='img-fluid img-thumbnail' src={pic} alt="product"></img>
+                                                <img style={{ maxHeight: "100px", border: 0 }} className='img-fluid img-thumbnail' src={pic} alt="product"></img>
 
                                                 <div className="container-fluid w-100">
                                                     <div className="row">

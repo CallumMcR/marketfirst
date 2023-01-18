@@ -17,7 +17,7 @@ render(
       <Route path="/products/" element={<Products />} />
       <Route exact path="/products/:id" element={<Product />} />
       <Route exact path="/login" element={<Login />} />
-      <Route exact path="/account" element={<MyAccount />} />
+      <Route exact path="/account/:location" element={<MyAccount />} />
     </Routes>
   </BrowserRouter>,
   rootElement

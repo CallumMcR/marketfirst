@@ -5,13 +5,17 @@ import NavigationBar from "./NavigationBar";
 import React, { useState } from 'react';
 import MyOrders from './accountComponents/MyOrders';
 import ChangeDelivery from './accountComponents/ChangeDelivery';
-
+import { useParams } from "react-router";
 
 
 
 function MyAccount() {
-
-    const [pageState, setPageState] = useState(<MyOrders></MyOrders>);
+    const pageLocation = useParams(); 
+    const [pageState, setPageState] = useState();
+    if(pageLocation==="home"){
+        setPageState(<MyOrders></MyOrders>);
+    }
+    
 
     return (
         <div>
@@ -27,7 +31,10 @@ function MyAccount() {
                     </div>
                 </div>
                 <div className="col-5 border">
-                    {pageState}
+                    <div className="my-3">
+                        {pageState}
+                    </div>
+
                 </div>
                 <div className="col-3">
 

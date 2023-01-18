@@ -12,7 +12,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 
 function Product() {
-    const productID = useParams(); // Make sure to switch back after testing to productID
+    const productID = useParams(); 
     const [product, setProduct] = useState([{ productID: 2, name: "Product 1" }]);
 
 
