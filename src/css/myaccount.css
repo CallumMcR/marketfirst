@@ -1,0 +1,19 @@
+.hyperlink-container {
+    color: black;
+    font-size: 1em;
+    font-weight: 400;
+    font-family: 'Open Sanns';
+}
+
+
+.hyperlink-container button {
+    outline: none;
+    border: none;
+    background-color: white;
+    font-family: 'Open Sans';
+    font-size: 1em;
+    font-weight: 400;
+    padding: 0;
+    margin: auto;
+    text-decoration: underline;
+}

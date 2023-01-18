@@ -14,18 +14,16 @@ import React, { useState } from 'react';
 
 
 function NavigationBar(props) {
-
-    const [basketNotification,setBasketNotification] = useState(0);
+    
+    const [basketNotification, setBasketNotification] = useState(0);
 
     const [isActive, setActive] = useState(() => {
         // getting stored value
         const saved = sessionStorage.getItem("isActive");
         const initialValue = JSON.parse(saved);
-        return initialValue || true;
+        return initialValue || false;
     });
     sessionStorage.setItem("isActive", JSON.stringify(isActive));
-
-
 
     const toggleClass = () => {
         setActive(!isActive);
