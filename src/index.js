@@ -14,8 +14,8 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/products/" element={<Products />} />
-      <Route exact path="/products/:id" element={<Product />} />
+      <Route path="/products/:search" element={<Products />} />
+      <Route exact path="/products/product/:id" element={<Product />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/account/:location" element={<MyAccount />} />
     </Routes>

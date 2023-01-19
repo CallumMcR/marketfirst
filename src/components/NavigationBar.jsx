@@ -91,7 +91,7 @@ function NavigationBar(props) {
 
                                 </div>
 
-                                <div className="col-lg-5 m-auto">
+                                <div className="col-lg-5 m-auto" style={{marginLeft:"auto",marginRight:"auto"}}>
                                     <Search></Search>
                                 </div>
 

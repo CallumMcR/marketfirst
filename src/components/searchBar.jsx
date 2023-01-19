@@ -2,31 +2,39 @@ import React from "react";
 import '../css/navigation.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import '../css/searchbar.css';
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
-function searchbar() {
+
+function SearchBar() {
+    const [searchCritera, setSearchCriteria] = useState("");
+    const navigate = useNavigate();
+
+    const search = () => {
+        navigate(`/products/${searchCritera}`);
+    }
+
+    const handleInputChange = (e) => {
+        setSearchCriteria(e);
+    }
     return (
-        <div className="searchBar m-auto">
+        <form className="searchBar m-auto d-flex position-relative">
+            
 
 
-
-            <InputGroup className="rounded-pill bg-white">
-                <InputGroup.Text id="search-icon">
-                    <div className="bi bi-search">
-                    </div>
-                </InputGroup.Text>
-                <Form.Control
-                    aria-label="searchInput"
-                    aria-describedby="searchInput"
+         
+                <input className="" style={{ width: "80%", paddingLeft: "5px" }}
                     placeholder="Search for products..."
-                />
-            </InputGroup>
+                    onChange={(e) => handleInputChange()}>
+                </input>
 
 
-        </div >
+                <i className="bi bi-search vertical-center">
+                </i>
+
+        </form >
     )
 }
 
-export default searchbar;
+export default SearchBar;

@@ -24,7 +24,6 @@ function Product() {
 
 */
     const [quantity, setQuantity] = useState(1);
-
     const [activeImage, setActiveImage] = useState(require('../images/test/image1.webp'));
 
     const handleQuantityChange = (e) => {

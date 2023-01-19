@@ -8,7 +8,6 @@ import '../css/productsPage.css';
 
 function Products() {
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
-
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggle, setToggled] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Relevancy");
@@ -108,7 +107,7 @@ function Products() {
                                     You searched for: { }
                                 </div>
                             </div>
-                            <div className="col-lg-4">
+                            <div className="col-lg-4 col-md-4">
                                 <div class="d-flex justify-content-end">
                                     <div className={DropDownBoxStyle}>
                                         <div className="dropdown-selected-option" onClick={toggleDropdown}>
@@ -180,7 +179,7 @@ function Products() {
                                     <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
                                         <Link style={{ textDecoration: 'none', color: 'black' }}
                                             to={{
-                                                pathname: `2`
+                                                pathname: `/products/product/2`
                                             }}>
 
                                             <div className="productCard-master">
