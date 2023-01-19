@@ -11,22 +11,23 @@ function SearchBar() {
     const [searchCritera, setSearchCriteria] = useState("");
     const navigate = useNavigate();
 
-    const search = () => {
+    const search = (e) => {
+        e.preventDefault();
         navigate(`/products/${searchCritera}`);
     }
 
     const handleInputChange = (e) => {
-        setSearchCriteria(e);
+        setSearchCriteria(e.target.value);
     }
     return (
-        <form className="searchBar m-auto d-flex position-relative">
+        <form className="searchBar m-auto d-flex position-relative" onSubmit={search}>
             
 
 
          
                 <input className="" style={{ width: "80%", paddingLeft: "5px" }}
                     placeholder="Search for products..."
-                    onChange={(e) => handleInputChange()}>
+                    onChange={handleInputChange}>
                 </input>
 
 

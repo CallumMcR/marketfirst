@@ -13,6 +13,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 function Product() {
     const productID = useParams(); 
+    
     const [product, setProduct] = useState([{ productID: 2, name: "Product 1" }]);
 
 

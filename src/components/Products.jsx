@@ -5,13 +5,26 @@ import Pagination from "./Pagination";
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
 import '../css/productsPage.css';
+import { useParams } from "react-router";
+import axios from "axios";
 
 function Products() {
+    const query = useParams();
+    console.log(query.search);
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggle, setToggled] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Relevancy");
     const timeoutRef = useRef(null);
+
+    const [searchQuery, setSearchQuery] = useState("");
+
+
+    useEffect(() => {
+        if (query !== "") {
+            setSearchQuery(query);
+        }
+    }, [query]);
 
     const toggleDropdown = () => {
         clearTimeout(timeoutRef.current);
@@ -38,7 +51,18 @@ function Products() {
         }
     }, [toggle]);
 
-
+    useEffect(() => {
+        const postData = async () => {
+            try {
+                const res = await axios.post('/eds-www/productsFilter.php', {
+                    productName: searchQuery
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        postData();
+    }, [searchQuery]);
 
     const handleItemPerPageChange = (value) => {
         if (!isNaN(value)) {
@@ -63,7 +87,7 @@ function Products() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
-
+    const [activeProductsList, setActiveProductsList] = useState([]);
     useEffect(() => {
         setLoading(true);
         setListOfProducts([
@@ -80,7 +104,6 @@ function Products() {
     }, [currentPage]);
 
 
-
     const indexOfLastItem = currentPage * numberProductsPerPage;
     const indexOfFirstItem = indexOfLastItem - numberProductsPerPage;
     const currentItems = listOfProducts.slice(indexOfFirstItem, indexOfLastItem);
@@ -88,7 +111,6 @@ function Products() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
-
 
 
 
