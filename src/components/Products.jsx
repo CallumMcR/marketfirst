@@ -10,7 +10,6 @@ import axios from "axios";
 
 function Products() {
     const query = useParams();
-    console.log(query.search);
     const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggle, setToggled] = useState(false);
@@ -21,10 +20,10 @@ function Products() {
 
 
     useEffect(() => {
-        if (query !== "") {
-            setSearchQuery(query);
+        if (query.search !== "") {
+            setSearchQuery(query.search);
         }
-    }, [query]);
+    }, [query.search]);
 
     const toggleDropdown = () => {
         clearTimeout(timeoutRef.current);
@@ -89,15 +88,16 @@ function Products() {
     const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
     useEffect(() => {
         setLoading(true);
+        // In here go axios call
         setListOfProducts([
             { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 2500 },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000  },
-            { name: "Nike joggers", price: "2.00", image: "image1.webp", rating: 2000  },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp" , rating: 2000 },
-            { name: "Nike coat", price: "2.00", image: "image1.webp" , rating: 500 },
-            { name: "Nike hoodie", price: "2.00", image: "image1.webp", rating: 2000  },
-            { name: "Nike jacket", price: "2.00", image: "image1.webp" , rating: 3000 },
-            { name: "Nike trainers", price: "2.00", image: "image1.webp" , rating: 2000 },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000 },
+            { name: "Nike joggers", price: "2.00", image: "image1.webp", rating: 2000 },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000 },
+            { name: "Nike coat", price: "2.00", image: "image1.webp", rating: 500 },
+            { name: "Nike hoodie", price: "2.00", image: "image1.webp", rating: 2000 },
+            { name: "Nike jacket", price: "2.00", image: "image1.webp", rating: 3000 },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 2000 },
         ])
         setLoading(false);
     }, [currentPage]);
@@ -113,26 +113,23 @@ function Products() {
 
 
 
+    const sortProducts = (sortOption, listProducts) => {
+        switch (sortOption) {
+          case 'Relevancy':
+            return listProducts;
+          case 'Lowest price':
+            return listProducts.sort((a, b) => a.price - b.price);
+          case 'Highest price':
+            return listProducts.sort((a, b) => b.price - a.price);
+          case 'Most popular':
+            return listProducts.sort((a, b) => b.rating - a.rating);
+          default:
+            return listProducts;
+        }
+      }
 
     useEffect(() => {
-        if(selectedOption === "Relevancy")
-        {
-
-        }
-        else if(selectedOption==="Lowest Price")
-        {
-
-        }
-        else if(selectedOption==="Highest Price")
-        {
-            
-        }
-        else if(selectedOption==="Most popular")
-        {
-            setListOfProducts(listOfProducts.sort((a, b) => a.rating < b.rating ? 1 : -1));
-            console.log(listOfProducts.sort((a, b) => a.rating < b.rating ? 1 : -1));
-            console.log(listOfProducts);
-        }
+        setListOfProducts(sortProducts(selectedOption,listOfProducts));
     }, [selectedOption]);
 
 
