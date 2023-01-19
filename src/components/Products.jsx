@@ -90,7 +90,7 @@ function Products() {
     useEffect(() => {
         setLoading(true);
         setListOfProducts([
-            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 1000 },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 2500 },
             { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000  },
             { name: "Nike joggers", price: "2.00", image: "image1.webp", rating: 2000  },
             { name: "Nike shirt", price: "2.00", image: "image1.webp" , rating: 2000 },
@@ -130,6 +130,8 @@ function Products() {
         else if(selectedOption==="Most popular")
         {
             setListOfProducts(listOfProducts.sort((a, b) => a.rating < b.rating ? 1 : -1));
+            console.log(listOfProducts.sort((a, b) => a.rating < b.rating ? 1 : -1));
+            console.log(listOfProducts);
         }
     }, [selectedOption]);
 
