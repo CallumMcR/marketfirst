@@ -90,14 +90,14 @@ function Products() {
     useEffect(() => {
         setLoading(true);
         setListOfProducts([
-            { name: "Nike trainers", price: "2.00", image: "image1.webp" },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp" },
-            { name: "Nike joggers", price: "2.00", image: "image1.webp" },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp" },
-            { name: "Nike coat", price: "2.00", image: "image1.webp" },
-            { name: "Nike hoodie", price: "2.00", image: "image1.webp" },
-            { name: "Nike jacket", price: "2.00", image: "image1.webp" },
-            { name: "Nike trainers", price: "2.00", image: "image1.webp" },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 1000 },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000  },
+            { name: "Nike joggers", price: "2.00", image: "image1.webp", rating: 2000  },
+            { name: "Nike shirt", price: "2.00", image: "image1.webp" , rating: 2000 },
+            { name: "Nike coat", price: "2.00", image: "image1.webp" , rating: 500 },
+            { name: "Nike hoodie", price: "2.00", image: "image1.webp", rating: 2000  },
+            { name: "Nike jacket", price: "2.00", image: "image1.webp" , rating: 3000 },
+            { name: "Nike trainers", price: "2.00", image: "image1.webp" , rating: 2000 },
         ])
         setLoading(false);
     }, [currentPage]);
@@ -129,7 +129,7 @@ function Products() {
         }
         else if(selectedOption==="Most popular")
         {
-            
+            setListOfProducts(listOfProducts.sort((a, b) => a.rating < b.rating ? 1 : -1));
         }
     }, [selectedOption]);
 
@@ -241,7 +241,7 @@ function Products() {
                                                     <i className="bi bi-star"></i>
                                                     <i className="bi bi-star"></i>
                                                     <i className="bi bi-star"></i>
-                                                    (3,000)
+                                                    ({test.rating})
                                                 </div>
 
                                             </div>
