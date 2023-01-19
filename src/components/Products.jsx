@@ -55,7 +55,7 @@ function Products() {
         const postData = async () => {
             try {
                 const res = await axios.post('/eds-www/productsFilter.php', {
-                    productName: searchQuery
+                    productName: searchQuery,
                 });
             } catch (err) {
                 console.error(err);
@@ -87,7 +87,6 @@ function Products() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
-    const [activeProductsList, setActiveProductsList] = useState([]);
     useEffect(() => {
         setLoading(true);
         setListOfProducts([
@@ -111,6 +110,28 @@ function Products() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
+
+
+
+
+    useEffect(() => {
+        if(selectedOption === "Relevancy")
+        {
+
+        }
+        else if(selectedOption==="Lowest Price")
+        {
+
+        }
+        else if(selectedOption==="Highest Price")
+        {
+            
+        }
+        else if(selectedOption==="Most popular")
+        {
+            
+        }
+    }, [selectedOption]);
 
 
 
