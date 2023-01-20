@@ -50,18 +50,32 @@ function Products() {
         }
     }, [toggle]);
 
+
+    function isJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
+
     useEffect(() => {
         const postData = async () => {
             try {
-                const res = await axios.post('/eds-www/productsFilter.php', {
-                    productName: searchQuery,
+                setLoading(true);
+                const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php', {
                 });
+                setListOfProducts(res.data);
+                setLoading(false);
+
             } catch (err) {
                 console.error(err);
             }
         }
         postData();
-    }, [searchQuery]);
+    }, [searchQuery, selectedOption]);
 
     const handleItemPerPageChange = (value) => {
         if (!isNaN(value)) {
@@ -86,19 +100,10 @@ function Products() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
+
+
     useEffect(() => {
         setLoading(true);
-        // In here go axios call
-        setListOfProducts([
-            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 2500 },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000 },
-            { name: "Nike joggers", price: "2.00", image: "image1.webp", rating: 2000 },
-            { name: "Nike shirt", price: "2.00", image: "image1.webp", rating: 2000 },
-            { name: "Nike coat", price: "2.00", image: "image1.webp", rating: 500 },
-            { name: "Nike hoodie", price: "2.00", image: "image1.webp", rating: 2000 },
-            { name: "Nike jacket", price: "2.00", image: "image1.webp", rating: 3000 },
-            { name: "Nike trainers", price: "2.00", image: "image1.webp", rating: 2000 },
-        ])
         setLoading(false);
     }, [currentPage]);
 
@@ -106,6 +111,7 @@ function Products() {
     const indexOfLastItem = currentPage * numberProductsPerPage;
     const indexOfFirstItem = indexOfLastItem - numberProductsPerPage;
     const currentItems = listOfProducts.slice(indexOfFirstItem, indexOfLastItem);
+    console.log("currentItems", currentItems);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -115,21 +121,21 @@ function Products() {
 
     const sortProducts = (sortOption, listProducts) => {
         switch (sortOption) {
-          case 'Relevancy':
-            return listProducts;
-          case 'Lowest price':
-            return listProducts.sort((a, b) => a.price - b.price);
-          case 'Highest price':
-            return listProducts.sort((a, b) => b.price - a.price);
-          case 'Most popular':
-            return listProducts.sort((a, b) => b.rating - a.rating);
-          default:
-            return listProducts;
+            case 'Relevancy':
+                return listProducts;
+            case 'Lowest price':
+                return listProducts.sort((a, b) => a.price - b.price);
+            case 'Highest price':
+                return listProducts.sort((a, b) => b.price - a.price);
+            case 'Most popular':
+                return listProducts.sort((a, b) => b.rating - a.rating);
+            default:
+                return listProducts;
         }
-      }
+    }
 
     useEffect(() => {
-        setListOfProducts(sortProducts(selectedOption,listOfProducts));
+        setListOfProducts(sortProducts(selectedOption, listOfProducts));
     }, [selectedOption]);
 
 
@@ -215,7 +221,7 @@ function Products() {
                         <div className="row">
 
 
-                            {currentItems.map((test, index) => {
+                            {currentItems.map((product, index) => {
                                 return (
 
                                     <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
@@ -228,11 +234,11 @@ function Products() {
                                                 <div className="productCard">
                                                     <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
                                                     <div className="price-bg">
-                                                        £{test.price}
+                                                        £{product.price}
                                                     </div>
                                                 </div>
                                                 <div className="productCard-productName">
-                                                    {test.name}
+                                                    {product.productName}
                                                 </div>
                                                 <div className="d-flex productCard-Reviews">
                                                     <i className="bi bi-star"></i>
@@ -240,7 +246,7 @@ function Products() {
                                                     <i className="bi bi-star"></i>
                                                     <i className="bi bi-star"></i>
                                                     <i className="bi bi-star"></i>
-                                                    ({test.rating})
+                                                    ({product.ratings})
                                                 </div>
 
                                             </div>
