@@ -111,8 +111,6 @@ function Products() {
     const indexOfLastItem = currentPage * numberProductsPerPage;
     const indexOfFirstItem = indexOfLastItem - numberProductsPerPage;
     const currentItems = listOfProducts.slice(indexOfFirstItem, indexOfLastItem);
-    console.log("currentItems", currentItems);
-
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
