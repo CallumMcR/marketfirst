@@ -7,12 +7,11 @@ import Login from "./components/Login";
 import MyAccount from "./components/MyAccount";
 import './index.css';
 import "@fontsource/open-sans"; // Defaults to weight 400.
-import { CookiesProvider } from "react-cookie";
 
 
 const rootElement = document.getElementById("root");
 render(
-  <CookiesProvider>
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +20,6 @@ render(
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/account/:location" element={<MyAccount />} />
       </Routes>
-    </BrowserRouter>
-  </CookiesProvider>,
+    </BrowserRouter>,
   rootElement
 );

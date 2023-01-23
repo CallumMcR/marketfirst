@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 
 
 function LoginComp() {
-
+    const cookies = new Cookies();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -38,7 +38,6 @@ function LoginComp() {
         try {
             const response = await axios(option);
             if (response === true) {
-                const cookies = new Cookies();
                 cookies.set('userID', response.userID, { path: '/' });
             }
         } catch (error) {
@@ -52,28 +51,29 @@ function LoginComp() {
 
     return (
         <div className=''>
+            <form>
+                <div className="text-center">
+                    <Container id="container-signin">
+                        <input
+                            placeholder='Email address' type="email"
+                            onChange={e => setEmail(e.target.value)}>
+                        </input>
+                        <input
+                            placeholder='Password...'
+                            type="password"
+                            onChange={e => setPassword(e.target.value)}>
+                        </input>
+                        {invalidPasswordOrEmail ? <div className='text-center pb-3 text-invalid'> Invalid Email Address/Password </div> : <div></div>}
+                        <div className="text-center">
+                            <button className="signin-button mx-auto" onClick={verify}>
+                                Sign in
+                            </button>
 
-            <div className="text-center">
-                <Container id="container-signin">
-                    <input
-                        placeholder='Email address' type="email"
-                        onChange={e => setEmail(e.target.value)}>
-                    </input>
-                    <input
-                        placeholder='Password...'
-                        type="password"
-                        onChange={e => setPassword(e.target.value)}>
-                    </input>
-                    {invalidPasswordOrEmail ? <div className='text-center pb-3 text-invalid'> Invalid Email Address/Password </div> : <div></div>}
-                </Container>
+                        </div>
+                    </Container>
 
-            </div>
-            <div className="text-center">
-                <div className="signin-button mx-auto" onClick={verify}>
-                    Sign in
                 </div>
-
-            </div>
+            </form>
         </div>
     )
 }

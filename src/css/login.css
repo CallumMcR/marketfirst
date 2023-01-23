@@ -82,6 +82,7 @@
     border: 2px solid red;
     padding: 10px;
     max-width: 10em;
+    width: auto !important;
     text-align: center;
     border-radius: 50px;
     font-size: 1.5em;
@@ -114,3 +115,6 @@
     font-weight: 400;
 }
 
+button{
+    width: auto;
+}
