@@ -7,18 +7,21 @@ import Login from "./components/Login";
 import MyAccount from "./components/MyAccount";
 import './index.css';
 import "@fontsource/open-sans"; // Defaults to weight 400.
+import { CookiesProvider } from "react-cookie";
 
 
 const rootElement = document.getElementById("root");
 render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/products/:search?" element={<Products />} />
-      <Route exact path="/products/product/:id" element={<Product />} />
-      <Route exact path="/login" element={<Login />} />
-      <Route exact path="/account/:location" element={<MyAccount />} />
-    </Routes>
-  </BrowserRouter>,
+  <CookiesProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:search?" element={<Products />} />
+        <Route exact path="/products/product/:id" element={<Product />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/account/:location" element={<MyAccount />} />
+      </Routes>
+    </BrowserRouter>
+  </CookiesProvider>,
   rootElement
 );

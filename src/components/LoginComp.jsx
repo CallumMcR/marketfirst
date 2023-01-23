@@ -3,8 +3,8 @@ import '../css/navigation.css';
 import '../css/login.css';
 import Container from 'react-bootstrap/Container';
 import React, { useState } from 'react';
-
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 
 
@@ -19,9 +19,10 @@ function LoginComp() {
     const [invalidPasswordOrEmail, setInvalidPasswordOrEmail] = useState(false);
 
 
+    const [dataResponse, setDataResponse] = useState(false);
 
 
-    const verify = async (data) => {
+    const verify = async () => {
         const option = {
             method: 'post',
             url: `verifyLogin.php`,
@@ -36,7 +37,10 @@ function LoginComp() {
 
         try {
             const response = await axios(option);
-            console.log(response);
+            if (response === true) {
+                const cookies = new Cookies();
+                cookies.set('userID', response.userID, { path: '/' });
+            }
         } catch (error) {
             const { response } = error;
             const { request, ...errorObject } = response; // take everything but 'request'
