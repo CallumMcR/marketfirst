@@ -100,5 +100,17 @@
     border-top: none;
     border-right: none;
     border-left: none;
-    background-color: rgba(0, 0, 0, 0.08);
 }
+
+
+.bg-grey{
+    background-color: darkgray;
+}
+
+.text-invalid{
+    color: red;
+    font-family: 'Open Sans';
+    font-size: 0.85em;
+    font-weight: 400;
+}
+

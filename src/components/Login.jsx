@@ -43,23 +43,23 @@ function Login() {
 
                     </div>
                     <div className="col-xxl-4 col-xl">
-                        <div className="my-5">
+                        <div className="my-5 border p-5 rounded">
 
 
-                            <div className="row">
-                                <div className="col-2">
+                            <div className="row position-relative">
+                                <div className="col-3">
                                 </div>
-                                <div className="col-4">
+                                <div className="col-3">
                                     <div className={styleActiveSignin} onClick={() => handleToggle("signin")}>
                                         Sign in
                                     </div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-3">
                                     <div className={styleActiveSignup} onClick={() => handleToggle("register")}>
                                         Register
                                     </div>
                                 </div>
-                                <div className="col-2">
+                                <div className="col-3">
                                 </div>
                             </div>
                             {loginActive ? <LoginComp></LoginComp> : <RegisterComp></RegisterComp>}

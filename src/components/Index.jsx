@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import Carousel from 'react-bootstrap/Carousel';
 import image1 from '../images/coverImages/superdryadvertSplashPage.png';
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
-
+import '../css/index.css';
 
 function Index() {
     return (
@@ -13,8 +12,8 @@ function Index() {
 
             <NavigationBar></NavigationBar>
 
-            <Container fluid>
-                <Carousel >
+            <Container fluid className="image-banner">
+                <Carousel className="w-100">
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
