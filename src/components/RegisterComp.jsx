@@ -19,7 +19,6 @@ function RegisterComp() {
     const [surname, setSurname] = useState("");
 
     
-    const { sendConfirmatonEmail } = require('../mailer.js')
     
     
     
@@ -48,7 +47,7 @@ function RegisterComp() {
         try {
             const response = await axios(option);
             if (response === true) {
-
+                
             }
         } catch (error) {
             const { response } = error;
