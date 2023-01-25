@@ -155,7 +155,7 @@ function Products() {
                                                     <li className="dropdown-option" key={option} value={option}
                                                         style={
                                                             option === "Most popular"
-                                                                ? { borderBottom: "1px solid red" }
+                                                                ? { borderBottom: "1px solid #960018" }
                                                                 : {}
                                                         }
                                                         onClick={() => handleOptionClick(option)} >
