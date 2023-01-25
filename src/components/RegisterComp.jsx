@@ -23,8 +23,9 @@ function RegisterComp() {
     
     
     const handleRegisterAccount = () => {
-
-
+        if(password === passwordConfirmation){
+            registerAccount();
+        }
 
     }
 

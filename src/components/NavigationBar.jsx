@@ -7,14 +7,14 @@ import Container from 'react-bootstrap/Container';
 import { useEffect } from 'react';
 
 import React, { useState } from 'react';
-
+import Cookies from 'universal-cookie';
 
 
 
 
 
 function NavigationBar(props) {
-    
+    const cookies = new Cookies();
     const [basketNotification, setBasketNotification] = useState(0);
 
     const [isActive, setActive] = useState(() => {
@@ -91,25 +91,37 @@ function NavigationBar(props) {
 
                                 </div>
 
-                                <div className="col-lg-5 m-auto" style={{marginLeft:"auto",marginRight:"auto"}}>
+                                <div className="col-lg-5 m-auto" style={{ marginLeft: "auto", marginRight: "auto" }}>
                                     <Search></Search>
                                 </div>
-
+                            
 
                                 <div className="col-lg-3 m-auto">
                                     <div className="d-flex justify-content-lg-start justify-content-center align-items-center">
                                         <div className="navButton font-os-lighter font-white nav-Button">
+                                            {cookies.get('userID') === 'undefined' ?
+                                                <NavLink className=' fs-5 font-white text-center'
+                                                    style={{
+                                                        fontSize: '25px',
+                                                        textDecoration: "none",
+                                                        verticalAlign: 'middle'
+                                                    }} to="/login">
+                                                    <div className="text-center bi bi-person-circle font-icons font-white p-2">
+                                                    </div>
 
-                                            <NavLink className=' fs-5 font-white text-center'
-                                                style={{
-                                                    fontSize: '25px',
-                                                    textDecoration: "none",
-                                                    verticalAlign: 'middle'
-                                                }} to="/login">
-                                                <div className="text-center bi bi-person-circle font-icons font-white p-2">
-                                                </div>
+                                                </NavLink> :
 
-                                            </NavLink>
+                                                <NavLink className=' fs-5 font-white text-center'
+                                                    style={{
+                                                        fontSize: '25px',
+                                                        textDecoration: "none",
+                                                        verticalAlign: 'middle'
+                                                    }} to="/account/home">
+                                                    <div className="text-center bi bi-person-circle font-icons font-white p-2">
+                                                    </div>
+
+                                                </NavLink>}
+
                                         </div>
 
                                         <div className="navButton font-os-lighter font-white nav-Button" onClick={toggleClass}>

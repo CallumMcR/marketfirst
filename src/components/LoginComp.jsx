@@ -21,6 +21,9 @@ function LoginComp() {
 
     const [dataResponse, setDataResponse] = useState(false);
 
+    const testverify = () =>{
+        cookies.set('userID', 1, { path: '/' })
+    }
 
     const verify = async () => {
         const option = {
@@ -65,7 +68,7 @@ function LoginComp() {
                         </input>
                         {invalidPasswordOrEmail ? <div className='text-center pb-3 text-invalid'> Invalid Email Address/Password </div> : <div></div>}
                         <div className="text-center">
-                            <button className="signin-button mx-auto" onClick={verify}>
+                            <button className="signin-button mx-auto" onClick={testverify}>
                                 Sign in
                             </button>
 

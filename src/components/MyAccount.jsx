@@ -2,21 +2,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/navigation.css';
 import '../css/myaccount.css';
 import NavigationBar from "./NavigationBar";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MyOrders from './accountComponents/MyOrders';
 import ChangeDelivery from './accountComponents/ChangeDelivery';
 import { useParams } from "react-router";
 import Admin from "./AdminComp";
 
 
-
 function MyAccount() {
-    const pageLocation = useParams(); 
+    const pageLocation = useParams();
     const [pageState, setPageState] = useState();
-    if(pageLocation==="home"){
-        setPageState(<MyOrders></MyOrders>);
-    }
-    
+
+
+    useEffect(() => {
+        if (pageLocation.location === "home") {
+            setPageState(<MyOrders></MyOrders>);
+        }
+    }, [pageLocation]);
 
     return (
         <div>
