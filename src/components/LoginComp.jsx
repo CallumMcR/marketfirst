@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-
+import { useNavigate } from 'react-router';
 
 
 
@@ -20,9 +20,10 @@ function LoginComp() {
 
 
     const [dataResponse, setDataResponse] = useState(false);
-
+    const navigate = useNavigate();
     const testverify = () =>{
         cookies.set('userID', 1, { path: '/' })
+        navigate("/account/home");
     }
 
     const verify = async () => {
