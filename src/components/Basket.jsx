@@ -78,6 +78,8 @@ function Basket() {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems))
     };
 
+
+    // need to make this delete the item
     const handleMinusQuantityToBasket = (product) => {
         const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {

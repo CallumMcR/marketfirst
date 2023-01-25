@@ -62,6 +62,7 @@ function Product() {
 
 
     const handleAddToBasket = () => {
+        
         const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             const updatedBasketItems = basketItems.map((item) => {
@@ -74,7 +75,7 @@ function Product() {
             console.log("Setting items 1");
         }
         else {
-            setBasketItems([...basketItems, { ...product, quantity: quantity }])
+            setBasketItems([...basketItems, { ...product, quantity: quantity },])
             console.log("Setting items 2", basketItems);
 
         }
