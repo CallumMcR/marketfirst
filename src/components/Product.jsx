@@ -14,7 +14,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 function Product() {
     const productID = useParams(); 
     
-    const [product, setProduct] = useState([{ productID: 2, name: "Product 1" }]);
+    const [product, setProduct] = useState([{ productID: productID.id, name: "Product 1" }]);
 
 
     /*
@@ -54,15 +54,15 @@ function Product() {
     // Add to Basket
 
     const [basketItems, setBasketItems] = useState([]);
-
     useEffect(() => {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
         setBasketItems(basketItemsFromStorage);
+        console.log(basketItemsFromStorage, "got data");
     }, []);
 
 
     const handleAddToBasket = () => {
-        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             const updatedBasketItems = basketItems.map((item) => {
                 if (item.productID === product.productID) {
@@ -104,7 +104,7 @@ function Product() {
                     <hr></hr>
 
                     <div className="row">
-                        <div className="col-5  border rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
+                        <div className="col-5  rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
                             <div className="text-center">
                                 <div className="product-image-container text-center">
                                     <img src={activeImage} className="" alt="..."></img>
@@ -115,7 +115,7 @@ function Product() {
                         </div>
 
 
-                        <div className="col-2 border rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
+                        <div className="col-2 rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
 
 
 

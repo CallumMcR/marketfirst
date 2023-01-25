@@ -51,14 +51,14 @@ function Basket() {
         setBasketItems(basketItemsFromStorage);
     }, []);
 
-    useEffect(() => {
-        sessionStorage.setItem("basketData", JSON.stringify(basketItems));
-        console.log("Updated", basketItems);
-    }, [basketItems]);
+    //useEffect(() => {
+        // This causes the data to be reset and thus go empty
+    //    sessionStorage.setItem("basketData", JSON.stringify(basketItems));
+    //}, [basketItems]);
 
     //Needed for updates
     window.addEventListener('basketUpdated', () => {
-        const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || []
+        const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
         setBasketItems(basketItemsFromStorage);
     })
 
@@ -75,6 +75,7 @@ function Basket() {
         } else {
             setBasketItems([...basketItems, { ...product, quantity: 1 }])
         }
+        sessionStorage.setItem("basketData", JSON.stringify(basketItems))
     };
 
     const handleMinusQuantityToBasket = (product) => {
@@ -89,6 +90,7 @@ function Basket() {
             }
 
         }
+        sessionStorage.setItem("basketData", JSON.stringify(basketItems))
     };
 
 
