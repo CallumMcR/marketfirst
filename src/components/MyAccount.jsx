@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import MyOrders from './accountComponents/MyOrders';
 import ChangeDelivery from './accountComponents/ChangeDelivery';
 import { useParams } from "react-router";
-import Admin from "./AdminComp";
+import Admin from "./accountComponents/AdminComp";
 
 
 function MyAccount() {

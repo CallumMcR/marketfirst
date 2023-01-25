@@ -91,3 +91,17 @@ body {
 .avoid-clicks {
   pointer-events: none !important;
 }
+
+
+.dropbox-signout{
+  border: 1px solid;
+  position: absolute;
+  background-color: whitesmoke;
+  color: black;
+  padding: 0.5em;
+  border-radius: 5px;
+  border-color: gray;
+  font-family: 'Open Sans';
+  word-wrap: normal;
+  
+}

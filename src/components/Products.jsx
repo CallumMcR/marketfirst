@@ -51,16 +51,6 @@ function Products() {
     }, [toggle]);
 
 
-    function isJsonString(str) {
-        try {
-            JSON.parse(str);
-        } catch (e) {
-            return false;
-        }
-        return true;
-    }
-
-
     useEffect(() => {
         const postData = async () => {
             try {
