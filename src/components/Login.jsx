@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/navigation.css';
 import '../css/login.css';
 import Container from 'react-bootstrap/Container';
-import { useEffect } from 'react';
 import NavigationBar from "./NavigationBar";
 import LoginComp from "./LoginComp";
 import RegisterComp from "./RegisterComp"

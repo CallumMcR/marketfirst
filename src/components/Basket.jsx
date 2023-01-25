@@ -53,7 +53,7 @@ function Basket() {
 
     useEffect(() => {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
-        console.log("Updated",basketItems);
+        console.log("Updated", basketItems);
     }, [basketItems]);
 
     //Needed for updates
@@ -63,7 +63,7 @@ function Basket() {
     })
 
     const handleAddToBasket = (product) => {
-        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             const updatedBasketItems = basketItems.map((item) => {
                 if (item.productID === product.productID) {
@@ -78,9 +78,9 @@ function Basket() {
     };
 
     const handleMinusQuantityToBasket = (product) => {
-        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
-            if (productsExists.quantity == 1) {
+            if (productsExists.quantity === 1) {
                 setBasketItems(basketItems.filter((item) => item !== product));
             }
             else {
@@ -98,7 +98,7 @@ function Basket() {
     };
 
     const handleQuantityChange = (product, newQuantity) => {
-        const productsExists = basketItems.find((item) => item.productID == product.productID);
+        const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             productsExists.quantity = newQuantity;
             setBasketItems([...basketItems]);
@@ -115,12 +115,14 @@ function Basket() {
                 <div className="basket-bg">
                     <Row>
                         <div className="col-lg-2">
-                            <Button variant="secondary" size="lg" className="m-3 d-lg-none w-100 m-0" onClick={toggleClass}>X</Button>
-                            <Button variant="secondary" size="lg" className="m-3 d-none d-lg-block " onClick={toggleClass}>X</Button>
+
+                            <button className=' m-auto closeButton bi bi-box-arrow-in-right h-100 text-center' onClick={toggleClass}></button>
+
+
 
                         </div>
                         <div className="col-lg-8 m-auto">
-                            <div className="text-center align-middle m-3 mybasketText">
+                            <div className="text-center align-middle mybasketText">
                                 Basket
                             </div>
                         </div>
@@ -128,7 +130,7 @@ function Basket() {
 
                         </div>
                     </Row>
-                    <hr className="m-0"></hr>
+                
 
 
                     <Container fluid className="basketMain">
@@ -137,7 +139,7 @@ function Basket() {
                         {basketItems.map((product) => (
                             <div className="p-5" key={product.productID}>
                                 <div className="card">
-                                    <img src="" className="card-img-top" />
+                                    <img src="" className="card-img-top" alt="product image" />
                                     <div className="card-body">
                                         <h5 className="card-title">{ }</h5>
                                         <div className="d-flex">
