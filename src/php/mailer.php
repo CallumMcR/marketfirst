@@ -1,18 +1,17 @@
 <?php
 
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE");
+header("Access-Control-Allow-Headers: Content-Type,Authorization");
+header("Access-Control-Allow-Credentials: true");
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
-
 $env = parse_ini_file('../.env');
+require 'vendor/autoload.php';
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
-
-
-
 
 
 if(!empty($_POST['email']))
