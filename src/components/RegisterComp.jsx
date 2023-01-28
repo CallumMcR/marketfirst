@@ -36,15 +36,22 @@ function RegisterComp() {
             subject: "Market first account activation",
             message: "Please click here to activate your account",
         };
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000'
+          }
         console.log("trying");
         try {
-            const response = await axios.post('http://localhost/marketfirst/src/php/mailer.php', mailerData);
+            const response = await axios.post('http://localhost/MarketFirst/my-app/src/php/mailer.php', mailerData, {headers});
             if (response.status === 200) {
                 console.log("Activation email sent successfully");
             }
         } catch (error) {
             console.log(error);
         }
+
+
+        
 
     }
 
