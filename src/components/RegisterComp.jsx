@@ -19,7 +19,7 @@ function RegisterComp() {
     const [surname, setSurname] = useState("");
 
 
-
+    const [registerInProgress, setRegisterInProgress] = useState(false);
 
 
     const handleRegisterAccount = () => {
@@ -31,6 +31,7 @@ function RegisterComp() {
 
 
     const registerAccount = async () => {
+        setRegisterInProgress(true);
         const mailerData = {
             email: email,
             subject: "Market first account activation",
@@ -39,10 +40,10 @@ function RegisterComp() {
         const headers = {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': 'http://localhost:3000'
-          }
+        }
         console.log("trying");
         try {
-            const response = await axios.post('http://localhost/MarketFirst/my-app/src/php/mailer.php', mailerData, {headers});
+            const response = await axios.post('http://localhost/MarketFirst/my-app/src/php/mailer.php', mailerData, { headers });
             if (response.status === 200) {
                 console.log("Activation email sent successfully");
             }
@@ -51,58 +52,76 @@ function RegisterComp() {
         }
 
 
-        
+
 
     }
 
     return (
         <div>
 
-            <div className="text-center">
-                <Container id="container-signin">
 
-                    <input
-                        placeholder='Email address' type="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required>
-                    </input>
-                    <input
-                        placeholder='Password' type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required>
-                    </input>
+            {registerInProgress === false ?
+                <div className="text-center">
+                    <Container id="container-signin">
 
-                    <input
-                        placeholder='Repeat Password' type="password"
-                        onChange={(e) => setPasswordConfirmation(e.target.value)}
-                        required>
-                    </input>
-                    <div className="d-flex justify-content-center">
                         <input
-                            placeholder='First Name' type="text"
-                            onChange={(e) => setFirstName(e.target.value)}
+                            placeholder='Email address' type="email"
+                            onChange={(e) => setEmail(e.target.value)}
                             required>
                         </input>
                         <input
-                            placeholder='Surname' type="text"
-                            onChange={(e) => setSurname(e.target.value)}
+                            placeholder='Password' type="password"
+                            onChange={(e) => setPassword(e.target.value)}
                             required>
                         </input>
 
+                        <input
+                            placeholder='Repeat Password' type="password"
+                            onChange={(e) => setPasswordConfirmation(e.target.value)}
+                            required>
+                        </input>
+                        <div className="d-flex justify-content-center">
+                            <input
+                                placeholder='First Name' type="text"
+                                onChange={(e) => setFirstName(e.target.value)}
+                                required>
+                            </input>
+                            <input
+                                placeholder='Surname' type="text"
+                                onChange={(e) => setSurname(e.target.value)}
+                                required>
+                            </input>
+
+                        </div>
+                        <div className="text-center">
+                            <button className="signin-button mx-auto" onClick={registerAccount}>
+                                Register
+                            </button>
+
+                        </div>
+
+
+
+                    </Container>
+
+                </div>
+                :
+                <div>
+                    <div className="text-center my-3 d-flex justify-content-center">
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </div>
                     <div className="text-center">
-                        <button className="signin-button mx-auto" onClick={registerAccount}>
-                            Register
-                        </button>
-
+                        Sending verification email...
                     </div>
-
-
-
-                </Container>
-
-            </div>
-
+                </div>}
         </div>
     )
 }
