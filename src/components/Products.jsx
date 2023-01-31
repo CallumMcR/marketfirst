@@ -19,6 +19,8 @@ function Products() {
     const [searchQuery, setSearchQuery] = useState("");
 
 
+    const [masterDB, setMasterDB] = useState([]);
+
     useEffect(() => {
         if (query.search !== "") {
             setSearchQuery(query.search);
@@ -51,33 +53,41 @@ function Products() {
     }, [toggle]);
 
 
+
     useEffect(() => {
         const postData = async () => {
-          try {
-            setLoading(true);
-            const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php');
-            let filteredProducts = [];
-            console.log(res.data);
-            console.log(searchQuery);
-            if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
-              filteredProducts = res.data.filter(product => {
-                return (
-                  product.productName && typeof product.productName === 'string' && 
-                  product.productName.toLowerCase().includes(searchQuery.toLowerCase())
-                );
-              });
-              console.log(filteredProducts);
-            } else {
-              filteredProducts = res.data;
+            try {
+                setLoading(true);
+                const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php');
+                setMasterDB(res.data)
+
+            } catch (err) {
+                console.error(err);
             }
-            setListOfProducts(filteredProducts);
-            setLoading(false);
-          } catch (err) {
-            console.error(err);
-          }
         };
         postData();
-      }, [searchQuery, selectedOption]);
+    }, [searchQuery, selectedOption]);
+
+
+    useEffect(() => {
+        let filteredProducts = [];
+        if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
+            filteredProducts = masterDB.filter(product => {
+                return (
+                    product.productName && typeof product.productName === 'string' &&
+                    product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            });
+        } else {
+            filteredProducts = masterDB;
+        }
+        setListOfProducts(filteredProducts);
+        setLoading(false);
+    },[masterDB])
+
+
+
+
 
     const handleItemPerPageChange = (value) => {
         if (!isNaN(value)) {
@@ -104,12 +114,6 @@ function Products() {
     const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
 
 
-    useEffect(() => {
-        setLoading(true);
-        setLoading(false);
-    }, [currentPage]);
-
-
     const indexOfLastItem = currentPage * numberProductsPerPage;
     const indexOfFirstItem = indexOfLastItem - numberProductsPerPage;
     const currentItems = listOfProducts.slice(indexOfFirstItem, indexOfLastItem);
@@ -128,7 +132,7 @@ function Products() {
             case 'Highest price':
                 return listProducts.sort((a, b) => b.price - a.price);
             case 'Most popular':
-                return listProducts.sort((a, b) => b.rating - a.rating);
+                return listProducts.sort((a, b) => b.ratings - a.ratings);
             default:
                 return listProducts;
         }
