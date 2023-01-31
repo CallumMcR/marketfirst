@@ -53,19 +53,31 @@ function Products() {
 
     useEffect(() => {
         const postData = async () => {
-            try {
-                setLoading(true);
-                const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php', {
-                });
-                setListOfProducts(res.data);
-                setLoading(false);
-
-            } catch (err) {
-                console.error(err);
+          try {
+            setLoading(true);
+            const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php');
+            let filteredProducts = [];
+            console.log(res.data);
+            console.log(searchQuery);
+            if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
+              filteredProducts = res.data.filter(product => {
+                return (
+                  product.productName && typeof product.productName === 'string' && 
+                  product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+              });
+              console.log(filteredProducts);
+            } else {
+              filteredProducts = res.data;
             }
-        }
+            setListOfProducts(filteredProducts);
+            setLoading(false);
+          } catch (err) {
+            console.error(err);
+          }
+        };
         postData();
-    }, [searchQuery, selectedOption]);
+      }, [searchQuery, selectedOption]);
 
     const handleItemPerPageChange = (value) => {
         if (!isNaN(value)) {
