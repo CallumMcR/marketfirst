@@ -83,7 +83,7 @@ function Products() {
         }
         setListOfProducts(filteredProducts);
         setLoading(false);
-    },[masterDB])
+    }, [masterDB])
 
 
 
@@ -150,9 +150,9 @@ function Products() {
             <NavigationBar></NavigationBar>
             <Container fluid>
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-2">
                     </div>
-                    <div className="col-6">
+                    <div className="col-8">
                         <div className="row pt-4">
                             <div className="col-lg-8">
                                 <div class="productHeader">
@@ -187,7 +187,7 @@ function Products() {
                         </div>
                         <hr></hr>
                     </div>
-                    <div className="col-3">
+                    <div className="col-2">
                     </div>
                 </div>
             </Container>
@@ -207,14 +207,17 @@ function Products() {
                                 <div className="col-9">
 
                                 </div>
-                                <div className="col-3">
-                                    <div className="number-results-text">
-                                        Number of search results:
+                                <div className="col-3 d-flex justify-content-center">
+                                    <div className="d-block">
+
+
+                                        <div className="number-results-text">
+                                            Number of search results:
+                                        </div>
+                                        <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
+                                            onChange={(e) => handleItemPerPageChange(e.target.value)} className="text-center"></input>
+
                                     </div>
-                                    <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
-                                        onChange={(e) => handleItemPerPageChange(e.target.value)}></input>
-
-
 
 
                                 </div>

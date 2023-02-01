@@ -4,7 +4,7 @@ import '../css/basket.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Button } from "react-bootstrap";
-
+import Accordion from 'react-bootstrap/Accordion';
 
 function Basket() {
 
@@ -52,7 +52,7 @@ function Basket() {
     }, []);
 
     //useEffect(() => {
-        // This causes the data to be reset and thus go empty
+    // This causes the data to be reset and thus go empty
     //    sessionStorage.setItem("basketData", JSON.stringify(basketItems));
     //}, [basketItems]);
 
@@ -120,7 +120,7 @@ function Basket() {
                     <Row>
                         <div className="col-lg-2">
 
-                            <button className=' m-auto closeButton bi bi-box-arrow-in-right h-100 text-center' onClick={toggleClass}></button>
+                            <button className=' m-auto closeButton bi bi-x h-100 text-center' onClick={toggleClass}></button>
 
 
 
@@ -134,7 +134,7 @@ function Basket() {
 
                         </div>
                     </Row>
-                
+
 
 
                     <Container fluid className="basketMain">
@@ -171,11 +171,31 @@ function Basket() {
 
 
                     <Container fluid>
-                        <hr></hr>
-                        <div className="basketTotal">
-                            Total: £ {basketTotal}
+                        <div className="text-center">
+                            <div className="basketTotal">
+                                Total: £ {basketTotal}
+                            </div>
                         </div>
-                        <hr></hr>
+
+                        {/* Promo code button */}
+
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>Promotional Code</Accordion.Header>
+                                <Accordion.Body>
+                                    <div className="text-center d-flex justify-content-center align-items-center mb-4">
+                                        <input id="promoCodeInput" placeholder='Promo code'></input>
+                                        <button id='applyPromoButton'>Apply</button>
+                                    </div>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
+
+
+
+
+
+
                         <div className="d-flex justify-content-center">
                             <div className="text-center">
                                 <div className="BasketCheckoutButton">

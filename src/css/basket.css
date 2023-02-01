@@ -1,6 +1,6 @@
 .basket-bg{
-    background-color: whitesmoke;
-    border: 1px black;
+    background-color: rgb(238,242,248);
+    border: 0px black;
     border-style: solid;
     border-top: none;
     border-right: none;
@@ -16,8 +16,8 @@
 
 .mybasketText{
     font-family: 'Open Sans';
-    font-weight: 400;
-    font-size: 2rem;
+    font-weight: 100;
+    font-size: 1.5rem;
 }
 
 .basketMain{
@@ -28,9 +28,11 @@
 
 .basketTotal{
     font-family: 'Open Sans';
-    font-weight: 700;
-    font-size: 2rem;
+    font-weight: 100;
+    font-size: 1.3rem;
     color: blue;
+    margin-bottom: 1em;
+    margin-top: 2em;
 }
 
 
@@ -39,7 +41,7 @@
   outline: none;
   border: none;
   font-size: 2.4em;
-  background-color: white;
+  background-color: rgb(238,242,248);
   align-items: center;
   align-self: center;
 }
@@ -151,4 +153,32 @@
 
 .price-text{
   font-size: 2em;
+}
+
+
+#promoCodeInput{
+  border-radius: 3px;
+  border: 1px solid black;
+  margin-bottom: 1em;
+  margin: auto;
+  margin-right: 5px;
+  margin-left: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+#applyPromoButton{
+  border-radius: 5px;
+  outline: none;
+  background-color: none;
+  border:2px solid rgb(91,201,152);
+  background-color: rgb(91,201,152);
+  font-family: 'Open Sans';
+  font-weight: 400;
+  color: white;
+}
+
+#applyPromoButton:hover{
+  background-color: rgb(238,242,248);
+  color: black;
 }
