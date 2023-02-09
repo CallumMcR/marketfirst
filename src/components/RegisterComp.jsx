@@ -4,7 +4,7 @@ import '../css/login.css';
 import Container from 'react-bootstrap/Container';
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import $ from "jquery";
 
 
 
@@ -22,39 +22,19 @@ function RegisterComp() {
     const [registerInProgress, setRegisterInProgress] = useState(false);
 
 
-    const handleRegisterAccount = () => {
-        if (password === passwordConfirmation) {
-            registerAccount();
-        }
-
-    }
-
-
-    const registerAccount = async () => {
-        setRegisterInProgress(true);
-        const mailerData = {
-            email: email,
-            subject: "Market first account activation",
-            message: "Please click here to activate your account",
-        };
-        const headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:3000'
-        }
-        console.log("trying");
-        try {
-            const response = await axios.post('http://localhost/MarketFirst/my-app/src/php/mailer.php', mailerData, { headers });
-            if (response.status === 200) {
-                console.log("Activation email sent successfully");
-            }
-        } catch (error) {
-            console.log(error);
-        }
-
-
-
-
-    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = $(e.target);
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: form.serialize(),
+            success(data) {
+                console.log("Activation sent")
+            },
+        });
+    };
 
     return (
         <div>
@@ -63,44 +43,49 @@ function RegisterComp() {
             {registerInProgress === false ?
                 <div className="text-center">
                     <Container id="container-signin">
-
-                        <input
-                            placeholder='Email address' type="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required>
-                        </input>
-                        <input
-                            placeholder='Password' type="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            required>
-                        </input>
-
-                        <input
-                            placeholder='Repeat Password' type="password"
-                            onChange={(e) => setPasswordConfirmation(e.target.value)}
-                            required>
-                        </input>
-                        <div className="d-flex justify-content-center">
+                        <form
+                            action="http://localhost:8000/mailer.php"
+                            method="post"
+                            onSubmit={(event) => handleSubmit(event)}>
                             <input
-                                placeholder='First Name' type="text"
-                                onChange={(e) => setFirstName(e.target.value)}
+                                id="email"
+                                name="email"
+                                placeholder='Email address' type="email"
+                                onChange={(e) => setEmail(e.target.value)}
                                 required>
                             </input>
                             <input
-                                placeholder='Surname' type="text"
-                                onChange={(e) => setSurname(e.target.value)}
+                                placeholder='Password' type="password"
+                                onChange={(e) => setPassword(e.target.value)}
                                 required>
                             </input>
 
-                        </div>
-                        <div className="text-center">
-                            <button className="signin-button mx-auto" onClick={registerAccount}>
-                                Register
-                            </button>
+                            <input
+                                placeholder='Repeat Password' type="password"
+                                onChange={(e) => setPasswordConfirmation(e.target.value)}
+                                required>
+                            </input>
+                            <div className="d-flex justify-content-center">
+                                <input
+                                    placeholder='First Name' type="text"
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    required>
+                                </input>
+                                <input
+                                    placeholder='Surname' type="text"
+                                    onChange={(e) => setSurname(e.target.value)}
+                                    required>
+                                </input>
 
-                        </div>
+                            </div>
+                            <div className="text-center">
+                                <button type="submit" className="signin-button mx-auto">
+                                    Register
+                                </button>
 
+                            </div>
 
+                        </form>
 
                     </Container>
 

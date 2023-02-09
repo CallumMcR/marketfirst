@@ -58,8 +58,8 @@ function Products() {
         const postData = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get('http://localhost/MarketFirst/my-app/src/php/getProducts.php');
-                setMasterDB(res.data)
+                const res = await axios.get('http://localhost:8000/getProducts.php');
+                setMasterDB(res.data);
 
             } catch (err) {
                 console.error(err);
@@ -83,7 +83,7 @@ function Products() {
         }
         setListOfProducts(filteredProducts);
         setLoading(false);
-    }, [masterDB])
+    },[masterDB])
 
 
 
@@ -126,7 +126,7 @@ function Products() {
     const sortProducts = (sortOption, listProducts) => {
         switch (sortOption) {
             case 'Relevancy':
-                return listProducts;
+                return masterDB;
             case 'Lowest price':
                 return listProducts.sort((a, b) => a.price - b.price);
             case 'Highest price':
@@ -150,9 +150,9 @@ function Products() {
             <NavigationBar></NavigationBar>
             <Container fluid>
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-3">
                     </div>
-                    <div className="col-8">
+                    <div className="col-6">
                         <div className="row pt-4">
                             <div className="col-lg-8">
                                 <div class="productHeader">
@@ -187,7 +187,7 @@ function Products() {
                         </div>
                         <hr></hr>
                     </div>
-                    <div className="col-2">
+                    <div className="col-3">
                     </div>
                 </div>
             </Container>
@@ -207,17 +207,14 @@ function Products() {
                                 <div className="col-9">
 
                                 </div>
-                                <div className="col-3 d-flex justify-content-center">
-                                    <div className="d-block">
-
-
-                                        <div className="number-results-text">
-                                            Number of search results:
-                                        </div>
-                                        <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
-                                            onChange={(e) => handleItemPerPageChange(e.target.value)} className="text-center"></input>
-
+                                <div className="col-3">
+                                    <div className="number-results-text">
+                                        Number of search results:
                                     </div>
+                                    <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
+                                        onChange={(e) => handleItemPerPageChange(e.target.value)}></input>
+
+
 
 
                                 </div>
