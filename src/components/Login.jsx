@@ -42,7 +42,7 @@ function Login() {
 
                     </div>
                     <div className="col-xxl-4 col-xl">
-                        <div className="my-5 border p-5 rounded">
+                        <div className="my-5 p-5 rounded">
 
 
                             <div className="row position-relative">
