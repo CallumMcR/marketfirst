@@ -32,7 +32,11 @@ function NavigationBar(props) {
         sessionStorage.setItem("isActive", JSON.stringify(isActive));
         window.dispatchEvent(new Event("isActive2"));
     };
+
+
     const navigate = useNavigate();
+
+
     const handleSignOut = () => {
         cookies.remove("userID");
         navigate('/');
@@ -43,6 +47,8 @@ function NavigationBar(props) {
     window.addEventListener('isActive', () => {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
+
+
 
 
     return (
