@@ -24,6 +24,7 @@ function RegisterComp() {
 
     
     const handleSubmit = (e) => {
+        setRegisterInProgress(true);
         e.preventDefault();
         const form = $(e.target);
         $.ajax({

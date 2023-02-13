@@ -13,8 +13,7 @@ function VerifyAccount() {
     const parameters = useParams();
     const verificationID = parameters.creationID;
 
-    const verifyAccount = (e) => {
-        e.preventDefault();
+    const verifyAccount = () => {
         $.ajax({
             type: "POST",
             url: "http://localhost:8000/registerAccount.php",
@@ -24,16 +23,17 @@ function VerifyAccount() {
             },
         });
     }
+
+    verifyAccount();
     return (
         <div>
             <NavigationBar></NavigationBar>
 
             <Container fluid>
 
-                <button
-                    onClick={(event) => verifyAccount(event)}>
-
-                </button>
+                <div className="fs-5">
+                    Please wait while your account is added to our system
+                </div>
 
             </Container>
 
