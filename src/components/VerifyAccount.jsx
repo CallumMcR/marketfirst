@@ -19,7 +19,7 @@ function VerifyAccount() {
             url: "http://localhost:8000/registerAccount.php",
             data: {activationID: verificationID},
             success(data) {
-                console.log("Activation sent")
+                console.log("Account activated")
             },
         });
     }

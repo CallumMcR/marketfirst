@@ -76,7 +76,7 @@ if(!empty($_POST['email']))
     $mail->addAddress($_POST['email']);
     $mail->isHTML(true);
     $mail->Subject ="Market first account activation";
-    $mail->Body = $mail->Body = '<button onclick="window.location.href=\'http://example.com/activate.php?key=123456789\'">Activate account</button>';
+    $mail->Body = '<a href="http://localhost:3000/verifyaccount/' . $uniqueID . '">Activate account</a>';
 
     if($mail->send()) {
         echo "Email sent";

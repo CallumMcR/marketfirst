@@ -15,24 +15,24 @@
         $query = $connection->prepare("SELECT email FROM accountpendingverification WHERE uniqueActivationCode = :id");
         $query->bindParam(':id', $id);
         $query->execute();
-        $email ="";
         // Get the email address first before we delete it
         if ($query->rowCount() > 0) {
             $result = $query->fetch(PDO::FETCH_ASSOC);
             $email = $result['email'];
+            $query = $connection->prepare("DELETE FROM accountpendingverification WHERE uniqueActivationCode = :id");
+            $query->bindParam(':id', $id);
+            $query->execute();
+    
+           
+    
+            $query2 = $connection->prepare("INSERT INTO users (emailAddress,password,firstName,lastName) VALUES (:email,123,123,123)");
+            $query2->bindParam(':email', $email);
+            $query2->execute();
         }
 
 
 
-        $query = $connection->prepare("DELETE FROM accountpendingverification WHERE uniqueid = :id");
-        $query->bindParam(':id', $id);
-        $query->execute();
-
        
-
-        $query2 = $connection->prepare("INSERT INTO users (emailAddress) VALUES (:email)");
-        $query2->bindParam(':email', $email);
-        $query2->execute();
 
 
 
