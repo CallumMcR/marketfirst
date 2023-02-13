@@ -41,10 +41,18 @@ if(!empty($_POST['email']))
             $uniqueID =$id;
         }
 
+        $password =$_POST['password'];
+        $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+        $firstName = $_POST['firstName'];
+        $lastName=$_POST['lastName'];
+
         // Insert the email and ID into the database
-        $query = $connection->prepare("INSERT INTO accountpendingverification (email, uniqueActivationCode) VALUES (:email, :id)");
+        $query = $connection->prepare("INSERT INTO accountpendingverification (email, uniqueActivationCode,password,firstName,lastName) VALUES (:email, :id,:hashedpassword,:firstName,:lastName)");
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
+        $query->bindParam(':hashedpassword', $hashedpassword);
+        $query->bindParam(':firstName', $firstName);
+        $query->bindParam(':lastName', $lastName);
         $query->execute();
 
         // Check if the query was successful and return a message
