@@ -21,11 +21,15 @@ function RegisterComp() {
 
     const [registerInProgress, setRegisterInProgress] = useState(false);
 
+    const [misMatchPassword,setMismatchPassword] = useState(false);
 
-    
     const handleSubmit = (e) => {
-        setRegisterInProgress(true);
         e.preventDefault();
+        if (password !== passwordConfirmation) {
+            setMismatchPassword(true);
+            return;
+        }
+        setRegisterInProgress(true);
         const form = $(e.target);
         $.ajax({
             type: "POST",
@@ -56,23 +60,32 @@ function RegisterComp() {
                                 required>
                             </input>
                             <input
+                                id="password"
+                                name="password"
                                 placeholder='Password' type="password"
                                 onChange={(e) => setPassword(e.target.value)}
                                 required>
                             </input>
 
                             <input
+                                id="repPassword"
+                                name="repPassword"
                                 placeholder='Repeat Password' type="password"
                                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                                 required>
                             </input>
+                            { misMatchPassword ? <p>Passwords are mismatching</p> : null }
                             <div className="d-flex justify-content-center">
                                 <input
+                                    id="firstName"
+                                    name="firstName"
                                     placeholder='First Name' type="text"
                                     onChange={(e) => setFirstName(e.target.value)}
                                     required>
                                 </input>
                                 <input
+                                    id="lastName"
+                                    name="lastName"
                                     placeholder='Surname' type="text"
                                     onChange={(e) => setSurname(e.target.value)}
                                     required>
@@ -80,7 +93,7 @@ function RegisterComp() {
 
                             </div>
                             <div className="text-center">
-                                <button type="submit" className="signin-button mx-auto">
+                                <button type="submit" className="signin-button mx-auto" onSubmit={(e) => handleSubmit(e)}>
                                     Register
                                 </button>
 
