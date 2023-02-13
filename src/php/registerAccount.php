@@ -37,7 +37,16 @@
             $query2->bindParam(':firstName', $firstName);
             $query2->bindParam(':lastName', $lastName);
             $query2->execute();
-            $query2->errorInfo();
+
+
+            $query3=$connection->prepare("SELECT userID FROM users WHERE email = :emailAddress");
+            $query3->bindParam(':emailAddress',$email);
+            $query3->execute();
+            $details = $query3->fetch(PDO::FETCH_ASSOC);
+
+            echo $details['userID'];
+
+
         }
     } else {
         echo "Invalid or missing uniqueid value";

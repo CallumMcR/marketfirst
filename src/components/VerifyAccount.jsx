@@ -5,13 +5,16 @@ import NavigationBar from "./NavigationBar";
 import React, { useState } from 'react';
 import { useParams } from "react-router";
 import $ from "jquery";
-
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function VerifyAccount() {
+    const cookies = new Cookies();
     const parameters = useParams();
     const verificationID = parameters.creationID;
+    const navigate = useNavigate();
 
     const verifyAccount = () => {
         $.ajax({
@@ -19,7 +22,12 @@ function VerifyAccount() {
             url: "http://localhost:8000/registerAccount.php",
             data: {activationID: verificationID},
             success(data) {
-                console.log("Account activated")
+                console.log(data);
+                if(data)
+                {
+                    cookies.set('userID', data, { path: '/' });
+                    navigate('/');
+                }
             },
         });
     }
