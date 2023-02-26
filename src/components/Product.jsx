@@ -9,21 +9,36 @@ import '../css/navigation.css';
 import '../css/product.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-
+import $ from "jquery";
+import { Spinner } from 'react-bootstrap'
 
 function Product() {
-    const productID = useParams(); 
-    
-    const [product, setProduct] = useState([{ productID: productID.id, name: "Product 1" }]);
+    const productID = useParams();
+    const [product, setProduct] = useState([]);
+    const id = productID.id;
+    const [loadingProduct, setIsLoadingProduct] = useState(false);
 
 
-    /*
     useEffect(() => {
-        axios.get(`products.php?productID=${productID}`)
-            .then(res => setProduct(res.data))
+        setIsLoadingProduct(false);
+        const getProductByID = () => {
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8000/getProductByID.php',
+                data: { productID: id },
+                success(data) {
+                    const productData = JSON.parse(data);
+                    setProduct(productData);
+                    console.log(productData);
+                    setIsLoadingProduct(true);
+                },
+            });
+        }
+        getProductByID();
     }, [productID]);
 
-*/
+
+
     const [quantity, setQuantity] = useState(1);
     const [activeImage, setActiveImage] = useState(require('../images/test/image1.webp'));
 
@@ -62,7 +77,7 @@ function Product() {
 
 
     const handleAddToBasket = () => {
-        
+
         const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             const updatedBasketItems = basketItems.map((item) => {
@@ -104,114 +119,124 @@ function Product() {
                     </div>
                     <hr></hr>
 
-                    <div className="row">
-                        <div className="col-5  rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
-                            <div className="text-center">
-                                <div className="product-image-container text-center">
-                                    <img src={activeImage} className="" alt="..."></img>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <div className="col-2 rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
 
 
 
-                            {tempThumbnails.map((pic, index) => {
-                                return (
 
-                                    <div className="small-image-thumbnail center-vertically-product-thumbnail" key={index}>
-                                        <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange('../images/test/image1.webp')} className="" alt="..."></img>
+                    {loadingProduct ?
+                        <div>
+                            <div className="row">
+                                <div className="col-5  rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
+                                    <div className="text-center">
+                                        <div className="product-image-container text-center">
+                                            <img src={activeImage} className="" alt="..."></img>
+                                        </div>
+
                                     </div>
-                                )
+
+                                </div>
+
+
+                                <div className="col-2 rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
 
 
 
-                            })}
+                                    {tempThumbnails.map((pic, index) => {
+                                        return (
+
+                                            <div className="small-image-thumbnail center-vertically-product-thumbnail" key={index}>
+                                                <img src={require('../images/test/image1.webp')} onClick={() => handleImageChange('../images/test/image1.webp')} className="" alt="..."></img>
+                                            </div>
+                                        )
+                                    })}
 
 
 
 
+                                </div>
+                                <div className="col-5">
+                                    <div className="font-product-header">
+                                        {product[0].productName}
+                                    </div>
+
+                                    <div className="font-product-header py-4">
+                                        Stock: {product[0].stock}
+                                    </div>
+
+                                    <div className="font-price-header">
+                                        £{product[0].price}
+                                    </div>
+
+                                    <DropdownButton
+                                        title={`Quantity: ${quantity}`}
+                                        variant="dark"
+                                        className="py-2 my-4">
+                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((quantity) => (
+                                            <Dropdown.Item
+                                                key={quantity}
+                                                onClick={() => handleQuantityChange(quantity)}
+                                            >
+                                                {quantity}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </DropdownButton>
+                                    <div className="buynow-button">
+                                        Buy Now
+                                    </div>
+                                    <div className="py-3"></div>
+                                    <div className="addbasket-button" onClick={handleAddToBasket}>
+                                        Add to basket
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div className="product-description-header pt-5">
+                                { }
+                            </div>
+
+                            <div className="pt-3 product-reviews-header">
+                                Reviews: { }
+                            </div>
+                            <hr></hr>
+
+                            <div className="p-3">
+                                <div className="row border">
+                                    <div className="col-2">
+                                        <div className="review-image-container">
+                                            <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                        </div>
+                                    </div>
+                                    <div className="col-4">
+                                        <div className="ratings">
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <div className="fs-5 fw-bold">
+                                            Username
+                                        </div>
+                                        <div className="fs-5 fw-normal">
+                                            Date
+                                        </div>
+                                    </div>
+                                    <div className="col-6">
+                                        Description { }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-5">
-                            <div className="font-product-header">
-                                Product Name
-                            </div>
-
-                            <div className="font-product-header py-4">
-                                Stock: { }
-                            </div>
-
-                            <div className="font-price-header">
-                                £{ }
-                            </div>
-
-                            <DropdownButton
-                                title={`Quantity: ${quantity}`}
-                                variant="dark"
-                                className="py-2 my-4">
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((quantity) => (
-                                    <Dropdown.Item
-                                        key={quantity}
-                                        onClick={() => handleQuantityChange(quantity)}
-                                    >
-                                        {quantity}
-                                    </Dropdown.Item>
-                                ))}
-                            </DropdownButton>
-                            <div className="buynow-button">
-                                Buy Now
-                            </div>
-                            <div className="py-3"></div>
-                            <div className="addbasket-button" onClick={handleAddToBasket}>
-                                Add to basket
-                            </div>
+                        :
+                        <div className="text-center my-5">
+                            <Spinner animation="border" role="status" variant="primary">
+                                <span className="visually-hidden">Loading Product</span>
+                            </Spinner>
+                            <div className="my-2 fs-3">Loading Product</div>
                         </div>
-                    </div>
-
-
-
-                    <div className="product-description-header pt-5">
-                        { }
-                    </div>
-
-                    <div className="pt-3 product-reviews-header">
-                        Reviews: { }
-                    </div>
-                    <hr></hr>
-
-                    <div className="p-3">
-                        <div className="row border">
-                            <div className="col-2">
-                                <div className="review-image-container">
-                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                </div>
-                            </div>
-                            <div className="col-4">
-                                <div className="ratings">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                </div>
-                                <div className="fs-5 fw-bold">
-                                    Username
-                                </div>
-                                <div className="fs-5 fw-normal">
-                                    Date
-                                </div>
-                            </div>
-                            <div className="col-6">
-                                Description { }
-                            </div>
-                        </div>
-                    </div>
-
-
+                    }
                 </div>
                 <div className="col-2">
 

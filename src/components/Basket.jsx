@@ -177,19 +177,12 @@ function Basket() {
                             </div>
                         </div>
 
-                        {/* Promo code button */}
 
-                        <Accordion>
-                            <Accordion.Item eventKey="0">
-                                <Accordion.Header>Promotional Code</Accordion.Header>
-                                <Accordion.Body>
-                                    <div className="text-center d-flex justify-content-center align-items-center mb-4">
-                                        <input id="promoCodeInput" placeholder='Promo code'></input>
-                                        <button id='applyPromoButton'>Apply</button>
-                                    </div>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Accordion>
+
+                        <div className="text-center d-flex justify-content-center align-items-center mb-4">
+                            <input id="promoCodeInput" placeholder='Promo code'></input>
+                            <button id='applyPromoButton'>Apply</button>
+                        </div>
 
 
 
