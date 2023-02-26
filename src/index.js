@@ -6,6 +6,7 @@ import Product from "./components/Product";
 import Login from "./components/Login";
 import MyAccount from "./components/MyAccount";
 import VerifyAccount from "./components/VerifyAccount";
+import CheckOut from "./components/CheckOut";
 import './index.css';
 import "@fontsource/open-sans"; // Defaults to weight 400.
 
@@ -21,6 +22,7 @@ render(
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/account/:location" element={<MyAccount />} />
         <Route exact path="/verifyaccount/:creationID" element={<VerifyAccount />} />
+        <Route exact path="/checkout" element={<CheckOut />} />
       </Routes>
     </BrowserRouter>,
   rootElement

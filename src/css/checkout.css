@@ -1,0 +1,10 @@
+.checkout-title{
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-size: 2rem;
+    color: blue;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid black;
+}
+
