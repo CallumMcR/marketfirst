@@ -7,6 +7,7 @@ import '../css/productCard.css';
 import '../css/productsPage.css';
 import { useParams } from "react-router";
 import axios from "axios";
+import { Spinner } from 'react-bootstrap'
 
 function Products() {
     const query = useParams();
@@ -70,6 +71,7 @@ function Products() {
 
 
     useEffect(() => {
+        setLoading(true);
         let filteredProducts = [];
         if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
             filteredProducts = masterDB.filter(product => {
@@ -83,7 +85,7 @@ function Products() {
         }
         setListOfProducts(filteredProducts);
         setLoading(false);
-    },[masterDB])
+    }, [masterDB])
 
 
 
@@ -221,51 +223,52 @@ function Products() {
                             </div>
                         </Container>
 
+                        {!loading ?
+                            <div className="row">
 
-                        <div className="row">
 
+                                {currentItems.map((product, index) => {
+                                    return (
 
-                            {currentItems.map((product, index) => {
-                                return (
+                                        <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
+                                            <Link style={{ textDecoration: 'none', color: 'black' }}
+                                                to={{
+                                                    pathname: `/products/product/` + product.productID
+                                                }}>
 
-                                    <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
-                                        <Link style={{ textDecoration: 'none', color: 'black' }}
-                                            to={{
-                                                pathname: `/products/product/`+product.productID
-                                            }}>
-
-                                            <div className="productCard-master">
-                                                <div className="productCard">
-                                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                                    <div className="price-bg">
-                                                        £{product.price}
+                                                <div className="productCard-master">
+                                                    <div className="productCard">
+                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                        <div className="price-bg">
+                                                            £{product.price}
+                                                        </div>
                                                     </div>
+                                                    <div className="productCard-productName">
+                                                        {product.productName}
+                                                    </div>
+                                                    <div className="d-flex productCard-Reviews">
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        ({product.ratings})
+                                                    </div>
+
                                                 </div>
-                                                <div className="productCard-productName">
-                                                    {product.productName}
-                                                </div>
-                                                <div className="d-flex productCard-Reviews">
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    ({product.ratings})
-                                                </div>
-
-                                            </div>
-                                        </Link>
-                                    </div>
+                                            </Link>
+                                        </div>
 
 
-                                )
+                                    )
 
 
 
-                            })}
+                                })}
 
 
-                        </div>
+                            </div>
+                            : <div></div>}
 
                     </div>
                     <div className="col-2">
@@ -288,7 +291,12 @@ function Products() {
                             paginate={paginate}
                         />
                             :
-                            <div>Loading...</div>
+                            <div className="text-center my-5">
+                                <Spinner animation="border" role="status" variant="primary">
+                                    <span className="visually-hidden">Loading Product</span>
+                                </Spinner>
+                                <div className="my-2 fs-3">Loading Products...</div>
+                            </div>
                         }
                     </div>
                     <div className="col-3">
