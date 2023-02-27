@@ -99,7 +99,7 @@ function CheckOut() {
 
                             </div>
 
-                            <div className="container">
+                            <div className="container border-bottom">
                                 <div className="d-flex justify-content-around">
                                     <div className=" subtotal-text">
                                         Subtotal
@@ -109,11 +109,26 @@ function CheckOut() {
                                     </div>
                                 </div>
                             </div>
+                            <div className="container">
+                                <div className="d-flex justify-content-center my-4">
+                                    <div className="login-button">
+                                        Login
+                                    </div>
+                                </div>
+
+                                <div className="guest-header">
+                                    <span>Or</span>
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    <div className="pay-guest">
+                                        Pay as a guest
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         :
 
                         <div className="container">
-
 
                         </div>}
                 </div>
