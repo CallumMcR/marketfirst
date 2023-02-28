@@ -24,7 +24,45 @@ function CheckOut() {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
         setBasketItems(basketItemsFromStorage);
     }, []);
-    console.log(basketItems);
+
+
+    const [progressBar, setProgress] = useState(0);
+
+    const [backClass,setBackClass] = useState(" disabled");
+
+    const progressBarChange = (state) => {
+        if (state === "next") {
+            setProgress(progressBar++);
+
+            $(".nConfirm" + progressBar).each(function () {
+                $(this).addClass("done");
+            });
+
+            var pBar = (state / 2) * 100;
+            $(".pBar").css("width", `${pBar}%`);
+            if (state == 2) {
+                $("#next").addClass("disabled");
+            }
+        }
+        else if (state === "back") {
+
+            $(".nConfirm" + progressBar).each(function () {
+                $(this).removeClass("done");
+            });
+
+            setProgress(progressBar--);
+      
+            var pBar = (state / stateMax) * 100;
+            $(".pBar").css("width", `${pBar}%`);
+
+            if (state == 0) {
+               setBackClass(" disabled");
+            }
+        }
+
+    }
+
+
     return (
         <div>
             <NavigationBar>
@@ -133,9 +171,9 @@ function CheckOut() {
                                 Your cart is empty
                             </div>
                             <div className="guest-header">
-                                    <span className="browse-products">Browse products here</span>
-                                </div>
-                         
+                                <span className="browse-products">Browse products here</span>
+                            </div>
+
                         </div>}
                 </div>
                 <div className="col-2">

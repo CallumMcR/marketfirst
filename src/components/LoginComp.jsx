@@ -62,6 +62,13 @@ function LoginComp() {
                             onChange={e => setPassword(e.target.value)}>
                         </input>
                         {invalidPasswordOrEmail ? <div className='text-center pb-3 text-invalid'> Invalid Email Address/Password </div> : <div></div>}
+
+                        <div className="text-center">
+                            <div className="forgot-login">
+                                Forgot login?
+                            </div>
+                        </div>
+
                         <div className="text-center">
                             <button type="submit" className="signin-button mx-auto">
                                 Sign in

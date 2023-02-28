@@ -21,7 +21,7 @@ function RegisterComp() {
 
     const [registerInProgress, setRegisterInProgress] = useState(false);
 
-    const [misMatchPassword,setMismatchPassword] = useState(false);
+    const [misMatchPassword, setMismatchPassword] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,6 +52,26 @@ function RegisterComp() {
                             action="http://localhost:8000/mailer.php"
                             method="post"
                             onSubmit={(event) => handleSubmit(event)}>
+
+
+                            <div className="d-flex justify-content-center">
+                                <input
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder='First Name' type="text"
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    required>
+                                </input>
+                                <input
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder='Surname' type="text"
+                                    onChange={(e) => setSurname(e.target.value)}
+                                    required>
+                                </input>
+
+                            </div>
+
                             <input
                                 id="email"
                                 name="email"
@@ -74,24 +94,8 @@ function RegisterComp() {
                                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                                 required>
                             </input>
-                            { misMatchPassword ? <p>Passwords are mismatching</p> : null }
-                            <div className="d-flex justify-content-center">
-                                <input
-                                    id="firstName"
-                                    name="firstName"
-                                    placeholder='First Name' type="text"
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    required>
-                                </input>
-                                <input
-                                    id="lastName"
-                                    name="lastName"
-                                    placeholder='Surname' type="text"
-                                    onChange={(e) => setSurname(e.target.value)}
-                                    required>
-                                </input>
+                            {misMatchPassword ? <p>Passwords are mismatching</p> : null}
 
-                            </div>
                             <div className="text-center">
                                 <button type="submit" className="signin-button mx-auto" onSubmit={(e) => handleSubmit(e)}>
                                     Register

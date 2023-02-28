@@ -80,7 +80,10 @@
 
 .signin-button{
     border: 2px solid red;
-    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     max-width: 10em;
     width: auto !important;
     text-align: center;
@@ -142,3 +145,16 @@ button{
 }
 
 
+.forgot-login{
+    color: blue;
+    font-size: 1.75em;
+    font-weight: 100;
+    font-family: 'Open Sans';
+    padding-bottom: 2rem;
+    padding-top:2rem
+}
+
+.forgot-login:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
