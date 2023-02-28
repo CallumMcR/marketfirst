@@ -129,7 +129,13 @@ function CheckOut() {
                         :
 
                         <div className="container">
-
+                            <div className="text-center empty-cart">
+                                Your cart is empty
+                            </div>
+                            <div className="guest-header">
+                                    <span className="browse-products">Browse products here</span>
+                                </div>
+                         
                         </div>}
                 </div>
                 <div className="col-2">
