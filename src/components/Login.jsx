@@ -16,19 +16,19 @@ function Login() {
 
     const [loginActive, setLoginActive] = useState(true);
 
-    const [styleActiveSignin, setStyleActiveSignin] = useState("text-center active");
-    const [styleActiveSignup, setStyleActiveSignup] = useState("text-center");
+    const [styleActiveSignin, setStyleActiveSignin] = useState("text-center active header-button");
+    const [styleActiveSignup, setStyleActiveSignup] = useState("text-center header-button");
 
     const handleToggle = (type) => {
         if (type === "signin") {
             setLoginActive(true);
-            setStyleActiveSignin("text-center active");
-            setStyleActiveSignup("text-center");
+            setStyleActiveSignin("text-center active header-button");
+            setStyleActiveSignup("text-center header-button");
         }
         else {
             setLoginActive(false);
-            setStyleActiveSignin("text-center");
-            setStyleActiveSignup("text-center active");
+            setStyleActiveSignin("text-center header-button");
+            setStyleActiveSignup("text-center active header-button");
         }
 
     }
@@ -42,8 +42,15 @@ function Login() {
 
                     </div>
                     <div className="col-xxl-4 col-xl">
-                        <div className="my-5 p-5 rounded">
 
+                        <div className="my-5 p-1 rounded">
+
+
+
+                            <div className="welcome-header text-center pb-3">Welcome</div>
+                            <div className="welcome-subtext text-center pb-5">
+                                Login, or create an account
+                            </div>
 
                             <div className="row position-relative">
                                 <div className="col-3">
@@ -60,6 +67,9 @@ function Login() {
                                 </div>
                                 <div className="col-3">
                                 </div>
+                            </div>
+                            <div className="pb-1">
+
                             </div>
                             {loginActive ? <LoginComp></LoginComp> : <RegisterComp></RegisterComp>}
 
