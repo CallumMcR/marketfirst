@@ -52,7 +52,7 @@ function CheckOut() {
 
             setProgress(progressBar--);
       
-            var pBar = (state / stateMax) * 100;
+            var pBar = (state / 2) * 100;
             $(".pBar").css("width", `${pBar}%`);
 
             if (state == 0) {
