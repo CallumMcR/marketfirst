@@ -174,7 +174,7 @@ function NavigationBar(props) {
                                                     fontSize: '25px',
                                                     textDecoration: "none",
                                                     verticalAlign: 'middle'
-                                                }} to="account">
+                                                }} to="/account/MyOrders">
                                                 <div className="text-center bi bi-truck font-icons font-white p-2">
                                                 </div>
 

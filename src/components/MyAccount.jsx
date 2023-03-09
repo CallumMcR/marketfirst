@@ -7,11 +7,23 @@ import MyOrders from './accountComponents/MyOrders';
 import ChangeDelivery from './accountComponents/ChangeDelivery';
 import { useParams } from "react-router";
 import Admin from "./accountComponents/AdminComp";
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function MyAccount() {
+    const cookies = new Cookies();
     const pageLocation = useParams();
     const [pageState, setPageState] = useState();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userID = cookies.get('userID');
+        if (!userID) {
+            navigate('/login');
+        }
+    }, []);
 
 
     useEffect(() => {
