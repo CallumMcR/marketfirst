@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router';
 import $ from "jquery";
-
+import { Spinner } from 'react-bootstrap'
 
 
 
@@ -20,6 +20,7 @@ function LoginComp() {
     const navigate = useNavigate();
     const handleLogin = (e) => {
         e.preventDefault();
+        setLoggingIn(true);
         const form = $(e.target);
         $.ajax({
             type: "POST",
@@ -29,15 +30,21 @@ function LoginComp() {
 
                 if (data === "incorrect") {
                     setInvalidPasswordOrEmail(true);
+                    setLoggingIn(false);
                 }
                 else {
                     cookies.set('userID', data, { path: '/' })
+                    setLoggingIn(false);
                     navigate("/account/home");
+                    
 
                 }
             },
         });
+        
     }
+
+    const [loggingIn, setLoggingIn] = useState(false);
 
     return (
         <div className=''>
@@ -70,10 +77,15 @@ function LoginComp() {
                         </div>
 
                         <div className="text-center">
-                            <button type="submit" className="signin-button mx-auto">
-                                Sign in
-                            </button>
-
+                            {!loggingIn ?
+                                <button type="submit" className="signin-button mx-auto">
+                                    Sign in
+                                </button>
+                                :
+                                <Spinner animation="border" role="status" variant="primary">
+                                    <span className="visually-hidden">Logging in...</span>
+                                </Spinner>
+                            }
                         </div>
 
                     </Container>
