@@ -157,7 +157,7 @@ function Products() {
                 <div className="row">
                     <div className="col-2">
                     </div>
-                    <div className="col-6">
+                    <div className="col-8">
                         <div className="row pt-4">
                             <div className="col-lg-8">
                                 <div class="productHeader">
@@ -233,7 +233,7 @@ function Products() {
                                     try {
                                         imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
                                     } catch {
-                                        imageSrc = require('../images/test/image1.webp');
+                                        imageSrc = require('../images/stockimage.jpg');
                                     }
                                     return (
                                         <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
