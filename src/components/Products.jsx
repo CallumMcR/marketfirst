@@ -152,7 +152,7 @@ function Products() {
             <NavigationBar></NavigationBar>
             <Container fluid>
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-2">
                     </div>
                     <div className="col-6">
                         <div className="row pt-4">
@@ -189,7 +189,7 @@ function Products() {
                         </div>
                         <hr></hr>
                     </div>
-                    <div className="col-3">
+                    <div className="col-2">
                     </div>
                 </div>
             </Container>
