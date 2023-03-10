@@ -72,6 +72,9 @@ function Products() {
 
     useEffect(() => {
         setLoading(true);
+
+
+
         let filteredProducts = [];
         if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
             filteredProducts = masterDB.filter(product => {
@@ -225,20 +228,19 @@ function Products() {
 
                         {!loading ?
                             <div className="row">
-
-
                                 {currentItems.map((product, index) => {
+                                    let imageSrc;
+                                    try {
+                                        imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
+                                    } catch {
+                                        imageSrc = require('../images/test/image1.webp');
+                                    }
                                     return (
-
                                         <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
-                                            <Link style={{ textDecoration: 'none', color: 'black' }}
-                                                to={{
-                                                    pathname: `/products/product/` + product.productID
-                                                }}>
-
+                                            <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/products/product/` + product.productID }}>
                                                 <div className="productCard-master">
                                                     <div className="productCard">
-                                                        <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
+                                                        <img src={imageSrc} className="" alt="..."></img>
                                                         <div className="price-bg">
                                                             £{product.price}
                                                         </div>
@@ -254,19 +256,11 @@ function Products() {
                                                         <i className="bi bi-star"></i>
                                                         ({product.ratings})
                                                     </div>
-
                                                 </div>
                                             </Link>
                                         </div>
-
-
                                     )
-
-
-
                                 })}
-
-
                             </div>
                             : <div></div>}
 
