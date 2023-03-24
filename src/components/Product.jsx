@@ -1,12 +1,13 @@
 import React from "react";
 import axios from 'axios';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
 import '../css/navigation.css';
 import '../css/product.css';
+import '../css/dropdown.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import $ from "jquery";
@@ -20,6 +21,38 @@ function Product() {
     const id = productID.id;
     const [loadingProduct, setIsLoadingProduct] = useState(false);
     const [tempThumbnails, setTempThumbnails] = useState([]);
+
+
+    // Quantity dropdown
+    const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
+    const [toggleQuantity, setToggledQuantity] = useState(false);
+    const [selectedOptionQuantity, setSelectedOptionQuantity] = useState(1);
+    const timeoutRef = useRef(null);
+    const toggleDropdownQuantity = () => {
+        clearTimeout(timeoutRef.current);
+        setToggledQuantity(!toggleQuantity);
+        if (DropDownBoxStyle === "dropdown-container") {
+            SetDropDownBoxStyle("dropdown-container-toggled");
+        }
+        else {
+            SetDropDownBoxStyle("dropdown-container");
+        }
+    };
+
+    const handleOptionQuantityClick = (option) => {
+        setSelectedOptionQuantity(option);
+        toggleDropdownQuantity();
+    };
+    useEffect(() => {
+        if (toggleQuantity) {
+            timeoutRef.current = setTimeout(() => {
+                setToggledQuantity(false);
+                SetDropDownBoxStyle("dropdown-container");
+            }, 5000);
+        }
+    }, [toggleQuantity]);
+
 
     useEffect(() => {
         setIsLoadingProduct(false);
@@ -66,16 +99,16 @@ function Product() {
     const iterateThumbnailImages = async (data) => {
         const tempThumbnailsCopy = [...tempThumbnails];
         for (const image of data) {
-          try {
-            const module = await import(`../PHP/images/products/${id}/${image}`);
-            tempThumbnailsCopy.push(module.default);
-          } catch (error) {
-            console.error(`Failed to load image ${image}:`, error);
-          }
+            try {
+                const module = await import(`../PHP/images/products/${id}/${image}`);
+                tempThumbnailsCopy.push(module.default);
+            } catch (error) {
+                console.error(`Failed to load image ${image}:`, error);
+            }
         }
         setTempThumbnails(tempThumbnailsCopy);
-      };
-      
+    };
+
 
 
 
@@ -83,7 +116,7 @@ function Product() {
 
 
     const [quantity, setQuantity] = useState(1);
-    const [activeImage, setActiveImage] = useState(require('../PHP/images/products/'+id+'/image1.png'));
+    const [activeImage, setActiveImage] = useState(require('../PHP/images/products/' + id + '/image1.png'));
 
     const handleQuantityChange = (e) => {
         setQuantity(e);
@@ -223,19 +256,26 @@ function Product() {
                                                 </div>
                                                 : <div></div>}
 
-                                            <DropdownButton
-                                                title={`Quantity: ${quantity}`}
-                                                variant="dark"
-                                                className="py-2 my-4">
-                                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((quantity) => (
-                                                    <Dropdown.Item
-                                                        key={quantity}
-                                                        onClick={() => handleQuantityChange(quantity)}
-                                                    >
-                                                        {quantity}
-                                                    </Dropdown.Item>
-                                                ))}
-                                            </DropdownButton>
+                                            <div className={DropDownBoxStyle} style={{marginTop: "20px",marginBottom:"20px"}}>
+                                                <div className="dropdown-selected-option" onClick={toggleDropdownQuantity}>
+                                                    Quantity: {selectedOptionQuantity} <i className="bi bi-caret-down-fill"></i>
+                                                </div>
+                                                {toggleQuantity && (
+                                                    <ul className="dropdown-options-list">
+                                                        {options.map(option => (
+                                                            <li className="dropdown-option" key={option} value={option}
+                                                                style={
+                                                                    option === 1
+                                                                        ? { borderBottom: "1px solid #960018" }
+                                                                        : {}
+                                                                }
+                                                                onClick={() => handleOptionQuantityClick(option)} >
+                                                                {option}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </div>
 
 
                                             <div className="buynow-button">

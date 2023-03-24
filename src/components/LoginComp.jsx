@@ -36,8 +36,6 @@ function LoginComp() {
                     cookies.set('userID', data, { path: '/' })
                     setLoggingIn(false);
                     navigate("/account/home");
-                    
-
                 }
             },
         });
