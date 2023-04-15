@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-import { Dropdown, DropdownButton } from "react-bootstrap";
 import NavigationBar from "./NavigationBar";
 import '../css/navigation.css';
 import '../css/product.css';
@@ -64,7 +63,6 @@ function Product() {
                 success(data) {
                     const productData = JSON.parse(data);
                     setProduct(productData);
-                    console.log(productData);
                     getProductsImages();
                 },
             });

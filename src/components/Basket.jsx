@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
 import '../css/basket.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { Button } from "react-bootstrap";
-import Accordion from 'react-bootstrap/Accordion';
 
 function Basket() {
 
@@ -51,11 +48,6 @@ function Basket() {
         setBasketItems(basketItemsFromStorage);
     }, []);
 
-    //useEffect(() => {
-    // This causes the data to be reset and thus go empty
-    //    sessionStorage.setItem("basketData", JSON.stringify(basketItems));
-    //}, [basketItems]);
-
     //Needed for updates
     window.addEventListener('basketUpdated', () => {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
@@ -72,10 +64,12 @@ function Basket() {
                 return item;
             });
             setBasketItems(updatedBasketItems);
+            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
         } else {
-            setBasketItems([...basketItems, { ...product, quantity: 1 }])
+            const updatedBasketItems = [...basketItems, { ...product, quantity: 1 }];
+            setBasketItems(updatedBasketItems);
+            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
         }
-        sessionStorage.setItem("basketData", JSON.stringify(basketItems))
     };
 
 
@@ -84,28 +78,34 @@ function Basket() {
         const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             if (productsExists.quantity === 1) {
-                setBasketItems(basketItems.filter((item) => item !== product));
+                const updatedBasketItems = basketItems.filter((item) => item !== product);
+                setBasketItems(updatedBasketItems);
+                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
             }
             else {
                 productsExists.quantity--;
-                setBasketItems([...basketItems]);
+                const updatedBasketItems = [...basketItems];
+                setBasketItems(updatedBasketItems);
+                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
             }
-
         }
-        sessionStorage.setItem("basketData", JSON.stringify(basketItems))
     };
 
 
 
     const handleRemoveFromBasket = (product) => {
-        setBasketItems(basketItems.filter((item) => item !== product));
+        const updatedBasketItems = basketItems.filter((item) => item !== product);
+        setBasketItems(updatedBasketItems);
+        sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
     };
 
     const handleQuantityChange = (product, newQuantity) => {
         const productsExists = basketItems.find((item) => item.productID === product.productID);
         if (productsExists) {
             productsExists.quantity = newQuantity;
-            setBasketItems([...basketItems]);
+            const updatedBasketItems = [...basketItems];
+            setBasketItems(updatedBasketItems);
+            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
         }
     };
 
@@ -145,20 +145,22 @@ function Basket() {
                                 <div className="card">
                                     <img src="" className="card-img-top" alt="product image" />
                                     <div className="card-body">
-                                        <h5 className="card-title">{ }</h5>
+                                        <h5 className="card-title">{ product.productName}</h5>
                                         <div className="d-flex">
-                                            <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
+                                        <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
+
                                             </div>
                                             <div className="quantity-text px-4">
                                                 {product.quantity}
                                             </div>
-                                            <div className="bi bi-plus-circle-fill button-add" onClick={handleAddToBasket}>
+                                            <div className="bi bi-plus-circle-fill button-add" onClick={() => handleAddToBasket(product)}>
+
 
                                             </div>
                                         </div>
 
                                         <div className='price-text'>
-                                            £{ }
+                                            £{ product.price}
                                         </div>
 
                                     </div>
