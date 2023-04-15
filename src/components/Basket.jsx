@@ -55,41 +55,45 @@ function Basket() {
     })
 
     const handleAddToBasket = (product) => {
-        const productsExists = basketItems.find((item) => item.productID === product.productID);
-        if (productsExists) {
+        const productExists = basketItems.find((item) => item.productID === product.productID && item.shoeSize === product.shoeSize);
+        if (productExists) {
             const updatedBasketItems = basketItems.map((item) => {
-                if (item.productID === product.productID) {
-                    return { ...item, quantity: item.quantity + 1 }
+                if (item.productID === product.productID && item.shoeSize === product.shoeSize) {
+                    return { ...item, quantity: item.quantity + 1 };
                 }
                 return item;
             });
             setBasketItems(updatedBasketItems);
-            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
+            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
         } else {
             const updatedBasketItems = [...basketItems, { ...product, quantity: 1 }];
             setBasketItems(updatedBasketItems);
-            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
+            sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
         }
     };
 
-
-    // need to make this delete the item
     const handleMinusQuantityToBasket = (product) => {
-        const productsExists = basketItems.find((item) => item.productID === product.productID);
-        if (productsExists) {
-            if (productsExists.quantity === 1) {
+        const productExists = basketItems.find((item) => item.productID === product.productID && item.shoeSize === product.shoeSize);
+        if (productExists) {
+            if (productExists.quantity === 1) {
                 const updatedBasketItems = basketItems.filter((item) => item !== product);
                 setBasketItems(updatedBasketItems);
-                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
-            }
-            else {
-                productsExists.quantity--;
-                const updatedBasketItems = [...basketItems];
+                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
+            } else if (productExists.quantity > 1) { // add check for quantity > 1
+                const updatedBasketItems = basketItems.map((item) => {
+                    if (item.productID === product.productID && item.shoeSize === product.shoeSize) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    }
+                    return item;
+                });
                 setBasketItems(updatedBasketItems);
-                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems))
+                sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
             }
         }
     };
+
+
+
 
 
 
@@ -146,6 +150,7 @@ function Basket() {
                                     <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
                                     <div className="card-body">
                                         <h5 className="card-title">{product.productName}</h5>
+
                                         <div className="d-flex">
                                             <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
 
@@ -158,7 +163,9 @@ function Basket() {
 
                                             </div>
                                         </div>
-
+                                        <div className="size-text">
+                                            Size:{product.shoeSize}
+                                        </div>
                                         <div className='price-text'>
                                             £{product.price}
                                         </div>

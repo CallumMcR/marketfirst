@@ -63,9 +63,15 @@
   .speak-button{
     border: none;
     color: blue;
-    background-color: white;
+    background-color: rgba(0,0,0,0);
     text-align: center;
     position: absolute;
-    top: -60%;
+    top: -20%;
     right: 0 !important;
+  }
+  .speak-button:hover{
+    border: solid grey 1px;
+    border-radius: 50px;
+    vertical-align: middle;
+    background-color: whitesmoke;
   }

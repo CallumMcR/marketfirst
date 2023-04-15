@@ -152,11 +152,12 @@ function Product() {
 
 
     const handleAddToBasket = () => {
-        const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage };
-        const productExists = basketItems.find((item) => item.productID === product[0].productID);
+        const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage,shoeSize: selectedShoeSize };
+        const productExists = basketItems.find((item) => item.productID === product[0].productID && item.shoeSize === newBasketItem.shoeSize);
+
         if (productExists) {
             const updatedBasketItems = basketItems.map((item) => {
-                if (item.productID === product[0].productID) {
+                if (item.productID === product[0].productID && item.shoeSize === newBasketItem.shoeSize) {
                     return { ...item, quantity: item.quantity + quantity, imagePath: activeImage };
                 }
                 return item;
@@ -166,6 +167,7 @@ function Product() {
             setBasketItems([...basketItems, newBasketItem]);
         }
     };
+
 
 
     useEffect(() => {
@@ -304,9 +306,15 @@ function Product() {
 
                                     </div>
 
+
+
                                     <ExpandableContainer
                                         buttonText="Product Information"
-                                        paragraphText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod, nisi vel tristique eleifend, purus mi dapibus nibh, sed ullamcorper urna mi vitae nulla."
+                                        paragraphText="Nike Dunks Low is a classic sneaker that has been popular for decades. Originally released in 1985 as a basketball shoe, 
+                                        the Nike Dunk has since become a staple in the world of streetwear and casual fashion. The low-top version of the Nike Dunk features a sleek 
+                                        and streamlined design that has made it a favorite among sneakerheads and fashion enthusiasts alike. With its signature Swoosh logo and clean, 
+                                        simple lines, the Nike Dunk Low is a timeless shoe that continues to be popular today. Whether you're wearing them to the gym, the skatepark, or just around 
+                                        town, the Nike Dunk Low is a versatile and stylish sneaker that is sure to turn heads."
                                         startOpen={true}
                                     />
                                     <ExpandableContainer
@@ -314,16 +322,11 @@ function Product() {
                                         paragraphText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod, nisi vel tristique eleifend, purus mi dapibus nibh, sed ullamcorper urna mi vitae nulla."
                                         startOpen={false}
                                     />
-                                    <div className="pt-2 product-description-text">
-                                        { }
-                                    </div>
 
-                                    
-                                    
 
-                                    
+
                                 </div>
-                                
+
                                 :
                                 <div className="text-center my-5">
                                     <Spinner animation="border" role="status" variant="primary">
@@ -334,6 +337,12 @@ function Product() {
                             }
                         </div>
                         <hr></hr>
+
+
+
+
+
+
                         <div className="col-2">
 
                         </div>
