@@ -1,0 +1,71 @@
+.expandable-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: max-height 1s ease;
+  }
+  
+  .expandable-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+  }
+  
+  .expandable-button:before,
+  .expandable-button:after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #333;
+    margin: 0 10px;
+  }
+  
+  .expandable-button-text {
+    text-align: center;
+    font-family: 'Open Sans';
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .expandable-button-icon {
+    display: inline-block;
+    transform: rotate(0);
+    transition: transform 0.3s ease;
+  }
+  
+  .expandable-button.activePara .expandable-button-icon {
+    transform: rotate(180deg);
+  }
+  
+  .expandable-paragraph {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
+  }
+  
+  .expandable-paragraph.activePara {
+    max-height: 1000px;
+    transition: max-height 1s ease;
+   
+  }
+
+  .expandable-paragraph-container{
+    position: relative;
+    width: 95%;
+  }
+  
+  .speak-button{
+    border: none;
+    color: blue;
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    top: -60%;
+    right: 0 !important;
+  }

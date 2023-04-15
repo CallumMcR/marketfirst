@@ -10,8 +10,9 @@ import '../css/dropdown.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import $ from "jquery";
-import { Spinner } from 'react-bootstrap'
-
+import { Spinner } from 'react-bootstrap';
+import ExpandableContainer from "./ExpandableContainer";
+import Dropdown from "./Dropdown";
 
 
 function Product() {
@@ -24,6 +25,8 @@ function Product() {
 
     // Quantity dropdown
     const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const shoeOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const [selectedShoeSize, setSelectedShoeSize] = useState(4);
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggleQuantity, setToggledQuantity] = useState(false);
     const [selectedOptionQuantity, setSelectedOptionQuantity] = useState(1);
@@ -152,23 +155,28 @@ function Product() {
         const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage };
         const productExists = basketItems.find((item) => item.productID === product[0].productID);
         if (productExists) {
-          const updatedBasketItems = basketItems.map((item) => {
-            if (item.productID === product[0].productID) {
-              return { ...item, quantity: item.quantity + quantity, imagePath: activeImage };
-            }
-            return item;
-          });
-          setBasketItems(updatedBasketItems);
+            const updatedBasketItems = basketItems.map((item) => {
+                if (item.productID === product[0].productID) {
+                    return { ...item, quantity: item.quantity + quantity, imagePath: activeImage };
+                }
+                return item;
+            });
+            setBasketItems(updatedBasketItems);
         } else {
-          setBasketItems([...basketItems, newBasketItem]);
+            setBasketItems([...basketItems, newBasketItem]);
         }
-      };
+    };
 
 
     useEffect(() => {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
         window.dispatchEvent(new Event("basketUpdated"));
     }, [basketItems]);
+
+
+
+
+
 
 
     return (
@@ -271,6 +279,15 @@ function Product() {
                                                 )}
                                             </div>
 
+                                            <Dropdown
+                                                options={shoeOptions}
+                                                startingToggleStatus={false}
+                                                onOptionClick={(option) => {
+                                                    setSelectedShoeSize(option);
+                                                }}
+                                            />
+
+
 
                                             <div className="buynow-button">
                                                 Buy Now
@@ -283,48 +300,30 @@ function Product() {
                                     </div>
 
 
+                                    <div className="py-2">
 
-                                    <div className="product-description-header pt-5">
-                                        Product information
                                     </div>
 
+                                    <ExpandableContainer
+                                        buttonText="Product Information"
+                                        paragraphText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod, nisi vel tristique eleifend, purus mi dapibus nibh, sed ullamcorper urna mi vitae nulla."
+                                        startOpen={true}
+                                    />
+                                    <ExpandableContainer
+                                        buttonText="Brand"
+                                        paragraphText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod, nisi vel tristique eleifend, purus mi dapibus nibh, sed ullamcorper urna mi vitae nulla."
+                                        startOpen={false}
+                                    />
                                     <div className="pt-2 product-description-text">
                                         { }
                                     </div>
 
-                                    <div className="pt-3 product-reviews-header">
-                                        Reviews: { }
-                                    </div>
-                                    <hr></hr>
+                                    
+                                    
 
-                                    <div className="p-3">
-                                        <div className="row border">
-                                            <div className="col-2">
-                                                <div className="review-image-container">
-                                                    <img src={require('../images/test/image1.webp')} className="" alt="..."></img>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="ratings">
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                    <i className="bi bi-star"></i>
-                                                </div>
-                                                <div className="fs-5 fw-bold">
-                                                    Username
-                                                </div>
-                                                <div className="fs-5 fw-normal">
-                                                    Date
-                                                </div>
-                                            </div>
-                                            <div className="col-6">
-                                                Description { }
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                
                                 :
                                 <div className="text-center my-5">
                                     <Spinner animation="border" role="status" variant="primary">
@@ -334,6 +333,7 @@ function Product() {
                                 </div>
                             }
                         </div>
+                        <hr></hr>
                         <div className="col-2">
 
                         </div>
