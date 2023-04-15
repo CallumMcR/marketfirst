@@ -13,7 +13,7 @@ function Basket() {
     const [basketTotal, setBasketTotal] = useState(() => {
         const saved = sessionStorage.getItem("basketTotalPrice");
         const initialValue = JSON.parse(saved);
-        return initialValue || 0.00;
+        return initialValue || 0;
     })
 
 
@@ -92,6 +92,16 @@ function Basket() {
         }
     };
 
+    useEffect(() => {
+        let total = 0;
+        for (let item of basketItems) {
+            total += parseInt(item.price)*item.quantity;
+        }
+        console.log(total);
+        setBasketTotal(total);
+        sessionStorage.setItem("basketTotalPrice", JSON.stringify(basketTotal))
+    }, [basketItems]);
+
 
 
 
@@ -167,7 +177,7 @@ function Basket() {
                                             Size:{product.shoeSize}
                                         </div>
                                         <div className='price-text'>
-                                            £{product.price}
+                                            £{product.price * product.quantity}
                                         </div>
 
                                     </div>
