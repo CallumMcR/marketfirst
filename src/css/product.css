@@ -212,3 +212,10 @@ border-radius: 5px;
     font-weight: 400;
     font-size: 1.2em;
 }
+
+.product-similar-text{
+    font-family: 'Open Sans';
+    font-weight: bolder;
+    font-size: 1.5em;
+    
+}

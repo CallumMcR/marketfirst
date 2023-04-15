@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import '../css/navigation.css';
 import '../css/product.css';
+import '../css/productCard.css';
 import '../css/dropdown.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -25,7 +26,7 @@ function Product() {
 
     // Quantity dropdown
     const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    const shoeOptions = [4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const [shoeOptions, setShoeOptions] = useState([4, 5, 6, 7, 8, 9, 10, 11, 12]);
     const [selectedShoeSize, setSelectedShoeSize] = useState(4);
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggleQuantity, setToggledQuantity] = useState(false);
@@ -64,31 +65,48 @@ function Product() {
     useEffect(() => {
         setIsLoadingProduct(false);
         const getProductByID = () => {
+            const newID = parseInt(id);
             $.ajax({
                 type: "POST",
                 url: 'http://localhost:8000/getProductByID.php',
-                data: { productID: id },
+                data: { productID: newID },
                 success(data) {
                     const productData = JSON.parse(data);
                     setProduct(productData);
+                    const sizes = new Set();
+                    productData.forEach(item => {
+                        sizes.add(item.size);
+                    });
+                    const sortedSizes = Array.from(sizes).sort((a, b) => parseFloat(a) - parseFloat(b));
+                    setShoeOptions(sortedSizes);
                     getProductsImages();
+                    getSimilarProducts();
+
                 },
             });
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:8000/getProductsBySimilarity.php',
-                data: { productID: id },
-                success(data2) {
-                    const similarProducts = JSON.parse(data2);
-                    setListOfProducts(similarProducts);
-                },
-            });
+            
         }
         getProductByID();
 
     }, [productID]);
 
+    const getSimilarProducts = () => {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8000/getProductsBySimilarity.php',
+            data: { productID: id },
+            success(data) {
+                console.log(id);
+                console.log(data);
+                const similarProducts = JSON.parse(data);
+                console.log(data);
+                setListOfProducts(similarProducts);
+                console.log("Similar products",similarProducts);
+                setLoading(false);
+            },
+        });
 
+    };
 
 
 
@@ -191,13 +209,6 @@ function Product() {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
         window.dispatchEvent(new Event("basketUpdated"));
     }, [basketItems]);
-
-
-
-
-
-
-
     return (
         <div>
             <NavigationBar>
@@ -225,11 +236,6 @@ function Product() {
                                 <i className="bi bi-arrow-left"></i> Back to search results
                             </div>
                             <hr></hr>
-
-
-
-
-
                             {loadingProduct ?
                                 <div>
                                     <div className="row">
@@ -240,14 +246,8 @@ function Product() {
                                                 </div>
 
                                             </div>
-
                                         </div>
-
-
                                         <div className="col-2 rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
-
-
-
                                             {tempThumbnails.map((pic, index) => {
                                                 return (
                                                     <div className="small-image-thumbnail center-vertically-product-thumbnail" key={index}>
@@ -255,10 +255,6 @@ function Product() {
                                                     </div>
                                                 );
                                             })}
-
-
-
-
                                         </div>
                                         <div className="col-5 px-5">
                                             <div className="font-product-header">
@@ -327,16 +323,12 @@ function Product() {
 
                                     <ExpandableContainer
                                         buttonText="Product Information"
-                                        paragraphText="Nike Dunks Low is a classic sneaker that has been popular for decades. Originally released in 1985 as a basketball shoe, 
-                                        the Nike Dunk has since become a staple in the world of streetwear and casual fashion. The low-top version of the Nike Dunk features a sleek 
-                                        and streamlined design that has made it a favorite among sneakerheads and fashion enthusiasts alike. With its signature Swoosh logo and clean, 
-                                        simple lines, the Nike Dunk Low is a timeless shoe that continues to be popular today. Whether you're wearing them to the gym, the skatepark, or just around 
-                                        town, the Nike Dunk Low is a versatile and stylish sneaker that is sure to turn heads."
+                                        paragraphText={product[0].productDesc}
                                         startOpen={true}
                                     />
                                     <ExpandableContainer
                                         buttonText="Brand"
-                                        paragraphText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod, nisi vel tristique eleifend, purus mi dapibus nibh, sed ullamcorper urna mi vitae nulla."
+                                        paragraphText={product[0].Brand}
                                         startOpen={false}
                                     />
 
@@ -353,48 +345,9 @@ function Product() {
                                 </div>
                             }
                         </div>
-                        <hr></hr>
 
-                        <div className="div">
-                            Similar products
-                        </div>
-                        {!loading ?
-                            <div className="row">
-                                {listOfProducts.map((product, index) => {
-                                    let imageSrc;
-                                    try {
-                                        imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
-                                    } catch {
-                                        imageSrc = require('../images/stockimage.jpg');
-                                    }
-                                    return (
-                                        <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
-                                            <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/products/product/` + product.productID }}>
-                                                <div className="productCard-master">
-                                                    <div className="productCard">
-                                                        <img src={imageSrc} className="" alt="..."></img>
-                                                        <div className="price-bg">
-                                                            £{product.price}
-                                                        </div>
-                                                    </div>
-                                                    <div className="productCard-productName">
-                                                        {product.productName}
-                                                    </div>
-                                                    <div className="d-flex productCard-Reviews">
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        ({product.ratings})
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                            : <div></div>}
+
+
 
 
 
@@ -408,6 +361,63 @@ function Product() {
 
                 <div className="col-2">
 
+                </div>
+                <hr></hr>
+
+
+                <div className="row">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8">
+                        {!loading ?
+                            <div>
+                                <div className="product-similar-text">
+                                    SIMILAR PRODUCTS
+                                </div>
+                                <div className="row">
+                                    {listOfProducts.map((product, index) => {
+                                        let imageSrc;
+                                        try {
+                                            imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
+                                        } catch {
+                                            imageSrc = require('../images/stockimage.jpg');
+                                        }
+                                        return (
+                                            <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
+                                                <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/products/product/` + product.productID }}>
+                                                    <div className="productCard-master">
+                                                        <div className="productCard">
+                                                            <img src={imageSrc} className="" alt="..."></img>
+                                                            <div className="price-bg">
+                                                                £{product.price}
+                                                            </div>
+                                                        </div>
+                                                        <div className="productCard-productName">
+                                                            {product.productName}
+                                                        </div>
+                                                        <div className="d-flex productCard-Reviews">
+                                                            <i className="bi bi-star"></i>
+                                                            <i className="bi bi-star"></i>
+                                                            <i className="bi bi-star"></i>
+                                                            <i className="bi bi-star"></i>
+                                                            <i className="bi bi-star"></i>
+                                                            ({product.ratings})
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            : <div></div>
+                        }
+
+                    </div>
+                    <div className="col-2">
+
+                    </div>
                 </div>
 
             </div>

@@ -6,8 +6,12 @@
     header("Access-Control-Allow-Headers: *");
 
     $productID = $_POST['productID'];   
-    $query = $connection->prepare("SELECT * FROM PRODUCT WHERE productID = :productID"); 
-    $query->bindParam(':productID', $productID, PDO::PARAM_INT);
+    $query = $connection->prepare("SELECT p.*
+    FROM Product p
+    WHERE p.productID != $productID
+      AND (p.Brand = (SELECT Brand FROM Product WHERE productID = $productID)
+           OR p.productType = (SELECT productType FROM Product WHERE productID = $productID)) LIMIT 12"); 
+    $query->bindParam(':productID', $productID, PDO::PARAM_STR);
     $query->execute();
     $rows = array();
 
