@@ -149,24 +149,20 @@ function Product() {
 
 
     const handleAddToBasket = () => {
-
-        const productsExists = basketItems.find((item) => item.productID === product.productID);
-        if (productsExists) {
-            const updatedBasketItems = basketItems.map((item) => {
-                if (item.productID === product.productID) {
-                    return { ...item, quantity: item.quantity + quantity }
-                }
-                return item;
-            });
-            setBasketItems(updatedBasketItems);
-            console.log("Setting items 1");
+        const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage };
+        const productExists = basketItems.find((item) => item.productID === product[0].productID);
+        if (productExists) {
+          const updatedBasketItems = basketItems.map((item) => {
+            if (item.productID === product[0].productID) {
+              return { ...item, quantity: item.quantity + quantity, imagePath: activeImage };
+            }
+            return item;
+          });
+          setBasketItems(updatedBasketItems);
+        } else {
+          setBasketItems([...basketItems, newBasketItem]);
         }
-        else {
-            setBasketItems([...basketItems, { ...product, quantity: quantity },])
-            console.log("Setting items 2", basketItems);
-
-        }
-    }
+      };
 
 
     useEffect(() => {

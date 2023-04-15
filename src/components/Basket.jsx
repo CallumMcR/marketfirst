@@ -143,11 +143,11 @@ function Basket() {
                         {basketItems.map((product) => (
                             <div className="p-5" key={product.productID}>
                                 <div className="card">
-                                    <img src="" className="card-img-top" alt="product image" />
+                                    <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
                                     <div className="card-body">
-                                        <h5 className="card-title">{ product.productName}</h5>
+                                        <h5 className="card-title">{product.productName}</h5>
                                         <div className="d-flex">
-                                        <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
+                                            <div className="bi bi-dash-circle-fill button-minus" onClick={() => handleMinusQuantityToBasket(product)}>
 
                                             </div>
                                             <div className="quantity-text px-4">
@@ -160,7 +160,7 @@ function Basket() {
                                         </div>
 
                                         <div className='price-text'>
-                                            £{ product.price}
+                                            £{product.price}
                                         </div>
 
                                     </div>

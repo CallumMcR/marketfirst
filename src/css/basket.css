@@ -1,5 +1,5 @@
 .basket-bg{
-    background-color: rgb(238,242,248);
+    background-color: whitesmoke;
     border: 0px black;
     border-style: solid;
     border-top: none;
@@ -41,7 +41,7 @@
   outline: none;
   border: none;
   font-size: 2.4em;
-  background-color: rgb(238,242,248);
+  background-color: whitesmoke;
   align-items: center;
   align-self: center;
 }
@@ -179,6 +179,6 @@
 }
 
 #applyPromoButton:hover{
-  background-color: rgb(238,242,248);
+  background-color: white;
   color: black;
 }
