@@ -256,7 +256,7 @@ function Product() {
                                                 </div>
                                                 : <div></div>}
 
-                                            <div className={DropDownBoxStyle} style={{marginTop: "20px",marginBottom:"20px"}}>
+                                            <div className={DropDownBoxStyle} style={{ marginTop: "20px", marginBottom: "20px" }}>
                                                 <div className="dropdown-selected-option" onClick={toggleDropdownQuantity}>
                                                     Quantity: {selectedOptionQuantity} <i className="bi bi-caret-down-fill"></i>
                                                 </div>
@@ -291,6 +291,10 @@ function Product() {
 
 
                                     <div className="product-description-header pt-5">
+                                        Product information
+                                    </div>
+
+                                    <div className="pt-2 product-description-text">
                                         { }
                                     </div>
 

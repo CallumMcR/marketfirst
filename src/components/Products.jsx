@@ -275,10 +275,10 @@ function Products() {
 
             <Container fluid>
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-2">
 
                     </div>
-                    <div className="col-6">
+                    <div className="col-8 px-5">
                         {!loading ? <Pagination
                             productsPerPage={numberProductsPerPage}
                             totalProducts={listOfProducts.length}
@@ -293,7 +293,7 @@ function Products() {
                             </div>
                         }
                     </div>
-                    <div className="col-3">
+                    <div className="col-2">
 
                     </div>
                 </div>
