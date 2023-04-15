@@ -5,8 +5,9 @@
     header("Access-Control-Allow-Methods: *");
     header("Access-Control-Allow-Headers: *");
 
-    
-    $query = $connection->prepare("SELECT * FROM PRODUCT"); 
+    $productID = $_POST['productID'];   
+    $query = $connection->prepare("SELECT * FROM PRODUCT WHERE productID = :productID"); 
+    $query->bindParam(':productID', $productID, PDO::PARAM_INT);
     $query->execute();
     $rows = array();
 

@@ -4,7 +4,7 @@
     header('Access-Control-Allow-Credentials: true');
 
     $host = 'localhost';
-    $db   = 'marketfirst';
+    $db   = 'marketfirst2';
     $user = 'root';
     $pass = '';
 

@@ -6,7 +6,11 @@
     header("Access-Control-Allow-Headers: *");
 
     $productID = $_POST['productID'];   
-    $query = $connection->prepare("SELECT * FROM PRODUCTS WHERE productID = :productID"); 
+    $query = $connection->prepare("SELECT p.*, ps.size 
+    FROM product p 
+    JOIN productvariation pv ON p.productID = pv.productID 
+    JOIN productsize ps ON pv.sizeID = ps.sizeID 
+    WHERE p.productID = :productID"); 
     $query->bindParam(':productID', $productID, PDO::PARAM_INT);
     $query->execute();
     $rows = array();

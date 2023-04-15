@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import '../css/navigation.css';
 import '../css/product.css';
@@ -31,6 +31,11 @@ function Product() {
     const [toggleQuantity, setToggledQuantity] = useState(false);
     const [selectedOptionQuantity, setSelectedOptionQuantity] = useState(1);
     const timeoutRef = useRef(null);
+    const [listOfProducts, setListOfProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+
+
     const toggleDropdownQuantity = () => {
         clearTimeout(timeoutRef.current);
         setToggledQuantity(!toggleQuantity);
@@ -69,10 +74,22 @@ function Product() {
                     getProductsImages();
                 },
             });
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8000/getProductsBySimilarity.php',
+                data: { productID: id },
+                success(data2) {
+                    const similarProducts = JSON.parse(data2);
+                    setListOfProducts(similarProducts);
+                },
+            });
         }
         getProductByID();
 
     }, [productID]);
+
+
+
 
 
     const [thumbnailImages, setThumbnailImages] = useState([]);
@@ -152,7 +169,7 @@ function Product() {
 
 
     const handleAddToBasket = () => {
-        const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage,shoeSize: selectedShoeSize };
+        const newBasketItem = { ...product[0], quantity: quantity, imagePath: activeImage, shoeSize: selectedShoeSize };
         const productExists = basketItems.find((item) => item.productID === product[0].productID && item.shoeSize === newBasketItem.shoeSize);
 
         if (productExists) {
@@ -338,14 +355,53 @@ function Product() {
                         </div>
                         <hr></hr>
 
-
-
-
-
-
-                        <div className="col-2">
-
+                        <div className="div">
+                            Similar products
                         </div>
+                        {!loading ?
+                            <div className="row">
+                                {listOfProducts.map((product, index) => {
+                                    let imageSrc;
+                                    try {
+                                        imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
+                                    } catch {
+                                        imageSrc = require('../images/stockimage.jpg');
+                                    }
+                                    return (
+                                        <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
+                                            <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/products/product/` + product.productID }}>
+                                                <div className="productCard-master">
+                                                    <div className="productCard">
+                                                        <img src={imageSrc} className="" alt="..."></img>
+                                                        <div className="price-bg">
+                                                            £{product.price}
+                                                        </div>
+                                                    </div>
+                                                    <div className="productCard-productName">
+                                                        {product.productName}
+                                                    </div>
+                                                    <div className="d-flex productCard-Reviews">
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        <i className="bi bi-star"></i>
+                                                        ({product.ratings})
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            : <div></div>}
+
+
+
+
+
+
+
                     </div>
 
                 </div>

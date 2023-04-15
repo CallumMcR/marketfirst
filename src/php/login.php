@@ -8,7 +8,7 @@
 
 
     $email = $_POST['email'];
-    $query=$connection->prepare("SELECT emailAddress,password,userID FROM users WHERE emailAddress = :emailAddress");
+    $query=$connection->prepare("SELECT emailAddress,password,userID FROM user WHERE emailAddress = :emailAddress");
     $query->bindParam(':emailAddress',$email);
     $query->execute();
     $result = $query->fetch(PDO::FETCH_ASSOC);

@@ -11,7 +11,7 @@ if(!empty($_GET['email']))
     $id = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
 
 
-    $query2 = $connection->prepare("SELECT COUNT(*) FROM accountpendingverification WHERE email = :email");
+    $query2 = $connection->prepare("SELECT COUNT(*) FROM user WHERE email = :email");
     $query2->bindParam(':email', $email);
     $query2->execute();
     $count2 = $query2->fetchColumn();
@@ -19,7 +19,7 @@ if(!empty($_GET['email']))
 
     if($count2<1){ // Checking the email doesnt already exist
         // Check if the generated ID already exists in the database
-        $query = $connection->prepare("SELECT COUNT(*) FROM accountpendingverification WHERE uniqueActivationCode = :id");
+        $query = $connection->prepare("SELECT COUNT(*) FROM user WHERE activationCode = :id");
         $query->bindParam(':id', $id);
         $query->execute();
         $count = $query->fetchColumn();
@@ -32,7 +32,7 @@ if(!empty($_GET['email']))
         }
 
         // Insert the email and ID into the database
-        $query = $connection->prepare("INSERT INTO accountpendingverification (email, uniqueActivationCode) VALUES (:email, :id)");
+        $query = $connection->prepare("INSERT INTO user (email, activationCode) VALUES (:email, :id)");
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
         $query->execute();
