@@ -15,8 +15,8 @@ function Index() {
 
             <NavigationBar></NavigationBar>
 
-            <Container fluid className="image-banner">
-                <Carousel className="w-100">
+            <Container fluid className="image-banner position-relative">
+                <Carousel className="w-100 position-relative">
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
@@ -24,10 +24,7 @@ function Index() {
                             style={{ maxHeight: "800px" }}
                             alt="First slide"
                         />
-                        <Carousel.Caption>
-                            <h3>Nike Sale!</h3>
-                            <p>Up to 50% off on all Nike products!</p>
-                        </Carousel.Caption>
+             
                     </Carousel.Item>
                     <Carousel.Item >
                         <img
@@ -36,7 +33,7 @@ function Index() {
                             alt="Second slide"
                             style={{ maxHeight: "800px" }}
                         />
-                
+
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
@@ -45,10 +42,17 @@ function Index() {
                             alt="Third slide"
                             style={{ maxHeight: "800px" }}
                         />
-        
+
                     </Carousel.Item>
                 </Carousel>
+                <div className="button-container">
+                    <button className="shop-button">Shop Men</button>
+                    <button className="shop-button">Shop Women</button>
+                </div>
+
             </Container>
+
+
 
             <Container fluid className="pt-5">
 
@@ -57,8 +61,13 @@ function Index() {
 
                     </div>
                     <div className="col-8">
-                        <div className="fs-2">
-                            Most popular products this month
+                        <div className="d-flex">
+                            <div className="see-these-start">
+                                HAVE&nbsp;
+                            </div>
+                            <div className="see-these-end">
+                                you seen these yet?
+                            </div>
                         </div>
                     </div>
                     <div className="col-2">
@@ -119,59 +128,59 @@ function Index() {
 
             <Container fluid className="pt-5">
 
-<div className="row">
-    <div className="col-2">
+                <div className="row">
+                    <div className="col-2">
 
-    </div>
-    <div className="col-8">
-        <div className="fs-2">
-            Best Sellers Of All time
-        </div>
-    </div>
-    <div className="col-2">
+                    </div>
+                    <div className="col-8">
+                        <div className="fs-2">
+                            Best Sellers Of All time
+                        </div>
+                    </div>
+                    <div className="col-2">
 
-    </div>
-</div>
-<hr></hr>
-
-<div className="row">
-    <div className="col-2">
-
-    </div>
-    <div className="col-8">
-
-        <div className="productCard-container d-flex justify-content-evenly">
-
-            <div className="productCard-master">
-                <div className="productCard">
-                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                    <div className="price-bg">
-                        £20.00
                     </div>
                 </div>
-                <div className="productCard-productName">
-                    Product Name
+                <hr></hr>
+
+                <div className="row">
+                    <div className="col-2">
+
+                    </div>
+                    <div className="col-8">
+
+                        <div className="productCard-container d-flex justify-content-evenly">
+
+                            <div className="productCard-master">
+                                <div className="productCard">
+                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
+                                    <div className="price-bg">
+                                        £20.00
+                                    </div>
+                                </div>
+                                <div className="productCard-productName">
+                                    Product Name
+                                </div>
+                                <div className="d-flex productCard-Reviews">
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    (3,000)
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div className="col-2">
+
+                    </div>
                 </div>
-                <div className="d-flex productCard-Reviews">
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    <i class="bi bi-star"></i>
-                    (3,000)
-                </div>
 
-            </div>
-
-        </div>
-
-    </div>
-    <div className="col-2">
-
-    </div>
-</div>
-
-</Container>
+            </Container>
 
             <Container fluid className="pt-5">
 
