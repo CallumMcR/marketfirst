@@ -1,10 +1,13 @@
 import React from "react";
 import NavigationBar from "./NavigationBar";
 import Carousel from 'react-bootstrap/Carousel';
-import image1 from '../images/coverImages/superdryadvertSplashPage.png';
+import image1 from '../PHP/images/coverImages/nikebanner1.png';
+import image2 from '../PHP/images/coverImages/nikebanner.png';
+import image3 from '../PHP/images/coverImages/adidasbanner.png';
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
 import '../css/index.css';
+import Footer from "./Footer";
 
 function Index() {
     return (
@@ -18,39 +21,31 @@ function Index() {
                         <img
                             className="d-block w-100"
                             src={image1}
-                            style={{ maxHeight: "600px" }}
+                            style={{ maxHeight: "800px" }}
                             alt="First slide"
                         />
                         <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3>Nike Sale!</h3>
+                            <p>Up to 50% off on all Nike products!</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item >
                         <img
                             className="d-block w-100"
-                            src={image1}
+                            src={image2}
                             alt="Second slide"
-                            style={{ maxHeight: "600px" }}
+                            style={{ maxHeight: "800px" }}
                         />
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
+                
                     </Carousel.Item>
                     <Carousel.Item>
                         <img
                             className="d-block w-100"
-                            src={image1}
+                            src={image3}
                             alt="Third slide"
-                            style={{ maxHeight: "600px" }}
+                            style={{ maxHeight: "800px" }}
                         />
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>
-                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                            </p>
-                        </Carousel.Caption>
+        
                     </Carousel.Item>
                 </Carousel>
             </Container>
@@ -233,6 +228,7 @@ function Index() {
                 </div>
 
             </Container>
+            <Footer></Footer>
         </div>
     )
 }
