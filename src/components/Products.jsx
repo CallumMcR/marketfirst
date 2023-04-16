@@ -9,6 +9,7 @@ import '../css/productsPage.css';
 import { useParams } from "react-router";
 import axios from "axios";
 import { Spinner } from 'react-bootstrap'
+import Dropdown from "./Dropdown";
 
 function Products() {
     const query = useParams();
@@ -152,7 +153,7 @@ function Products() {
         console.log(listOfProducts);
     }, [selectedOption]);
 
-
+    const [searchResultOptions, setSearchResultOptions] = useState([5, 10, 25, 50]);
 
     return (
         <div className="div">
@@ -164,41 +165,33 @@ function Products() {
                     </div>
                     <div className="col-8">
                         <div className="row pt-4">
-                            <div className="col-lg-8">
-                                <div className="number-results-text">
-                                    Number of search results:
-                                </div>
-                                <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage} style={{ maxWidth: "150px" }}
-                                    onChange={(e) => handleItemPerPageChange(e.target.value)}>
-                                </input>
-                            </div>
-                            <div className="col-lg-4 col-md-4">
-                                <div class="d-flex justify-content-end">
-                                    <div className={DropDownBoxStyle}>
-                                        <div className="dropdown-selected-option" onClick={toggleDropdown}>
-                                            Sort by: {selectedOption} <i className="bi bi-caret-down-fill"></i>
-                                        </div>
-                                        {toggle && (
-                                            <ul className="dropdown-options-list">
-                                                {options.map(option => (
-                                                    <li className="dropdown-option" key={option} value={option}
-                                                        style={
-                                                            option === "Most popular"
-                                                                ? { borderBottom: "1px solid #960018" }
-                                                                : {}
-                                                        }
-                                                        onClick={() => handleOptionClick(option)} >
-                                                        Sort by: {option}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
-                                    </div>
+                            <div className="col-lg-8" style={{paddingLeft:"100px"}}>
 
-                                </div>
+
+                                <Dropdown
+                                    options={searchResultOptions}
+                                    startingToggleStatus={false}
+                                    onOptionClick={(option) => {
+                                        handleItemPerPageChange(option);
+                                    }}
+                                    prefix="Results: "
+                                />
+
+
+                            </div>
+                            <div className="col-lg-4 col-md-4 d-flex justify-content-end" style={{paddingRight:"100px"}}>
+                                <Dropdown
+                                    options={options}
+                                    startingToggleStatus={false}
+                                    onOptionClick={(option) => {
+                                        handleOptionClick(option);
+                                    }}
+                                    prefix="Sort By: "
+                                />
                             </div>
                         </div>
                         <hr></hr>
+
                     </div>
                     <div className="col-2">
                     </div>

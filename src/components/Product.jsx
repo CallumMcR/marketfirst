@@ -27,6 +27,7 @@ function Product() {
     // Quantity dropdown
     const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [shoeOptions, setShoeOptions] = useState([4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    
     const [selectedShoeSize, setSelectedShoeSize] = useState(4);
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggleQuantity, setToggledQuantity] = useState(false);
@@ -270,6 +271,7 @@ function Product() {
                                                 onOptionClick={(option) => {
                                                     setSelectedShoeSize(option);
                                                 }}
+                                                prefix="UK Size: "
                                             />
                                             <div className="buynow-button">
                                                 Buy Now
@@ -307,10 +309,14 @@ function Product() {
                 <div className="col-2">
                 </div>
                 <hr></hr>
+
+
+
                 <div className="row">
                     <div className="col-2">
                     </div>
                     <div className="col-8">
+
                         {!loading ?
                             <div>
                                 <div className="product-similar-text">

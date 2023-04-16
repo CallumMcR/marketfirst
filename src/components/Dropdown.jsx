@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-function Dropdown({ options, startingToggleStatus, onOptionClick }) {
+function Dropdown({ options, startingToggleStatus, onOptionClick,prefix }) {
     const [isToggled, setIsToggled] = useState(startingToggleStatus);
     const [dropdownStyle, setDropdownStyle] = useState(isToggled ? "dropdown-container-toggled" : "dropdown-container");
     const timeoutRef = useRef(null);
@@ -31,7 +31,7 @@ function Dropdown({ options, startingToggleStatus, onOptionClick }) {
         <div>
             <div className={dropdownStyle} style={{ marginTop: "20px", marginBottom: "20px" }}>
                 <div className="dropdown-selected-option" onClick={toggleDropdown}>
-                    Size UK: {selectedOption}
+                    {prefix} {selectedOption}
                     <i className="bi bi-caret-down-fill"></i>
                 </div>
                 {isToggled && (
