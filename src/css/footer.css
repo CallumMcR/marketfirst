@@ -1,0 +1,62 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+.footer {
+  background-color: #960018;
+  color: #fff;
+  padding: 60px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+
+
+  
+  .footer h4 {
+    margin-bottom: 30px;
+  }
+  
+  .footer p {
+    margin-bottom: 20px;
+  }
+  
+  .contact li {
+    margin-bottom: 10px;
+  }
+  
+  .social li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .social a {
+    color: #fff;
+  }
+  
+  .social i {
+    font-size: 24px;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social i:hover {
+    transform: translateY(-3px);
+  }
+  
+  

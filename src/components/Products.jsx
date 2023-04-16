@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import Footer from "./Footer";
 import Pagination from "./Pagination";
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
@@ -164,9 +165,12 @@ function Products() {
                     <div className="col-8">
                         <div className="row pt-4">
                             <div className="col-lg-8">
-                                <div class="productHeader">
-                                    You searched for: { }
+                                <div className="number-results-text">
+                                    Number of search results:
                                 </div>
+                                <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage} style={{ maxWidth: "150px" }}
+                                    onChange={(e) => handleItemPerPageChange(e.target.value)}>
+                                </input>
                             </div>
                             <div className="col-lg-4 col-md-4">
                                 <div class="d-flex justify-content-end">
@@ -217,12 +221,7 @@ function Products() {
 
                                 </div>
                                 <div className="col-3">
-                                    <div className="number-results-text">
-                                        Number of search results:
-                                    </div>
-                                    <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
-                                        onChange={(e) => handleItemPerPageChange(e.target.value)}>
-                                    </input>
+
                                 </div>
                             </div>
                         </Container>
@@ -294,8 +293,10 @@ function Products() {
 
             </Container>
 
-
+            <Footer></Footer>
         </div>
+
+
     )
 }
 
