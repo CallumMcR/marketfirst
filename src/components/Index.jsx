@@ -8,8 +8,31 @@ import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
 import '../css/index.css';
 import Footer from "./Footer";
+import $ from "jquery";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Spinner } from 'react-bootstrap';
 
 function Index() {
+    const [listOfProducts, setListOfProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const getProducts = () => {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8000/getProductsIndex.php',
+            data: {},
+            success(data) {
+                const products = JSON.parse(data);
+                setListOfProducts(products);
+                setLoading(false);
+            },
+        });
+
+    };
+    useEffect(() => {
+        getProducts();
+    }, []);
     return (
         <div className="div">
 
@@ -24,7 +47,7 @@ function Index() {
                             style={{ maxHeight: "800px" }}
                             alt="First slide"
                         />
-             
+
                     </Carousel.Item>
                     <Carousel.Item >
                         <img
@@ -81,34 +104,45 @@ function Index() {
 
                     </div>
                     <div className="col-8">
+                        {!loading ?
+                            <div className="row">
+                                {listOfProducts.map((product, index) => {
+                                    let imageSrc;
+                                    try {
+                                        imageSrc = require(`../PHP/images/products/${product.productID}/image1.png`);
+                                    } catch {
+                                        imageSrc = require('../images/stockimage.jpg');
+                                    }
+                                    return (
+                                        <div className="col-xxl-3 col-xl-4 col-md-6 col-sm-12 d-flex justify-content-center p-5" key={index}>
+                                            <Link style={{ textDecoration: 'none', color: 'black' }} to={{ pathname: `/products/product/` + product.productID }}>
+                                                <div className="productCard-master">
+                                                    <div className="productCard">
+                                                        <img src={imageSrc} className="" alt="..."></img>
+                                                        <div className="price-bg">
+                                                            £{product.price}
+                                                        </div>
+                                                    </div>
+                                                    <div className="productCard-productName">
+                                                        {product.productName}
+                                                    </div>
 
-                        <div className="productCard-container d-flex justify-content-evenly">
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            :
+                            <div className="text-center my-5">
+                                <Spinner animation="border" role="status" variant="primary">
+                                    <span className="visually-hidden">Loading Products</span>
+                                </Spinner>
+                                <div className="my-2 fs-3">Loading Products</div>
                             </div>
 
-                        </div>
 
-
-
+                        }
 
 
 
@@ -126,117 +160,9 @@ function Index() {
 
             </Container>
 
-            <Container fluid className="pt-5">
 
-                <div className="row">
-                    <div className="col-2">
 
-                    </div>
-                    <div className="col-8">
-                        <div className="fs-2">
-                            Best Sellers Of All time
-                        </div>
-                    </div>
-                    <div className="col-2">
 
-                    </div>
-                </div>
-                <hr></hr>
-
-                <div className="row">
-                    <div className="col-2">
-
-                    </div>
-                    <div className="col-8">
-
-                        <div className="productCard-container d-flex justify-content-evenly">
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div className="col-2">
-
-                    </div>
-                </div>
-
-            </Container>
-
-            <Container fluid className="pt-5">
-
-                <div className="row">
-                    <div className="col-2">
-
-                    </div>
-                    <div className="col-8">
-                        <div className="fs-2">
-                            Seasonal gifts
-                        </div>
-                    </div>
-                    <div className="col-2">
-
-                    </div>
-                </div>
-                <hr></hr>
-
-                <div className="row">
-                    <div className="col-2">
-
-                    </div>
-                    <div className="col-8">
-
-                        <div className="productCard-container d-flex justify-content-evenly">
-
-                            <div className="productCard-master">
-                                <div className="productCard">
-                                    <img src={require('../images/test/image1.webp')} class="" alt="..."></img>
-                                    <div className="price-bg">
-                                        £20.00
-                                    </div>
-                                </div>
-                                <div className="productCard-productName">
-                                    Product Name
-                                </div>
-                                <div className="d-flex productCard-Reviews">
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    <i class="bi bi-star"></i>
-                                    (3,000)
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div className="col-2">
-
-                    </div>
-                </div>
-
-            </Container>
             <Footer></Footer>
         </div>
     )
