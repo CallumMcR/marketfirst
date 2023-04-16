@@ -181,7 +181,7 @@ function Product() {
     useEffect(() => {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
         setBasketItems(basketItemsFromStorage);
-        console.log(basketItemsFromStorage, "got data");
+        window.dispatchEvent(new Event("storage"));
     }, []);
 
 
@@ -208,6 +208,7 @@ function Product() {
     useEffect(() => {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
         window.dispatchEvent(new Event("basketUpdated"));
+        window.dispatchEvent(new Event("storage"));
     }, [basketItems]);
     return (
         <div>

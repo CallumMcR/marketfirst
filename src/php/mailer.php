@@ -16,11 +16,12 @@ $uniqueID ="";
 
 if(!empty($_POST['email']))
 {
+    $currentDatetime = date('Y-m-d H:i:s');
     $email = $_POST['email'];
     $id = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
     $uniqueID =$id;
 
-    $query2 = $connection->prepare("SELECT COUNT(*) FROM user WHERE email = :email");
+    $query2 = $connection->prepare("SELECT COUNT(*) FROM user WHERE emailAddress = :email");
     $query2->bindParam(':email', $email);
     $query2->execute();
     $count2 = $query2->fetchColumn();
@@ -47,12 +48,13 @@ if(!empty($_POST['email']))
         $lastName=$_POST['lastName'];
 
         // Insert the email and ID into the database
-        $query = $connection->prepare("INSERT INTO ueser (email, activationCode,password,firstName,lastName) VALUES (:email, :id,:hashedpassword,:firstName,:lastName)");
+        $query = $connection->prepare("INSERT INTO user (emailAddress, activationCode,password,firstName,lastName,accountCreationDate) VALUES (:email, :id,:hashedpassword,:firstName,:lastName,:currentDatetime)");
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
         $query->bindParam(':hashedpassword', $hashedpassword);
         $query->bindParam(':firstName', $firstName);
         $query->bindParam(':lastName', $lastName);
+        $query->bindParam(':currentDatetime', $currentDatetime);
         $query->execute();
 
         // Check if the query was successful and return a message

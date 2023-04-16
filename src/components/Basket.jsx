@@ -70,6 +70,7 @@ function Basket() {
             setBasketItems(updatedBasketItems);
             sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
         }
+        window.dispatchEvent(new Event("storage"));
     };
 
     const handleMinusQuantityToBasket = (product) => {
@@ -90,6 +91,7 @@ function Basket() {
                 sessionStorage.setItem("basketData", JSON.stringify(updatedBasketItems));
             }
         }
+        window.dispatchEvent(new Event("storage"));
     };
 
     useEffect(() => {
@@ -156,7 +158,7 @@ function Basket() {
                         {/* Product - one card */}
                         {basketItems.map((product) => (
                             <div className="p-5" key={product.productID}>
-                                <div className="card">
+                                <div className="card" style={{border:"none"}}>
                                     <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
                                     <div className="card-body">
                                         <h5 className="card-title">{product.productName}</h5>

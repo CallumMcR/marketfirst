@@ -7,11 +7,12 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 
 if(!empty($_GET['email']))
 {
+    $currentDatetime = date('Y-m-d H:i:s');
     $email = $_GET['email'];
     $id = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 16);
 
 
-    $query2 = $connection->prepare("SELECT COUNT(*) FROM user WHERE email = :email");
+    $query2 = $connection->prepare("SELECT COUNT(*) FROM user WHERE emailAddress = :email");
     $query2->bindParam(':email', $email);
     $query2->execute();
     $count2 = $query2->fetchColumn();
@@ -32,7 +33,7 @@ if(!empty($_GET['email']))
         }
 
         // Insert the email and ID into the database
-        $query = $connection->prepare("INSERT INTO user (email, activationCode) VALUES (:email, :id)");
+        $query = $connection->prepare("INSERT INTO user (emailAddress, activationCode) VALUES (:email, :id)");
         $query->bindParam(':email', $email);
         $query->bindParam(':id', $id);
         $query->execute();
