@@ -84,7 +84,7 @@ function Product() {
 
                 },
             });
-            
+
         }
         getProductByID();
 
@@ -101,7 +101,7 @@ function Product() {
                 const similarProducts = JSON.parse(data);
                 console.log(data);
                 setListOfProducts(similarProducts);
-                console.log("Similar products",similarProducts);
+                console.log("Similar products", similarProducts);
                 setLoading(false);
             },
         });
@@ -123,9 +123,6 @@ function Product() {
                 console.log(thumbnailImages);
                 iterateThumbnailImages(data)
                 setIsLoadingProduct(true);
-
-
-
             },
         });
 
@@ -145,12 +142,6 @@ function Product() {
         setTempThumbnails(tempThumbnailsCopy);
     };
 
-
-
-
-
-
-
     const [quantity, setQuantity] = useState(1);
     const [activeImage, setActiveImage] = useState(require('../PHP/images/products/' + id + '/image1.png'));
 
@@ -166,13 +157,6 @@ function Product() {
     const returnPrevPage = () => {
         navigate(-1);
     };
-
-
-
-
-
-
-
 
 
     // Add to Basket
@@ -203,8 +187,6 @@ function Product() {
         }
     };
 
-
-
     useEffect(() => {
         sessionStorage.setItem("basketData", JSON.stringify(basketItems));
         window.dispatchEvent(new Event("basketUpdated"));
@@ -214,19 +196,10 @@ function Product() {
         <div>
             <NavigationBar>
             </NavigationBar>
-
-
             <div className="row">
-
                 <div className="col-2">
-
                 </div>
-
-
                 <div className="col-8">
-
-
-
                     <div className="row">
                         <div className="col-2">
 
@@ -240,13 +213,13 @@ function Product() {
                             {loadingProduct ?
                                 <div>
                                     <div className="row">
-                                        <div className="col-5  rounded mx-3" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
-                                            <div className="text-center">
-                                                <div className="product-image-container text-center">
-                                                    <img src={activeImage} className="" alt="..."></img>
-                                                </div>
+                                        <div className="col-5  rounded mx-3 text-center" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
 
+                                            <div className="product-image-container text-center">
+                                                <img src={activeImage} className="" alt="..."></img>
                                             </div>
+
+
                                         </div>
                                         <div className="col-2 rounded container-overflow-control" style={{ maxWidth: "200px", maxHeight: "500px" }}>
                                             {tempThumbnails.map((pic, index) => {
@@ -261,9 +234,6 @@ function Product() {
                                             <div className="font-product-header">
                                                 {product[0].productName}
                                             </div>
-
-
-
                                             <div className="font-price-header">
                                                 £{product[0].price}
                                             </div>
@@ -294,7 +264,6 @@ function Product() {
                                                     </ul>
                                                 )}
                                             </div>
-
                                             <Dropdown
                                                 options={shoeOptions}
                                                 startingToggleStatus={false}
@@ -302,9 +271,6 @@ function Product() {
                                                     setSelectedShoeSize(option);
                                                 }}
                                             />
-
-
-
                                             <div className="buynow-button">
                                                 Buy Now
                                             </div>
@@ -314,14 +280,8 @@ function Product() {
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div className="py-2">
-
                                     </div>
-
-
-
                                     <ExpandableContainer
                                         buttonText="Product Information"
                                         paragraphText={product[0].productDesc}
@@ -332,11 +292,7 @@ function Product() {
                                         paragraphText={product[0].Brand}
                                         startOpen={false}
                                     />
-
-
-
                                 </div>
-
                                 :
                                 <div className="text-center my-5">
                                     <Spinner animation="border" role="status" variant="primary">
@@ -346,29 +302,13 @@ function Product() {
                                 </div>
                             }
                         </div>
-
-
-
-
-
-
-
-
-
-
                     </div>
-
                 </div>
-
                 <div className="col-2">
-
                 </div>
                 <hr></hr>
-
-
                 <div className="row">
                     <div className="col-2">
-
                     </div>
                     <div className="col-8">
                         {!loading ?
@@ -397,14 +337,7 @@ function Product() {
                                                         <div className="productCard-productName">
                                                             {product.productName}
                                                         </div>
-                                                        <div className="d-flex productCard-Reviews">
-                                                            <i className="bi bi-star"></i>
-                                                            <i className="bi bi-star"></i>
-                                                            <i className="bi bi-star"></i>
-                                                            <i className="bi bi-star"></i>
-                                                            <i className="bi bi-star"></i>
-                                                            ({product.ratings})
-                                                        </div>
+
                                                     </div>
                                                 </Link>
                                             </div>
@@ -414,15 +347,11 @@ function Product() {
                             </div>
                             : <div></div>
                         }
-
                     </div>
                     <div className="col-2">
-
                     </div>
                 </div>
-
             </div>
-
         </div >
     )
 }

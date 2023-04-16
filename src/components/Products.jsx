@@ -11,7 +11,7 @@ import { Spinner } from 'react-bootstrap'
 
 function Products() {
     const query = useParams();
-    const options = ['Relevancy', 'Lowest price', 'Highest Price', 'Most popular'];
+    const options = ['Relevancy', 'Lowest price', 'Highest price', 'Most popular'];
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggle, setToggled] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Relevancy");
@@ -67,14 +67,14 @@ function Products() {
             }
         };
         postData();
-    }, [searchQuery, selectedOption]);
+    }, [searchQuery]);
+
+
+
 
 
     useEffect(() => {
         setLoading(true);
-
-
-
         let filteredProducts = [];
         if (searchQuery && searchQuery.length > 0 && typeof searchQuery === 'string' && searchQuery !== "") {
             filteredProducts = masterDB.filter(product => {
@@ -116,7 +116,7 @@ function Products() {
     const [listOfProducts, setListOfProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
+    const [numberProductsPerPage, setNumberProductsPerPage] = useState(12);
 
 
     const indexOfLastItem = currentPage * numberProductsPerPage;
@@ -128,23 +128,27 @@ function Products() {
 
 
 
+
     const sortProducts = (sortOption, listProducts) => {
         switch (sortOption) {
-            case 'Relevancy':
+            case "Relevancy":
                 return masterDB;
-            case 'Lowest price':
-                return listProducts.sort((a, b) => a.price - b.price);
-            case 'Highest price':
-                return listProducts.sort((a, b) => b.price - a.price);
-            case 'Most popular':
-                return listProducts.sort((a, b) => b.ratings - a.ratings);
+            case "Lowest price":
+                return [...listProducts].sort((a, b) => a.price - b.price);
+            case "Highest price":
+                return [...listProducts].sort((a, b) => b.price - a.price);
+            case "Most popular":
+                return [...listProducts].sort((a, b) => b.ratings - a.ratings);
             default:
                 return listProducts;
         }
-    }
+    };
+
 
     useEffect(() => {
+        console.log(selectedOption);
         setListOfProducts(sortProducts(selectedOption, listOfProducts));
+        console.log(listOfProducts);
     }, [selectedOption]);
 
 
@@ -217,11 +221,8 @@ function Products() {
                                         Number of search results:
                                     </div>
                                     <input type="number" max={50} defaultValue={numberProductsPerPage} value={numberProductsPerPage}
-                                        onChange={(e) => handleItemPerPageChange(e.target.value)}></input>
-
-
-
-
+                                        onChange={(e) => handleItemPerPageChange(e.target.value)}>
+                                    </input>
                                 </div>
                             </div>
                         </Container>
@@ -248,14 +249,7 @@ function Products() {
                                                     <div className="productCard-productName">
                                                         {product.productName}
                                                     </div>
-                                                    <div className="d-flex productCard-Reviews">
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        <i className="bi bi-star"></i>
-                                                        ({product.ratings})
-                                                    </div>
+
                                                 </div>
                                             </Link>
                                         </div>
