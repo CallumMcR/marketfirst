@@ -13,22 +13,34 @@ import { Spinner } from 'react-bootstrap'
 
 function CheckOut() {
 
-    const [basketTotal, setBasketTotal] = useState(() => {
-        const saved = sessionStorage.getItem("basketTotalPrice");
-        const initialValue = JSON.parse(saved);
-        return initialValue || 0.00;
-    })
+
+
+    const [basketTotal, setBasketTotal] = useState(0);
 
     const [basketItems, setBasketItems] = useState([]);
+    const setTotalPrice = () => {
+        let total = 0;
+        for (let item of basketItems) {
+            total += parseInt(item.price) * item.quantity;
+        }
+        console.log("Total checkout", total);
+        setBasketTotal(total);
+    }
+
     useEffect(() => {
         const basketItemsFromStorage = JSON.parse(sessionStorage.getItem("basketData")) || [];
         setBasketItems(basketItemsFromStorage);
     }, []);
 
+    useEffect(() => {
+        setTotalPrice();
+    }, [basketItems]);
+
+
 
     const [progressBar, setProgress] = useState(0);
 
-    const [backClass,setBackClass] = useState(" disabled");
+    const [backClass, setBackClass] = useState(" disabled");
 
     const progressBarChange = (state) => {
         if (state === "next") {
@@ -51,12 +63,12 @@ function CheckOut() {
             });
 
             setProgress(progressBar--);
-      
+
             var pBar = (state / 2) * 100;
             $(".pBar").css("width", `${pBar}%`);
 
             if (state == 0) {
-               setBackClass(" disabled");
+                setBackClass(" disabled");
             }
         }
 
@@ -110,22 +122,24 @@ function CheckOut() {
 
                                 {basketItems.map((product) => (
                                     <div className="p-5" key={product.productID}>
-                                        <div className="card">
-                                            <img src={product.imageName} className="card-img-top" alt="product image" />
+                                        <div className="card" style={{ border: "none" }}>
+                                            <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
                                             <div className="card-body">
+                                                <h5 className="card-title fs-1">{product.productName}</h5>
+
+                                                <div className="d-flex">
+
+                                                    <div className="quantity-text px-4">
+                                                        {product.quantity}
 
 
-                                                <div className="fs-3">
-                                                    {product.productName || "Product Name"}
+                                                    </div>
                                                 </div>
-                                                <div className="quantity-text px-4">
-                                                    {product.quantity || 1}
+                                                <div className="size-text">
+                                                    Size:{product.shoeSize}
                                                 </div>
-
-
-
                                                 <div className='price-text'>
-                                                    £{product.price || 0.00}
+                                                    £{product.price * product.quantity}
                                                 </div>
 
                                             </div>
@@ -143,7 +157,7 @@ function CheckOut() {
                                         Subtotal
                                     </div>
                                     <div className="subtotal-price">
-                                        £ {basketTotal || 0}
+                                        £ {basketTotal}
                                     </div>
                                 </div>
                             </div>
