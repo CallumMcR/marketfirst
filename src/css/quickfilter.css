@@ -1,0 +1,43 @@
+.container-quick-filter{
+    width: 100%;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 40px;
+    display: flex !important;
+    justify-content: center;
+}
+
+.oval-quick-filter-button {
+    background-color: #E5E5E5;
+    border: 2px solid #C1C1C1;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #333333;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.oval-quick-filter-button:hover {
+    background-color: #D1D1D1;
+    border-color: #A9A9A9;
+    color: #222222;
+    cursor: pointer;
+  }
+  
+
+.container-quick-filter::-webkit-scrollbar {
+    width: 16px;
+    height: 6px;
+}
+
+.container-quick-filter::-webkit-scrollbar-thumb {
+    background-color: rgba(116, 116, 116, 0.15);
+    border-radius: 10px;
+}

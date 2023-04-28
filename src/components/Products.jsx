@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 import Container from 'react-bootstrap/Container';
 import '../css/productCard.css';
 import '../css/productsPage.css';
+import '../css/quickfilter.css';
 import { useParams } from "react-router";
 import axios from "axios";
 import { Spinner } from 'react-bootstrap'
@@ -165,7 +166,7 @@ function Products() {
                     </div>
                     <div className="col-8">
                         <div className="row pt-4">
-                            <div className="col-lg-8" style={{paddingLeft:"100px"}}>
+                            <div className="col-lg-8" style={{ paddingLeft: "100px" }}>
 
 
                                 <Dropdown
@@ -179,7 +180,7 @@ function Products() {
 
 
                             </div>
-                            <div className="col-lg-4 col-md-4 d-flex justify-content-end" style={{paddingRight:"100px"}}>
+                            <div className="col-lg-4 col-md-4 d-flex justify-content-end" style={{ paddingRight: "100px" }}>
                                 <Dropdown
                                     options={options}
                                     startingToggleStatus={false}
@@ -191,6 +192,35 @@ function Products() {
                             </div>
                         </div>
                         <hr></hr>
+
+                        <Container fluid>
+                            <div className="container-quick-filter">
+                                    <div className="oval-quick-filter-button">
+                                        Mens
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Womens
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Trainers
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Boots
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Adidas
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Nike
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Converse
+                                    </div>
+                                    <div className="oval-quick-filter-button">
+                                        Running Shoes
+                                    </div>
+                            </div>
+                        </Container>
 
                     </div>
                     <div className="col-2">
