@@ -11,6 +11,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { Spinner } from 'react-bootstrap'
 import Dropdown from "./Dropdown";
+import QuickFilterButton from './QuickFilterButton';
 
 function Products() {
     const query = useParams();
@@ -119,7 +120,7 @@ function Products() {
     const [listOfProducts, setListOfProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const [numberProductsPerPage, setNumberProductsPerPage] = useState(12);
+    const [numberProductsPerPage, setNumberProductsPerPage] = useState(5);
 
 
     const indexOfLastItem = currentPage * numberProductsPerPage;
@@ -156,6 +157,22 @@ function Products() {
 
     const [searchResultOptions, setSearchResultOptions] = useState([5, 10, 25, 50]);
 
+
+
+
+    // Quick filter
+
+    const [toggledFilters, setToggledFilters] = useState([]);
+
+    const handleQuickFilterClick = (filterOption) => {
+        if (toggledFilters.includes(filterOption)) {
+            setToggledFilters(toggledFilters.filter((item) => item !== filterOption));
+        } else {
+            setToggledFilters([...toggledFilters, filterOption]);
+        }
+    };
+
+
     return (
         <div className="div">
 
@@ -168,7 +185,6 @@ function Products() {
                         <div className="row pt-4">
                             <div className="col-lg-8" style={{ paddingLeft: "100px" }}>
 
-
                                 <Dropdown
                                     options={searchResultOptions}
                                     startingToggleStatus={false}
@@ -177,7 +193,6 @@ function Products() {
                                     }}
                                     prefix="Results: "
                                 />
-
 
                             </div>
                             <div className="col-lg-4 col-md-4 d-flex justify-content-end" style={{ paddingRight: "100px" }}>
@@ -192,33 +207,53 @@ function Products() {
                             </div>
                         </div>
                         <hr></hr>
-
                         <Container fluid>
                             <div className="container-quick-filter">
-                                    <div className="oval-quick-filter-button">
-                                        Mens
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Womens
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Trainers
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Boots
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Adidas
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Nike
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Converse
-                                    </div>
-                                    <div className="oval-quick-filter-button">
-                                        Running Shoes
-                                    </div>
+                                <QuickFilterButton
+                                    filterOption="Mens"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Womens"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Trainers"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Boots"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Adidas"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Nike"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Converse"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Running Shoes"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
+                                <QuickFilterButton
+                                    filterOption="Unisex"
+                                    onButtonClick={handleQuickFilterClick}
+                                    toggledFilters={toggledFilters}
+                                />
                             </div>
                         </Container>
 
@@ -228,15 +263,10 @@ function Products() {
                 </div>
             </Container>
 
-
-
             <Container fluid>
-
                 <div className="row">
                     <div className="col-2">
-
                     </div>
-
                     <div className="col-8">
                         <Container fluid>
                             <div className="row">
@@ -248,7 +278,6 @@ function Products() {
                                 </div>
                             </div>
                         </Container>
-
                         {!loading ?
                             <div className="row">
                                 {currentItems.map((product, index) => {
@@ -279,20 +308,15 @@ function Products() {
                                 })}
                             </div>
                             : <div></div>}
-
                     </div>
                     <div className="col-2">
-
                     </div>
-
                 </div>
-
             </Container>
 
             <Container fluid>
                 <div className="row">
                     <div className="col-2">
-
                     </div>
                     <div className="col-8 px-5">
                         {!loading ? <Pagination
@@ -310,12 +334,9 @@ function Products() {
                         }
                     </div>
                     <div className="col-2">
-
                     </div>
                 </div>
-
             </Container>
-
             <Footer></Footer>
         </div>
 

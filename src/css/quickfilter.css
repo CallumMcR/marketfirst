@@ -22,6 +22,8 @@
     max-width: fit-content;
     display: flex;
     align-items: center;
+    font-family: 'Open Sans';
+    font-weight: 500;
 }
 
 .oval-quick-filter-button:hover {
@@ -30,7 +32,26 @@
     color: #222222;
     cursor: pointer;
   }
-  
+
+
+  .quickfilter-active{
+    background-color: red;
+    border: 2px solid #C1C1C1;
+    border-color:red;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans';
+    font-weight: 500;
+  }
 
 .container-quick-filter::-webkit-scrollbar {
     width: 16px;
