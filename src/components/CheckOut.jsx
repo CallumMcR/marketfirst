@@ -11,9 +11,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import $ from "jquery";
 import { Spinner } from 'react-bootstrap'
 import Footer from "./Footer"
+import Cookies from 'universal-cookie';
 
 function CheckOut() {
-
 
 
     const [basketTotal, setBasketTotal] = useState(0);
@@ -37,8 +37,8 @@ function CheckOut() {
         setTotalPrice();
     }, [basketItems]);
 
-
-
+    const cookies = new Cookies();
+    const userID = cookies.get('userID')
     const [progressBar, setProgress] = useState(0);
 
     const [backClass, setBackClass] = useState(" disabled");
@@ -115,81 +115,167 @@ function CheckOut() {
                     </div>
 
 
-                    {basketItems.length > 0 ?
-                        <div className="container">
 
 
-                            <div className="justify-content-center d-flex">
 
-                                {basketItems.map((product) => (
-                                    <div className="p-5" key={product.productID}>
-                                        <div className="card" style={{ border: "none" }}>
-                                            <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
-                                            <div className="card-body">
-                                                <h5 className="card-title fs-1">{product.productName}</h5>
 
-                                                <div className="d-flex">
+                    {/* State 0 - Logged in */}
 
-                                                    <div className="quantity-text px-4">
-                                                        {product.quantity}
+                    {
 
+
+                        userID != undefined && progressBar === 0 ?
+
+                            basketItems.length > 0 ?
+                                <div className="container">
+
+
+                                    <div className="justify-content-center d-flex">
+
+                                        {basketItems.map((product) => (
+                                            <div className="p-5" key={product.productID}>
+                                                <div className="card" style={{ border: "none" }}>
+                                                    <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
+                                                    <div className="card-body">
+                                                        <h5 className="card-title fs-1">{product.productName}</h5>
+
+                                                        <div className="d-flex">
+
+                                                            <div className="quantity-text px-4">
+                                                                {product.quantity}
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div className="size-text">
+                                                            Size:{product.shoeSize}
+                                                        </div>
+                                                        <div className='price-text'>
+                                                            £{product.price * product.quantity}
+                                                        </div>
 
                                                     </div>
                                                 </div>
-                                                <div className="size-text">
-                                                    Size:{product.shoeSize}
-                                                </div>
-                                                <div className='price-text'>
-                                                    £{product.price * product.quantity}
-                                                </div>
+                                            </div>
+                                        ))}
 
+
+
+                                    </div>
+
+                                    <div className="container border-bottom">
+                                        <div className="d-flex justify-content-around">
+                                            <div className=" subtotal-text">
+                                                Subtotal
+                                            </div>
+                                            <div className="subtotal-price">
+                                                £ {basketTotal}
                                             </div>
                                         </div>
                                     </div>
-                                ))}
-
-
-
-                            </div>
-
-                            <div className="container border-bottom">
-                                <div className="d-flex justify-content-around">
-                                    <div className=" subtotal-text">
-                                        Subtotal
-                                    </div>
-                                    <div className="subtotal-price">
-                                        £ {basketTotal}
+                                    <div className="container">
+                                        <div className="d-flex justify-content-center">
+                                            <div className="login-button mt-4">
+                                                Pay
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="container">
-                                <div className="d-flex justify-content-center my-4">
-                                    <div className="login-button">
-                                        Login
+                                :
+
+                                <div className="container">
+                                    <div className="text-center empty-cart">
+                                        Your cart is empty
+                                    </div>
+                                    <div className="guest-header">
+                                        <span className="browse-products">Browse products here</span>
+                                    </div>
+
+                                </div>
+
+                            // State 0 - Finish
+
+                            :
+
+                            /* State 1 - Not logged in*/
+
+                            basketItems.length > 0 ?
+                                <div className="container">
+
+                                    <div className="justify-content-center d-flex">
+
+                                        {basketItems.map((product) => (
+                                            <div className="p-5" key={product.productID}>
+                                                <div className="card" style={{ border: "none" }}>
+                                                    <img src={require(`../PHP/images/products/${product.productID}/image1.png`)} alt="product" />
+                                                    <div className="card-body">
+                                                        <h5 className="card-title fs-1">{product.productName}</h5>
+                                                        <div className="d-flex">
+                                                            <div className="quantity-text px-4">
+                                                                {product.quantity}
+                                                            </div>
+                                                        </div>
+                                                        <div className="size-text">
+                                                            Size:{product.shoeSize}
+                                                        </div>
+                                                        <div className='price-text'>
+                                                            £{product.price * product.quantity}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+
+
+
+                                    </div>
+
+                                    <div className="container border-bottom">
+                                        <div className="d-flex justify-content-around">
+                                            <div className=" subtotal-text">
+                                                Subtotal
+                                            </div>
+                                            <div className="subtotal-price">
+                                                £ {basketTotal}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="container">
+                                        <div className="d-flex justify-content-center my-4">
+                                            <div className="login-button">
+                                                Login
+                                            </div>
+                                        </div>
+                                        <div className="guest-header">
+                                            <span>Or</span>
+                                        </div>
+                                        <div className="d-flex justify-content-center">
+                                            <div className="pay-guest">
+                                                Pay as a guest
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div className="guest-header">
-                                    <span>Or</span>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <div className="pay-guest">
-                                        Pay as a guest
+                                :
+                                <div className="container">
+                                    <div className="text-center empty-cart">
+                                        Your cart is empty
                                     </div>
+                                    <div className="guest-header">
+                                        <span className="browse-products">Browse products here</span>
+                                    </div>
+
                                 </div>
-                            </div>
-                        </div>
-                        :
+                                // State 1 - not logged in finish
+                    }
 
-                        <div className="container">
-                            <div className="text-center empty-cart">
-                                Your cart is empty
-                            </div>
-                            <div className="guest-header">
-                                <span className="browse-products">Browse products here</span>
-                            </div>
 
-                        </div>}
+
+
+
+
+
+
                 </div>
                 <div className="col-2">
 

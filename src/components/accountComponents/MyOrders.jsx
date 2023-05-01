@@ -146,7 +146,7 @@ function MyOrders() {
                     {
                         !loading && orderedProducts.length === 0 ?
 
-                        <div className="fs-4">
+                        <div className="fs-4 text-center">
                             No orders
                         </div>
                         :
