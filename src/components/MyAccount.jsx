@@ -39,14 +39,14 @@ function MyAccount() {
                 <div className="col-3">
 
                 </div>
-                <div className="col-1 border">
+                <div className="col-1">
                     <div className="hyperlink-container text-center my-5">
                         <button onClick={(e) => setPageState(<MyOrders></MyOrders>)}>My Orders</button>
                         <button onClick={(e) => setPageState(<ChangeDelivery></ChangeDelivery>)}>Change Delivery Details</button>
                         <button onClick={(e) => setPageState(<Admin></Admin>)}>Admin</button>
                     </div>
                 </div>
-                <div className="col-5 border">
+                <div className="col-5">
                     <div className="my-3">
                         {pageState}
                     </div>

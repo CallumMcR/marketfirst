@@ -5,7 +5,8 @@ import React, { useState, useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import Card from 'react-bootstrap/Card';
-
+import Cookies from 'universal-cookie';
+import $ from "jquery";
 
 function CustomToggle({ children, eventKey }) {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
@@ -28,14 +29,36 @@ function CustomToggle({ children, eventKey }) {
 
 
 function MyOrders() {
-
-    const [orderedProducts, setOrderedProducts] = useState([{ orderID: "213131312", productName: "Nike Trainers", price: "20.00" }]);
+    const cookies = new Cookies();
+    const [orderedProducts, setOrderedProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(false);
-    }, [orderedProducts]);
+        const userID = cookies.get('userID')
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8000/getOrders.php',
+            data: { user_id: userID },
+            success(data) {
+                console.log(data);
+                if (data.length === 0) {
+                    setOrderedProducts([]);
+                }
+                else {
+                    setOrderedProducts(JSON.parse(data));
+                }
 
+                setLoading(false);
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error retrieving orders: " + errorThrown);
+            }
+        });
+
+
+
+    }, []);
 
     return (
         <div className="">
@@ -54,6 +77,18 @@ function MyOrders() {
 
                     {
                         loading ?
+                            <div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status" style={{ width: "5em", height: "5em" }}>
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center">
+                                    Loading...
+                                </div>
+                            </div>
+
+                            :
                             orderedProducts.map((product, index) => {
                                 return (
 
@@ -104,18 +139,18 @@ function MyOrders() {
 
                             })
 
-                            :
-                            <div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="spinner-border" role="status" style={{ width: "5em", height: "5em" }}>
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    Loading...
-                                </div>
-                            </div>
 
+
+                    }
+
+                    {
+                        !loading && orderedProducts.length === 0 ?
+
+                        <div className="fs-4">
+                            No orders
+                        </div>
+                        :
+                        <div></div>
                     }
 
 

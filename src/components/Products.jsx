@@ -65,6 +65,7 @@ function Products() {
                 setLoading(true);
                 const res = await axios.get('http://localhost:8000/getProducts.php');
                 setMasterDB(res.data);
+                console.log(res.data);
 
             } catch (err) {
                 console.error(err);
@@ -184,7 +185,6 @@ function Products() {
                     <div className="col-8">
                         <div className="row pt-4">
                             <div className="col-lg-8" style={{ paddingLeft: "100px" }}>
-
                                 <Dropdown
                                     options={searchResultOptions}
                                     startingToggleStatus={false}
@@ -193,7 +193,6 @@ function Products() {
                                     }}
                                     prefix="Results: "
                                 />
-
                             </div>
                             <div className="col-lg-4 col-md-4 d-flex justify-content-end" style={{ paddingRight: "100px" }}>
                                 <Dropdown
