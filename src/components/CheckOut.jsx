@@ -13,6 +13,7 @@ import { Spinner } from 'react-bootstrap'
 import Footer from "./Footer"
 import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 function CheckOut() {
     const [basketTotal, setBasketTotal] = useState(0);
@@ -461,6 +462,23 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
                     £ {basketTotal}
 
                 </div>
+            </div>
+
+            <div className="d-flex justify-content-between">
+                <button
+                    className="btn btn-light"
+                    onClick={() => onProgressClick(0)}
+                >
+                    <FaArrowLeft />
+                    &nbsp;Card Overview
+                </button>
+                <button
+                    className="btn btn-primary"
+                    onClick={() => onProgressClick(2)}
+                >
+                    Payment Details&nbsp;
+                    <FaArrowRight />
+                </button>
             </div>
 
         </div>
