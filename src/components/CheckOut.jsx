@@ -143,7 +143,6 @@ function CheckOut() {
                             basketTotal={basketTotal}
                             onProgressClick={handleProgressClick}
                         />
-
                     }
                     {
                         // No items in basket
@@ -187,7 +186,7 @@ function CheckOut() {
 
 export default CheckOut;
 
-function GuestStage0({ basketItems, basketTotal, onProgressClick }) {
+function UserStage0({ basketItems, basketTotal, onProgressClick }) {
     return (
         basketItems.length > 0 ?
             <div className="container">
@@ -244,7 +243,7 @@ function GuestStage0({ basketItems, basketTotal, onProgressClick }) {
     );
 }
 
-function UserStage0({ basketItems, basketTotal, onProgressClick }) {
+function GuestStage0({ basketItems, basketTotal, onProgressClick }) {
     return (
         <div className="container">
             <div className="justify-content-center d-flex">
@@ -299,7 +298,15 @@ function UserStage0({ basketItems, basketTotal, onProgressClick }) {
     );
 }
 
-function GuestStage1() {
+function UserStage1({ basketItems, basketTotal, onProgressClick }) {
+    return (
+        <div>
+
+        </div>
+    );
+}
+
+function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
     return (
         <div className="container">
             <div className="row">
@@ -314,13 +321,7 @@ function GuestStage1() {
     );
 }
 
-function UserStage1() {
-    return (
-        <div>
 
-        </div>
-    );
-}
 
 
 
