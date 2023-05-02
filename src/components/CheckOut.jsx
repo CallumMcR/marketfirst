@@ -12,6 +12,7 @@ import $ from "jquery";
 import { Spinner } from 'react-bootstrap'
 import Footer from "./Footer"
 import Cookies from 'universal-cookie';
+import { NavLink } from 'react-router-dom';
 
 function CheckOut() {
     const [basketTotal, setBasketTotal] = useState(0);
@@ -167,6 +168,25 @@ function CheckOut() {
                         />
                     }
 
+                    {
+                        // Not logged in stage 0
+                        userID === undefined && progressBar === 1 &&
+                        <GuestStage1
+                            basketItems={basketItems}
+                            basketTotal={basketTotal}
+                            onProgressClick={handleProgressClick}
+                        />
+                    }
+                    {
+                        // Logged in stage 0
+                        userID !== undefined && progressBar === 1 &&
+                        <UserStage1
+                            basketItems={basketItems}
+                            basketTotal={basketTotal}
+                            onProgressClick={handleProgressClick}
+                        />
+                    }
+
 
 
 
@@ -307,21 +327,47 @@ function UserStage1({ basketItems, basketTotal, onProgressClick }) {
 }
 
 function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
+    const [cardNumber, setCardNumber] = useState("");
+
+    const handleCardNumberChange = (e) => {
+        let formattedCardNumber = e.target.value
+            .replace(/\D/g, "")
+            .replace(/(.{4})/g, "$1 ")
+            .trim();
+        setCardNumber(formattedCardNumber);
+    };
+
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-6">
-                    test
-                </div>
-                <div className="col-6">
-                    test
-                </div>
+        <div className="container my-5">
+            <div className="stage1-header text-center">
+                We only accept card from guests
+            </div>
+            <div className="stage1-subheading text-center">
+                If you wish to use alternative payment methods:
+            </div>
+            <div className="text-center">
+                <NavLink to="/login" style={{ paddingBottom: "0.5rem" }}>
+                    Create an account
+                </NavLink>
+            </div>
+
+            <div id="container-details" className="text-center">
+                <input
+                    id="cardNumber"
+                    name="cardNumber"
+                    placeholder="1234 1234 1234 1234"
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="cc-number"
+                    value={cardNumber}
+                    onChange={handleCardNumberChange}
+                    maxLength={19}
+                    required
+                />
             </div>
         </div>
     );
 }
-
-
 
 
 

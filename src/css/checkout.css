@@ -194,3 +194,43 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
+.stage1-header{
+	font-family: 'Open Sans';
+	font-size: 2.4rem;
+	font-weight: 600;
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+}
+.stage1-subheading {
+	font-family: 'Open Sans';
+	font-size: 1remrem;
+	font-weight: 400;
+	padding-top: 0.5rem;
+}
+
+#container-details input{
+    display: block;
+    padding: 5px;
+    width: 50%;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    font: 'Open Sans';
+    font-size: 1em;
+    margin: auto;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#container-details input:focus{
+    padding: 5px;
+    width: 50%;
+    border-top:none ;
+    border-right: none;
+    border-left: none;
+    border: 0px;
+    border-bottom: 3px black solid;
+    outline: none;
+}
