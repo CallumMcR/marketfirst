@@ -464,6 +464,10 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
                 </div>
             </div>
 
+            <div className="my-3">
+
+            </div>
+
             <div className="d-flex justify-content-between">
                 <button
                     className="btn btn-light"
@@ -486,7 +490,13 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
 }
 
 
-
+function GuestStage2({ basketItems, basketTotal, onProgressClick }) {
+    return (
+        <div>
+            
+        </div>
+    );
+}
 
 
 
