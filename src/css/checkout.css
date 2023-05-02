@@ -212,13 +212,11 @@
 #container-details input{
     display: block;
     padding: 5px;
-    width: 50%;
     border-top:none ;
     border-right: none;
     border-left: none;
     font: 'Open Sans';
     font-size: 1em;
-    margin: auto;
     font-weight: 400;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -233,4 +231,34 @@
     border: 0px;
     border-bottom: 3px black solid;
     outline: none;
+}
+
+
+.buying-header{
+	font-family: 'Open Sans';
+	font-weight: 600;
+	font-size: 2em;
+	color: blue;
+}
+
+.purchase-header{
+	font-family: 'Open Sans';
+	font-weight: 600;
+	font-size: 2em;
+	color: blue;
+}
+
+.card-number-header{
+	font-family: 'Open Sans';
+	font-weight: 600;
+	font-size: 1.4em;
+	color: lightgrey;
+}
+
+.subtotal-price-stage1{
+    color: blue;
+    font-family: 'Open Sans';
+    font-size: 2.4em;
+    font-weight: 800;
+	padding-right: 1em;
 }

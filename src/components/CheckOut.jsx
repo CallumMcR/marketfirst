@@ -328,6 +328,7 @@ function UserStage1({ basketItems, basketTotal, onProgressClick }) {
 
 function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
     const [cardNumber, setCardNumber] = useState("");
+    const [expirationDate, setExpirationDate] = useState("");
 
     const handleCardNumberChange = (e) => {
         let formattedCardNumber = e.target.value
@@ -337,39 +338,134 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
         setCardNumber(formattedCardNumber);
     };
 
+    const handleExpirationDateChange = (e) => {
+        let formattedExpirationDate = e.target.value
+            .replace(/\D/g, "")
+            .replace(/(\d{2})(\d{1,2})/, "$1/$2")
+            .trim();
+        setExpirationDate(formattedExpirationDate);
+    };
+
+    const [cvv, setCVV] = useState("");
+
+    const handleCVVChange = (e) => {
+        let formattedCVV = e.target.value
+            .replace(/\D/g, "")
+            .trim();
+        setCVV(formattedCVV);
+    };
+
+
     return (
         <div className="container my-5">
-            <div className="stage1-header text-center">
-                We only accept card from guests
-            </div>
-            <div className="stage1-subheading text-center">
-                If you wish to use alternative payment methods:
-            </div>
-            <div className="text-center">
-                <NavLink to="/login" style={{ paddingBottom: "0.5rem" }}>
-                    Create an account
-                </NavLink>
+            <div className="row">
+                <div className="col-md-6">
+                    <div className="purchase-header text-center">
+                        Card Details
+                    </div>
+                    <div className="card-number-header">Card Number</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="cardNumber"
+                            name="cardNumber"
+                            placeholder="1234 1234 1234 1234"
+                            type="text"
+                            inputMode="numeric"
+                            autoComplete="cc-number"
+                            value={cardNumber}
+                            onChange={handleCardNumberChange}
+                            maxLength={19}
+                            required
+                        />
+                    </div>
+
+                    <div className="card-number-header">CVV Number</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="CVV"
+                            name="CVV"
+                            placeholder="123"
+                            type="text"
+                            maxLength={3}
+                            value={cvv}
+                            onChange={handleCVVChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="card-number-header">Expiration Date</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="expirationDate"
+                            name="expirationDate"
+                            placeholder="MM/YY"
+                            type="text"
+                            autoComplete="cc-exp"
+                            value={expirationDate}
+                            onChange={handleExpirationDateChange}
+                            maxLength={5}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="text-center buying-header">
+                        Items being bought
+                    </div>
+
+                    <div
+                        style={{
+                            overflowX: "hidden",
+                            overflowY: "scroll",
+                            height: "400px",
+                        }}
+                    >
+                        {basketItems.map((product) => (
+                            <div className="" key={product.productID}>
+                                <div
+                                    className="card"
+                                    style={{ border: "none" }}
+                                >
+                                    <img
+                                        src={require(`../PHP/images/products/${product.productID}/image1.png`)}
+                                        alt="product"
+                                    />
+                                    <div className="card-body">
+                                        <h5 className="card-title fs-5">
+                                            {product.productName}
+                                        </h5>
+                                        <div className="d-flex">
+                                            <div className="fs-4 px-4">
+                                                {product.quantity}
+                                            </div>
+                                        </div>
+                                        <div className="size-text">
+                                            Size:{product.shoeSize}
+                                        </div>
+                                        <div className="price-text">
+                                            £{product.price * product.quantity}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
-            <div id="container-details" className="text-center">
-                <input
-                    id="cardNumber"
-                    name="cardNumber"
-                    placeholder="1234 1234 1234 1234"
-                    type="text"
-                    inputMode="numeric"
-                    autoComplete="cc-number"
-                    value={cardNumber}
-                    onChange={handleCardNumberChange}
-                    maxLength={19}
-                    required
-                />
+            <hr></hr>
+
+            <div className="d-flex justify-content-end">
+
+                <div className="subtotal-price-stage1">
+                    £ {basketTotal}
+
+                </div>
             </div>
+
         </div>
     );
 }
-
-
 
 
 
