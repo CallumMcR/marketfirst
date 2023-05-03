@@ -14,6 +14,7 @@ import Footer from "./Footer"
 import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaBarcode } from "react-icons/fa";
 
 function CheckOut() {
     const [basketTotal, setBasketTotal] = useState(0);
@@ -182,6 +183,16 @@ function CheckOut() {
                         // Logged in stage 0
                         userID !== undefined && progressBar === 1 &&
                         <UserStage1
+                            basketItems={basketItems}
+                            basketTotal={basketTotal}
+                            onProgressClick={handleProgressClick}
+                        />
+                    }
+
+                    {
+                        // Not logged in stage 0
+                        userID === undefined && progressBar === 2 &&
+                        <GuestStage2
                             basketItems={basketItems}
                             basketTotal={basketTotal}
                             onProgressClick={handleProgressClick}
@@ -491,9 +502,104 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
 
 
 function GuestStage2({ basketItems, basketTotal, onProgressClick }) {
+    const [barcode, setBarcode] = useState("");
+
+    useEffect(() => {
+        // Generate a random barcode
+        setBarcode(Math.random().toString(36).substring(2, 15));
+    }, []);
+
     return (
-        <div>
-            
+        <div className="pt-5">
+            <div className="container my-5">
+                <div className="gueststage2-header text-center">
+                    Purchase complete
+                </div>
+                <hr></hr>
+
+                <div className="row">
+                    <div className="col-6">
+                        <div
+                            style={{
+                                overflowX: "hidden",
+                                overflowY: "scroll",
+                                height: "600px",
+                            }}
+                        >
+                            {basketItems.map((product) => (
+                                <div className="" key={product.productID}>
+                                    <div
+                                        className="card"
+                                        style={{ border: "none" }}
+                                    >
+                                        <img
+                                            src={require(`../PHP/images/products/${product.productID}/image1.png`)}
+                                            alt="product"
+                                        />
+                                        <div className="card-body">
+                                            <h5 className="card-title fs-5">
+                                                {product.productName}
+                                            </h5>
+                                            <div className="d-flex">
+                                                <div className="fs-4">
+                                                    Quantity: {product.quantity}
+                                                </div>
+                                            </div>
+                                            <div className="size-text">
+                                                Size:{product.shoeSize}
+                                            </div>
+                                            <div className="price-text">
+                                                £{product.price * product.quantity}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="d-flex justify-content-start">
+
+                            <div className="subtotal-price-stage1">
+                                Total £ {basketTotal}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="d-flex flex-column align-items-center">
+                            <div className="orderconfirmation-text">
+                                Order Confirmation #{ }
+                            </div>
+                            <div className="my-2">
+
+                            </div>
+                            <div className="orderconfirmation-text">
+                                Your order has been made and is being
+                                processed.
+                                <br></br> <br></br>
+                                Upon completion of processing, your order
+                                will be dispatched to the vendor nearest to
+                                you, and then put out for delivery.
+                            </div>
+                            <div className="my-5">
+
+                            </div>
+                            <h3>Scan the barcode below to track your package</h3>
+                            <hr></hr>
+                            <FaBarcode size={200} />
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <hr>
+                </hr>
+
+            </div>
         </div>
     );
 }
