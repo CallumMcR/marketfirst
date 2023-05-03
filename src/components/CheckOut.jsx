@@ -15,6 +15,7 @@ import Cookies from 'universal-cookie';
 import { NavLink } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FaBarcode } from "react-icons/fa";
+import AddPaymentMethod from "./AddPaymentMethod";
 
 function CheckOut() {
     const [basketTotal, setBasketTotal] = useState(0);
@@ -193,6 +194,16 @@ function CheckOut() {
                         // Not logged in stage 0
                         userID === undefined && progressBar === 2 &&
                         <GuestStage2
+                            basketItems={basketItems}
+                            basketTotal={basketTotal}
+                            onProgressClick={handleProgressClick}
+                        />
+                    }
+
+{
+                        // Logged in stage 1
+                        userID !== undefined && progressBar === 1 &&
+                        <AddPaymentMethod
                             basketItems={basketItems}
                             basketTotal={basketTotal}
                             onProgressClick={handleProgressClick}
