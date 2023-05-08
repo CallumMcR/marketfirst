@@ -17,6 +17,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { FaBarcode } from "react-icons/fa";
 import AddPaymentMethod from "./AddPaymentMethod";
 
+
 function CheckOut() {
     const [basketTotal, setBasketTotal] = useState(0);
     const [basketItems, setBasketItems] = useState([]);
@@ -200,7 +201,7 @@ function CheckOut() {
                         />
                     }
 
-{
+                    {
                         // Logged in stage 1
                         userID !== undefined && progressBar === 1 &&
                         <AddPaymentMethod
@@ -324,9 +325,12 @@ function GuestStage0({ basketItems, basketTotal, onProgressClick }) {
             </div>
             <div className="container">
                 <div className="d-flex justify-content-center my-4">
-                    <div className="login-button">
-                        Login
-                    </div>
+                    <NavLink className=' login-button'
+                        style={{
+                            fontSize: '25px',
+                            textDecoration: "none",
+                            verticalAlign: 'middle'
+                        }} to="/Login">Login </NavLink>
                 </div>
                 <div className="guest-header">
                     <span>Or</span>

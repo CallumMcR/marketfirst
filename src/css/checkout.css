@@ -143,6 +143,7 @@
     font-size: 1.5em;
     font-family: 'Open Sans';
     font-weight: 400;
+	color: black;
 }
 
 .login-button:hover{
