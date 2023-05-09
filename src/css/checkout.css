@@ -181,7 +181,7 @@
 	font-family: 'Open Sans';
 	font-size: 2em;
 	font-weight: 600;
-	margin-top: 200px;
+	margin-top: 50px;
 	margin-bottom: 2em;
 }
 
@@ -195,6 +195,7 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
+
 
 .stage1-header{
 	font-family: 'Open Sans';

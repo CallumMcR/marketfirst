@@ -127,7 +127,6 @@ import { NavLink } from 'react-router-dom';
         };
 
 
-
         return (
             <div className="basket" style={transitionProperties} >
                 <Container fluid>

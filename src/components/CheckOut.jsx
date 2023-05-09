@@ -141,30 +141,41 @@ function CheckOut() {
                     </div>
 
                     {
+                        // No items in basket
+                        basketItems.length <= 0 &&
+                        <div className="container">
+                            <div className="guest-header mt-5">
+                                <span className="browse-products"><NavLink to="/products"
+                                    style={{
+                                        fontSize: '25px',
+                                        textDecoration: "none",
+                                        verticalAlign: 'middle'
+                                    }}>Browse products here</NavLink></span>
+                            </div>
+                            <div className="text-center empty-cart">
+                                Your cart is empty
+                            </div>
+
+
+
+
+                        </div>
+                    }
+
+
+                    {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 0 &&
+                        userID === undefined && progressBar === 0 && basketItems.length > 1 &&
                         <GuestStage0
                             basketItems={basketItems}
                             basketTotal={basketTotal}
                             onProgressClick={handleProgressClick}
                         />
                     }
-                    {
-                        // No items in basket
-                        basketItems.length <= 0 &&
-                        <div className="container">
-                            <div className="text-center empty-cart">
-                                Your cart is empty
-                            </div>
-                            <div className="guest-header">
-                                <span className="browse-products">Browse products here</span>
-                            </div>
-                        </div>
-                    }
 
                     {
                         // Logged in stage 0
-                        userID !== undefined && progressBar === 0 &&
+                        userID !== undefined && progressBar === 0 && basketItems.length > 1 &&
                         <UserStage0
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -174,7 +185,7 @@ function CheckOut() {
 
                     {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 1 &&
+                        userID === undefined && progressBar === 1 && basketItems.length > 1 &&
                         <GuestStage1
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -183,7 +194,7 @@ function CheckOut() {
                     }
                     {
                         // Logged in stage 0
-                        userID !== undefined && progressBar === 1 &&
+                        userID !== undefined && progressBar === 1 && basketItems.length > 1 &&
                         <UserStage1
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -193,7 +204,7 @@ function CheckOut() {
 
                     {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 2 &&
+                        userID === undefined && progressBar === 2 && basketItems.length > 1 &&
                         <GuestStage2
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -203,7 +214,7 @@ function CheckOut() {
 
                     {
                         // Logged in stage 1
-                        userID !== undefined && progressBar === 1 &&
+                        userID !== undefined && progressBar === 1 && basketItems.length > 1 &&
                         <AddPaymentMethod
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -223,7 +234,7 @@ function CheckOut() {
                 <div className="col-2">
                 </div>
             </div>
-            <Footer></Footer>
+
         </div >
     )
 }
@@ -688,6 +699,18 @@ function GuestStage2({ basketItems, basketTotal, onProgressClick }) {
         setBarcode(Math.random().toString(36).substring(2, 15));
     }, []);
 
+    const min = 100000;
+    const max = 200000;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const [basketCopy, setBasketCopy] = useState(basketItems);
+
+    useEffect(() => {
+        sessionStorage.setItem("basketItems", JSON.stringify([]));
+        sessionStorage.setItem("basketData", JSON.stringify([]));
+        window.dispatchEvent(new Event("basketUpdated"));
+    }, [basketCopy]);
+
     return (
         <div className="pt-5">
             <div className="container my-5">
@@ -705,7 +728,7 @@ function GuestStage2({ basketItems, basketTotal, onProgressClick }) {
                                 height: "600px",
                             }}
                         >
-                            {basketItems.map((product) => (
+                            {basketCopy.map((product) => (
                                 <div className="" key={product.productID}>
                                     <div
                                         className="card"
@@ -747,7 +770,7 @@ function GuestStage2({ basketItems, basketTotal, onProgressClick }) {
                     <div className="col-6">
                         <div className="d-flex flex-column align-items-center">
                             <div className="orderconfirmation-text">
-                                Order Confirmation #{ }
+                                Order Confirmation #{randomNumber}
                             </div>
                             <div className="my-2">
 

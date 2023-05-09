@@ -43,19 +43,18 @@ function NavigationBar(props) {
 
     }
 
-    
+
     window.addEventListener('isActive', () => {
         setActive(JSON.parse(sessionStorage.getItem('isActive')));
     })
 
-    useEffect(() => {
-        const handleStorageChange = () => {
-            const basketCount = JSON.parse(sessionStorage.getItem('basketData')) || [];
-            setBasketNotification(basketCount.length);
-            console.log(basketCount);
-            console.log(basketCount.length);
-        };
+    const handleStorageChange = () => {
+        const basketCount = JSON.parse(sessionStorage.getItem('basketData')) || [];
+        setBasketNotification(basketCount.length);
+    };
 
+    useEffect(() => {
+        handleStorageChange();
         window.addEventListener('storage', handleStorageChange);
         return () => {
             window.removeEventListener('storage', handleStorageChange);
