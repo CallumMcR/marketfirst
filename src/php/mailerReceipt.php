@@ -15,6 +15,7 @@ require 'databaseConn.php';
 $address1 = $_POST['address1'];
 $address2 = $_POST['address2'];
 $email = $_POST['email'];
+$postcode = $_POST['postCode'];
 
 if(!empty($_POST['email']))
 {
@@ -30,7 +31,7 @@ if(!empty($_POST['email']))
     $mail->addAddress($_POST['email']);
     $mail->isHTML(true);
     $mail->Subject ="Market first Order Receipt";
-    $mail->Body .= "\n\nYour items will be shipped to:\n" . $address1 . "\n" . $address2;
+    $mail->Body .= "\n\nYour items will be shipped to:\n" . $address1 . "\n" . $address2 . "\n" . $postCode ;
 
     if($mail->send()) {
         echo "Email sent";
