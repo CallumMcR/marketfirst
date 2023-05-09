@@ -361,7 +361,9 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
     const [address2, setAddress2] = useState("");
     const [postCode, setPostCode] = useState("");
     const [city, setCity] = useState("");
+    const [email, setEmail] = useState("");
 
+    const [isCompleted, setIsCompleted] = useState(false);
 
     const handleAddress1Change = (e) => {
         setAddress1(e.target.value);
@@ -375,6 +377,10 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
 
     const handleCityChange = (e) => {
         setCity(e.target.value);
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
     };
 
 
@@ -408,207 +414,268 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
     };
 
 
+    useEffect(() => {
+        // Check if all input fields are filled
+        if (
+            cardNumber &&
+            expirationDate &&
+            cardHolderName &&
+            address1 &&
+            address2 &&
+            postCode &&
+            city &&
+            email
+        ) {
+            setIsCompleted(true);
+        } else {
+            setIsCompleted(false);
+        }
+    }, [cardNumber, expirationDate, cardHolderName, address1, address2, postCode, city, email]);
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = $(e.target);
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: form.serialize(),
+            success(data) {
+                console.log("Receipt Sent");
+                onProgressClick(2);
+            },
+            error(jqXHR, textStatus, errorThrown) {
+                console.log("Error:", errorThrown);
+            },
+        });
+    };
+
+
     return (
         <div className="container my-5">
-            <div className="row">
-                <div className="col-md-6">
-                    <div className="purchase-header text-start pb-3">
-                        Card Details
+            <form
+                action="http://localhost:8000/mailerReceipt.php"
+                method="post"
+                onSubmit={(event) => handleSubmit(event)}>
+
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="purchase-header text-start pb-3">
+                            Card Details
+                        </div>
+                        <div className="card-number-header">Card Number</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="cardNumber"
+                                name="cardNumber"
+                                placeholder="1234 1234 1234 1234"
+                                type="text"
+                                inputMode="numeric"
+                                autoComplete="cc-number"
+                                value={cardNumber}
+                                onChange={handleCardNumberChange}
+                                maxLength={19}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">CVV Number</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="CVV"
+                                name="CVV"
+                                placeholder="123"
+                                type="text"
+                                maxLength={3}
+                                value={cvv}
+                                onChange={handleCVVChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">Expiration Date</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="expirationDate"
+                                name="expirationDate"
+                                placeholder="MM/YY"
+                                type="text"
+                                autoComplete="cc-exp"
+                                value={expirationDate}
+                                onChange={handleExpirationDateChange}
+                                maxLength={5}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">Card Holder Name</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="cardHolderName"
+                                name="cardHolderName"
+                                placeholder="MR J DOE"
+                                type="text"
+                                value={cardHolderName}
+                                onChange={handleCardHolderNameChange}
+                                required
+                            />
+                        </div>
+
+
+                        <div className="purchase-header text-start pb-3">
+                            Personal Details
+                        </div>
+
+                        <div className="card-number-header">Email Address</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="email"
+                                name="email"
+                                placeholder="johndoe@gmail.com"
+                                type="text"
+                                value={email}
+                                onChange={handleEmailChange}
+                                required
+                            />
+                        </div>
+
+
+                        <div className="card-number-header">Address Line 1</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="address1"
+                                name="address1"
+                                placeholder="Address Line 1"
+                                type="text"
+                                value={address1}
+                                onChange={handleAddress1Change}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">Address Line 2</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="address1"
+                                name="address1"
+                                placeholder="Address Line 2"
+                                type="text"
+                                value={address2}
+                                onChange={handleAddress2Change}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">City/Town</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="city"
+                                name="city"
+                                placeholder="City/Town"
+                                type="text"
+                                value={city}
+                                onChange={handleCityChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="card-number-header">Post Code</div>
+                        <div id="container-details" className="text-start">
+                            <input
+                                id="postCode"
+                                name="postCode"
+                                placeholder="PE1 1111"
+                                type="text"
+                                value={postCode}
+                                onChange={handlePostCodeChange}
+                                required
+                            />
+                        </div>
+
+
+
                     </div>
-                    <div className="card-number-header">Card Number</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="cardNumber"
-                            name="cardNumber"
-                            placeholder="1234 1234 1234 1234"
-                            type="text"
-                            inputMode="numeric"
-                            autoComplete="cc-number"
-                            value={cardNumber}
-                            onChange={handleCardNumberChange}
-                            maxLength={19}
-                            required
-                        />
-                    </div>
+                    <div className="col-md-6">
+                        <div className="text-center buying-header">
+                            Items being bought
+                        </div>
 
-                    <div className="card-number-header">CVV Number</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="CVV"
-                            name="CVV"
-                            placeholder="123"
-                            type="text"
-                            maxLength={3}
-                            value={cvv}
-                            onChange={handleCVVChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="card-number-header">Expiration Date</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="expirationDate"
-                            name="expirationDate"
-                            placeholder="MM/YY"
-                            type="text"
-                            autoComplete="cc-exp"
-                            value={expirationDate}
-                            onChange={handleExpirationDateChange}
-                            maxLength={5}
-                            required
-                        />
-                    </div>
-
-                    <div className="card-number-header">Card Holder Name</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="cardHolderName"
-                            name="cardHolderName"
-                            placeholder="MR J DOE"
-                            type="text"
-                            value={cardHolderName}
-                            onChange={handleCardHolderNameChange}
-                            required
-                        />
-                    </div>
-
-
-                    <div className="purchase-header text-start pb-3">
-                        Personal Details
-                    </div>
-                    <div className="card-number-header">Address Line 1</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="address1"
-                            name="address1"
-                            placeholder="Address Line 1"
-                            type="text"
-                            value={address1}
-                            onChange={handleAddress1Change}
-                            required
-                        />
-                    </div>
-
-                    <div className="card-number-header">Address Line 2</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="address1"
-                            name="address1"
-                            placeholder="Address Line 2"
-                            type="text"
-                            value={address2}
-                            onChange={handleAddress2Change}
-                            required
-                        />
-                    </div>
-
-                    <div className="card-number-header">City/Town</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="city"
-                            name="city"
-                            placeholder="City/Town"
-                            type="text"
-                            value={city}
-                            onChange={handleCityChange}
-                            required
-                        />
-                    </div>
-
-                    <div className="card-number-header">Post Code</div>
-                    <div id="container-details" className="text-start">
-                        <input
-                            id="postCode"
-                            name="postCode"
-                            placeholder="PE1 1111"
-                            type="text"
-                            value={postCode}
-                            onChange={handlePostCodeChange}
-                            required
-                        />
-                    </div>
-
-
-
-                </div>
-                <div className="col-md-6">
-                    <div className="text-center buying-header">
-                        Items being bought
-                    </div>
-
-                    <div
-                        style={{
-                            overflowX: "hidden",
-                            overflowY: "scroll",
-                            height: "400px",
-                        }}
-                    >
-                        {basketItems.map((product) => (
-                            <div className="" key={product.productID}>
-                                <div
-                                    className="card"
-                                    style={{ border: "none" }}
-                                >
-                                    <img
-                                        src={require(`../PHP/images/products/${product.productID}/image1.png`)}
-                                        alt="product"
-                                    />
-                                    <div className="card-body">
-                                        <h5 className="card-title fs-5">
-                                            {product.productName}
-                                        </h5>
-                                        <div className="d-flex">
-                                            <div className="fs-4 px-4">
-                                                {product.quantity}
+                        <div
+                            style={{
+                                overflowX: "hidden",
+                                overflowY: "scroll",
+                                height: "400px",
+                            }}
+                        >
+                            {basketItems.map((product) => (
+                                <div className="" key={product.productID}>
+                                    <div
+                                        className="card"
+                                        style={{ border: "none" }}
+                                    >
+                                        <img
+                                            src={require(`../PHP/images/products/${product.productID}/image1.png`)}
+                                            alt="product"
+                                        />
+                                        <div className="card-body">
+                                            <h5 className="card-title fs-5">
+                                                {product.productName}
+                                            </h5>
+                                            <div className="d-flex">
+                                                <div className="fs-4 px-4">
+                                                    {product.quantity}
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="size-text">
-                                            Size:{product.shoeSize}
-                                        </div>
-                                        <div className="price-text">
-                                            £{product.price * product.quantity}
+                                            <div className="size-text">
+                                                Size:{product.shoeSize}
+                                            </div>
+                                            <div className="price-text">
+                                                £{product.price * product.quantity}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <hr></hr>
 
-            <div className="d-flex justify-content-end">
+                <hr></hr>
 
-                <div className="subtotal-price-stage1">
-                    £ {basketTotal}
+                <div className="d-flex justify-content-end">
+
+                    <div className="subtotal-price-stage1">
+                        £ {basketTotal}
+
+                    </div>
+                </div>
+
+                <div className="my-3">
 
                 </div>
-            </div>
 
-            <div className="my-3">
+                <div className="d-flex justify-content-between">
+                    <button
+                        className="btn btn-light"
+                        onClick={() => onProgressClick(0)}
+                    >
+                        <FaArrowLeft />
+                        &nbsp;Card Overview
+                    </button>
+                    <button
+                        className="btn btn-primary"
+                        type="submit"
+                        onSubmit={(e) => handleSubmit(e)}
+                        disabled={!isCompleted}
+                    >
+                        Payment Details&nbsp;
+                        <FaArrowRight />
+                    </button>
+                </div>
+            </form>
 
-            </div>
-
-            <div className="d-flex justify-content-between">
-                <button
-                    className="btn btn-light"
-                    onClick={() => onProgressClick(0)}
-                >
-                    <FaArrowLeft />
-                    &nbsp;Card Overview
-                </button>
-                <button
-                    className="btn btn-primary"
-                    onClick={() => onProgressClick(2)}
-                >
-                    Payment Details&nbsp;
-                    <FaArrowRight />
-                </button>
-            </div>
-
-        </div>
+        </div >
     );
 }
 
