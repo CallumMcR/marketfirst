@@ -356,6 +356,27 @@ function UserStage1({ basketItems, basketTotal, onProgressClick }) {
 function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
     const [cardNumber, setCardNumber] = useState("");
     const [expirationDate, setExpirationDate] = useState("");
+    const [cardHolderName, setCardHolderName] = useState("");
+    const [address1, setAddress1] = useState("");
+    const [address2, setAddress2] = useState("");
+    const [postCode, setPostCode] = useState("");
+    const [city, setCity] = useState("");
+
+
+    const handleAddress1Change = (e) => {
+        setAddress1(e.target.value);
+    };
+    const handleAddress2Change = (e) => {
+        setAddress2(e.target.value);
+    };
+    const handlePostCodeChange = (e) => {
+        setPostCode(e.target.value);
+    };
+
+    const handleCityChange = (e) => {
+        setCity(e.target.value);
+    };
+
 
     const handleCardNumberChange = (e) => {
         let formattedCardNumber = e.target.value
@@ -363,6 +384,10 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
             .replace(/(.{4})/g, "$1 ")
             .trim();
         setCardNumber(formattedCardNumber);
+    };
+
+    const handleCardHolderNameChange = (e) => {
+        setCardHolderName(e.target.value);
     };
 
     const handleExpirationDateChange = (e) => {
@@ -387,7 +412,7 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
         <div className="container my-5">
             <div className="row">
                 <div className="col-md-6">
-                    <div className="purchase-header text-center">
+                    <div className="purchase-header text-start pb-3">
                         Card Details
                     </div>
                     <div className="card-number-header">Card Number</div>
@@ -434,6 +459,78 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
                             required
                         />
                     </div>
+
+                    <div className="card-number-header">Card Holder Name</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="cardHolderName"
+                            name="cardHolderName"
+                            placeholder="MR J DOE"
+                            type="text"
+                            value={cardHolderName}
+                            onChange={handleCardHolderNameChange}
+                            required
+                        />
+                    </div>
+
+
+                    <div className="purchase-header text-start pb-3">
+                        Personal Details
+                    </div>
+                    <div className="card-number-header">Address Line 1</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="address1"
+                            name="address1"
+                            placeholder="Address Line 1"
+                            type="text"
+                            value={address1}
+                            onChange={handleAddress1Change}
+                            required
+                        />
+                    </div>
+
+                    <div className="card-number-header">Address Line 2</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="address1"
+                            name="address1"
+                            placeholder="Address Line 2"
+                            type="text"
+                            value={address2}
+                            onChange={handleAddress2Change}
+                            required
+                        />
+                    </div>
+
+                    <div className="card-number-header">City/Town</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="city"
+                            name="city"
+                            placeholder="City/Town"
+                            type="text"
+                            value={city}
+                            onChange={handleCityChange}
+                            required
+                        />
+                    </div>
+
+                    <div className="card-number-header">Post Code</div>
+                    <div id="container-details" className="text-start">
+                        <input
+                            id="postCode"
+                            name="postCode"
+                            placeholder="PE1 1111"
+                            type="text"
+                            value={postCode}
+                            onChange={handlePostCodeChange}
+                            required
+                        />
+                    </div>
+
+
+
                 </div>
                 <div className="col-md-6">
                     <div className="text-center buying-header">

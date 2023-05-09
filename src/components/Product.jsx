@@ -28,7 +28,7 @@ function Product() {
     const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const [shoeOptions, setShoeOptions] = useState([4, 5, 6, 7, 8, 9, 10, 11, 12]);
     
-    const [selectedShoeSize, setSelectedShoeSize] = useState(4);
+    const [selectedShoeSize, setSelectedShoeSize] = useState(3.5);
     const [DropDownBoxStyle, SetDropDownBoxStyle] = useState("dropdown-container");
     const [toggleQuantity, setToggledQuantity] = useState(false);
     const [selectedOptionQuantity, setSelectedOptionQuantity] = useState(1);
