@@ -165,7 +165,7 @@ function CheckOut() {
 
                     {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 0 && basketItems.length > 1 &&
+                        userID === undefined && progressBar === 0 && basketItems.length > 0 &&
                         <GuestStage0
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -175,7 +175,7 @@ function CheckOut() {
 
                     {
                         // Logged in stage 0
-                        userID !== undefined && progressBar === 0 && basketItems.length > 1 &&
+                        userID !== undefined && progressBar === 0 && basketItems.length > 0 &&
                         <UserStage0
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -185,7 +185,7 @@ function CheckOut() {
 
                     {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 1 && basketItems.length > 1 &&
+                        userID === undefined && progressBar === 1 && basketItems.length > 0 &&
                         <GuestStage1
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -194,7 +194,7 @@ function CheckOut() {
                     }
                     {
                         // Logged in stage 0
-                        userID !== undefined && progressBar === 1 && basketItems.length > 1 &&
+                        userID !== undefined && progressBar === 1 && basketItems.length > 0 &&
                         <UserStage1
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -204,7 +204,7 @@ function CheckOut() {
 
                     {
                         // Not logged in stage 0
-                        userID === undefined && progressBar === 2 && basketItems.length > 1 &&
+                        userID === undefined && progressBar === 2 && basketItems.length > 0 &&
                         <GuestStage2
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -214,7 +214,7 @@ function CheckOut() {
 
                     {
                         // Logged in stage 1
-                        userID !== undefined && progressBar === 1 && basketItems.length > 1 &&
+                        userID !== undefined && progressBar === 1 && basketItems.length > 0 &&
                         <AddPaymentMethod
                             basketItems={basketItems}
                             basketTotal={basketTotal}
@@ -454,6 +454,7 @@ function GuestStage1({ basketItems, basketTotal, onProgressClick }) {
             success(data) {
                 console.log("Receipt Sent");
                 onProgressClick(2);
+                window.dispatchEvent(new Event("emptyBasketNotification"));
             },
             error(jqXHR, textStatus, errorThrown) {
                 console.log("Error:", errorThrown);

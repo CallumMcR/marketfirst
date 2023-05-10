@@ -82,6 +82,7 @@ function Product() {
                     setShoeOptions(sortedSizes);
                     getProductsImages();
                     getSimilarProducts();
+                    setIsLoadingProduct(true);
 
                 },
             });

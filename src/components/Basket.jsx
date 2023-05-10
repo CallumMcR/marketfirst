@@ -36,6 +36,8 @@ import { NavLink } from 'react-router-dom';
 
         })
 
+        
+
         const transitionProperties = !isActive
             ? { marginRight: '0px', opacity: 1, visibility: "visible" }
             : { marginRight: '-1000px', opacity: 0, visibility: "hidden" };

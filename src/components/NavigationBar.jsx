@@ -33,6 +33,10 @@ function NavigationBar(props) {
         window.dispatchEvent(new Event("isActive2"));
     };
 
+    window.addEventListener('emptyBasketNotification', () => {
+        setBasketNotification(0);
+
+    })
 
     const navigate = useNavigate();
 
