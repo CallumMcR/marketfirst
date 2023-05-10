@@ -203,7 +203,7 @@ function Product() {
                 </div>
                 <div className="col-8">
                     <div className="row">
-                        <div className="col-2">
+                        <div className="col-md-2">
 
                         </div>
                         <div className="col-8">
@@ -215,7 +215,7 @@ function Product() {
                             {loadingProduct ?
                                 <div>
                                     <div className="row">
-                                        <div className="col-5  rounded mx-3 text-center" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
+                                        <div className="col-lg-5  rounded px-3 text-center" style={{ maxWidth: "500px", maxHeight: "500px", overflow: "hidden" }}>
 
                                             <div className="product-image-container text-center">
                                                 <img src={activeImage} className="" alt="..."></img>
@@ -304,6 +304,9 @@ function Product() {
                                     <div className="my-2 fs-3">Loading Product</div>
                                 </div>
                             }
+                        </div>
+                        <div className="col-md-2">
+
                         </div>
                     </div>
                 </div>

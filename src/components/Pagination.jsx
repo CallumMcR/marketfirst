@@ -24,7 +24,7 @@ const Pagination = ({ productsPerPage, totalProducts, paginate }) => {
     };
     return (
         <nav>
-            <div className="d-flex justify-content-start">
+            <div className="d-flex justify-content-start my-5">
                 {currentPage !== 1 ?
                     <div className="paginationNumber-container" onClick={() => handlePreviousPage(currentPage - 1)}>
                         <div className="pagination-number">
