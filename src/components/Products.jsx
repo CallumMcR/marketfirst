@@ -178,6 +178,18 @@ function Products() {
                 return listOfProducts.filter((shoe) => shoe.gender.includes("Female") || shoe.gender.includes("Unisex"));
             case "Unisex":
                 return listOfProducts.filter((shoe) => shoe.gender.includes("Unisex"));
+            case "Trainers":
+                return listOfProducts.filter((shoe) => shoe.productType.includes("Sneaker"));
+            case "Boots":
+                return listOfProducts.filter((shoe) => shoe.productType.includes("Boot"));
+            case "Running Shoes":
+                return listOfProducts.filter((shoe) => shoe.productType.includes("Running Shoe"));
+            case "Nike":
+                return listOfProducts.filter((shoe) => shoe.Brand.includes("Nike"));
+            case "Adidas":
+                return listOfProducts.filter((shoe) => shoe.Brand.includes("Adidas"));
+            case "Converse":
+                return listOfProducts.filter((shoe) => shoe.Brand.includes("Converse"));
             default:
                 return listOfProducts;
         }
@@ -185,9 +197,9 @@ function Products() {
 
     useEffect(() => {
         const sortedProducts = sortProducts(selectedOption, masterDB)
-        console.log("sorted products"+sortedProducts.length);
+        console.log("sorted products" + sortedProducts.length);
         const filteredProducts = sortByFilter(sortedProducts);
-        console.log("Filtered products"+filteredProducts.length);
+        console.log("Filtered products" + filteredProducts.length);
         setListOfProducts(filteredProducts);
     }, [selectedOption, toggledFilters]);
 
