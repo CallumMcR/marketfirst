@@ -150,17 +150,6 @@ function Products() {
     };
 
 
-    useEffect(() => {
-        console.log(selectedOption);
-        setListOfProducts(sortProducts(selectedOption, listOfProducts));
-        console.log(listOfProducts);
-    }, [selectedOption]);
-
-    const [searchResultOptions, setSearchResultOptions] = useState([5, 10, 25, 50]);
-
-
-
-
     // Quick filter
 
     const [toggledFilters, setToggledFilters] = useState([]);
@@ -169,10 +158,41 @@ function Products() {
         if (toggledFilters.includes(filterOption)) {
             setToggledFilters(toggledFilters.filter((item) => item !== filterOption));
         } else {
-            setToggledFilters([...toggledFilters, filterOption]);
+            setToggledFilters((prevFilters) => [...prevFilters, filterOption]); // use previous state to update the state correctly
         }
     };
 
+    const sortByFilter = (listOfProducts) => {
+        let filteredProducts = [...listOfProducts];
+        toggledFilters.forEach((filterOption) => {
+            filteredProducts = filterProducts(filterOption, filteredProducts);
+        });
+        return filteredProducts;
+    };
+
+    const filterProducts = (filterOption, listOfProducts) => {
+        switch (filterOption) {
+            case "Mens":
+                return listOfProducts.filter((shoe) => shoe.gender.includes("Male") || shoe.gender.includes("Unisex"));
+            case "Womens":
+                return listOfProducts.filter((shoe) => shoe.gender.includes("Female") || shoe.gender.includes("Unisex"));
+            case "Unisex":
+                return listOfProducts.filter((shoe) => shoe.gender.includes("Unisex"));
+            default:
+                return listOfProducts;
+        }
+    };
+
+    useEffect(() => {
+        const sortedProducts = sortProducts(selectedOption, masterDB)
+        console.log("sorted products"+sortedProducts.length);
+        const filteredProducts = sortByFilter(sortedProducts);
+        console.log("Filtered products"+filteredProducts.length);
+        setListOfProducts(filteredProducts);
+    }, [selectedOption, toggledFilters]);
+
+
+    const [searchResultOptions, setSearchResultOptions] = useState([5, 10, 25, 50]);
 
     return (
         <div className="div">
